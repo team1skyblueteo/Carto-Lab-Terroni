@@ -1,0 +1,42 @@
+<div class="container">
+
+    <div class="navbar-header">
+        <a class="navbar-brand" href="#">
+            <img src="images/w3_icon_black.png" alt="w3_icon_black" height="20">
+            <span>{{ title }}</span-->
+        </a>
+    </div><!--/navbar-header-->
+
+    <div class="navbar-tools">
+        <ul class="nav navbar-right">
+            <li class="dropdown current-user" data-ng-show="isLoggedIn">
+                <a data-toggle="dropdown" class="dropdown-toggle">
+                    <img src="images/profile.jpg" class="circle-img" >
+                    <span class="username">{{ username }}</span>
+                    <i class="glyphicon glyphicon-chevron-down"></i>
+                </a>
+                <ul class="dropdown-menu">
+                    <!--li>
+                        <a href="">
+                            <i class="glyphicons user"></i>
+                            &nbsp;My Profile
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class="glyphicons settings"></i>
+                            &nbsp;My Settings
+                        </a>
+                    </li-->
+                    <li class="divider"></li>
+                    <li>
+                        <a ui-sref="authLogout">
+                            <i class="glyphicons exit"></i>
+                            &nbsp;Log Out
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div><!--/navbar-tools-->
+</div>

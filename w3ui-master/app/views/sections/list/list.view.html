@@ -1,0 +1,60 @@
+<nav class="navbar navbar-default" role="navigation">
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <!-- NavBar Left -->
+        <ul class="nav navbar-nav">
+            <!--li><a href="#">Link</a></li-->
+        </ul>
+
+        <!-- NavBar Right -->
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <!--button data-toggle="modal" data-target="#{{ modalID }}" ng-click="openAddModel()" type="button" class="btn btn-primary btn-sm pull-right">
+                    <i class="glyphicons white plus"></i>
+                    Erstellen
+                </button-->
+
+                <button data-ng-show="admin" ng-click="create()" type="button" class="btn btn-primary">
+                    <i class="glyphicons white plus"></i> Erstellen</button>
+            </li>
+        </ul>
+    </div><!-- /.navbar-collapse -->
+</nav>
+
+
+<!-- Grid -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="gridStyle" ng-grid="gridOptions"></div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="{{ modalID }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">
+                    {{ modalTitle }}
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form" name="restForm">
+                    <p>Sind Sie sicher, dass Sie dieses Element löschen möchten</p>
+                    <br/>
+                    <div class="form-group">
+                        <label for="inputName" class="col-sm-2 control-label">Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputName" data-ng-model="modalEntity.name" placeholder="Name" disabled>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Schliessen</button>
+                <button type="button" class="btn btn-danger" ng-click="submitModal()" data-ng-disabled="restForm.$invalid">{{ modalButtonText }}</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

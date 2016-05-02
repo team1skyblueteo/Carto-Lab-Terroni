@@ -1,0 +1,18 @@
+<ol class="breadcrumb">
+    <li>
+        <i class="glyphicons {{ breadcrumbIcon }}"></i>
+        <a href="#/{{ breadcrumbStateUrl }}">{{ breadcrumbTitle }}</a>
+    </li>
+    <li class="active">{{ breadcrumbSubTitle }}</li>
+</ol><!--/breadcrumb-->
+
+<div class="search-box" data-ng-show="searchBarVisible">
+    <form class="sidebar-search">
+        <div class="form-group">
+            <input id="subheader-search" type="text" placeholder="Start Searching..." data-default="130" data-ng-model="searchValue">
+            <button class="submit">
+                <i class="glyphicons search"></i>
+            </button>
+        </div>
+    </form>
+</div><!--/search-box-->

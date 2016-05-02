@@ -1,0 +1,61 @@
+<div class="page-header">
+    <h1>Table <small></small></h1>
+</div>
+
+
+<nav class="navbar navbar-default" role="navigation">
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <!-- NavBar Left -->
+        <ul class="nav navbar-nav">
+            <!--li><a href="#">Link</a></li-->
+        </ul>
+
+        <!-- NavBar Right -->
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <button data-toggle="modal" data-target="#{{ modalID }}" ng-click="openAddModel()" type="button" class="btn btn-primary btn-sm pull-right">
+                    <i class="glyphicons white plus"></i>
+                    Erstellen
+                </button>
+            </li>
+        </ul>
+    </div><!-- /.navbar-collapse -->
+</nav>
+
+<!-- Grid -->
+<div class="gridStyle" ng-grid="gridOptions"></div>
+
+<!-- Modal -->
+<div class="modal fade" id="{{ modalID }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">
+                    {{ modalTitle }}
+                    <span class="label label-default">{{ modalMode }}</span>
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label for="inputName" class="col-sm-2 control-label">Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputName" data-ng-model="modalName" placeholder="Name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAge" class="col-sm-2 control-label">Age</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" id="inputAge" data-ng-model="modalAge" placeholder="Age">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Schliessen</button>
+                <button type="button" class="btn btn-success" ng-click="saveModal()">Speichern</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

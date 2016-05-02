@@ -1,0 +1,55 @@
+<div class="main-navigation navbar-collapse collapse">
+    <div class="navigation-toggler" data-ng-click="onToggleNavigation(this)">
+        <i class="navigation-toggler-close glyphicons chevron-left" ></i>
+        <i class="navigation-toggler-open glyphicons chevron-right" ></i>
+    </div>
+
+    <ul class="main-navigation-menu">
+        <li ng-repeat="item in list" class="{{ item.class }}" data-ng-click="onClickNavigationItem(item, this)" id="main-navigation-item-{{ this.$id }}">
+
+            <a ng-if="0 < item.children.length">
+                <i class="fa fa-fw fa-{{ item.icon }}"></i>
+                <span class="title">{{ item.title }}</span>
+                <span class="selected" ></span>
+            </a>
+            <ul class="sub-menu">
+                <li ng-repeat="child in item.children">
+                    <a ui-sref="{{ child.state }}">
+                        <span class="title"> {{ child.title }} </span>
+                    </a>
+                </li>
+            </ul>
+
+            <a ng-if="0 == item.children.length" ui-sref="{{ item.state }}">
+                <i class="glyphicons {{ item.icon }}"></i>
+                <span class="title">{{ item.title }}</span>
+
+            </a>
+        </li>
+
+        <!--li>
+            <a>
+                <i class="glyphicons book"></i>
+                <span class="title"> UI Lab </span>
+                <span class="selected"></span>
+            </a>
+            <ul class="sub-menu">
+                <li>
+                    <a>
+                        <span class="title"> Elements </span>
+                    </a>
+                </li>
+                <li>
+                    <a>
+                        <span class="title"> Buttons &amp; icons </span>
+                    </a>
+                </li>
+                <li>
+                    <a>
+                        <span class="title"> Extended Modals </span>
+                    </a>
+                </li>
+            </ul>
+        </li-->
+    </ul>
+</div>

@@ -1,0 +1,48 @@
+<div class="row">
+    <div class="col-sm-4 col-md-4 col-md-offset-4">
+        <div class="panel panel-default account-wall" ng-class="loginFormClass">
+            <div class="panel-heading"><h3 class="panel-title">Anmeldung</h3></div>
+            <div class="panel-body">
+
+                <form ng-submit="login()" role="form" name="loginForm" ng-class="loginFormClass" class="form-signin">
+                    <input type="email"      data-ng-model="username"    class="form-control" placeholder="Email" required autofocus>
+                    <input type="password"  data-ng-model="password"    class="form-control" placeholder="Passwort" required>
+
+                    <!--label class="checkbox">
+                        <input type="checkbox" value="remember-me"> Remember me
+                    </label-->
+
+                    <button data-ng-disabled="loginForm.$invalid" class="btn btn-lg btn-primary btn-block" type="submit">
+                        <i class="glyphicons white log_in"></i>
+                        Anmelden
+                    </button>
+                </form>
+
+            </div>
+        </div><!-- Panel -->
+    </div>
+</div>
+
+
+<!--div class="row">
+<div class="col-sm-4 col-md-4 col-md-offset-4">
+<div class="account-wall" ng-class="loginFormClass">
+
+    <form ng-submit="login()" role="form" name="loginForm" ng-class="loginFormClass" class="form-signin">
+        <h2 class="form-signin-heading">Anmeldung</h2>
+        <input type="email"      data-ng-model="username"    class="form-control" placeholder="Email" required autofocus>
+        <input type="password"  data-ng-model="password"    class="form-control" placeholder="Passwort" required>
+
+        <label class="checkbox">
+            <input type="checkbox" value="remember-me"> Remember me
+        </label>
+
+        <button data-ng-disabled="loginForm.$invalid" class="btn btn-lg btn-primary btn-block" type="submit">
+            <i class="glyphicons white log_in"></i>
+            Anmelden
+        </button>
+    </form>
+
+</div>
+</div>
+</div-->

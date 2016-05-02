@@ -1,0 +1,79 @@
+.gridStyle {
+  border: 1px solid transparent;
+  width: 100%;
+  height: 450px;
+  /*
+  background-color: #eaeaea;
+  border-bottom: 1px solid #d4d4d4;
+  */
+}
+
+.ngTopPanel {
+  position: relative;
+  z-index: 1;
+  background-color: none !important;
+  background: none !important;
+  border-bottom: 2px solid #ddd;
+}
+
+.ngVerticalBarVisible{
+  background: none;
+}
+
+.ngCellText {
+  padding: 9px;
+}
+
+.ngHeaderText {
+  padding: 9px;
+}
+
+.ngRow.even {
+  background-color: #F9F9F9;
+}
+
+.ngRow.odd {
+  background-color: white;
+}
+
+.ngRow {
+  border-top: 1px solid #d4d4d4;
+}
+
+.ngGrid {
+  background-color: #ffffff;
+}
+
+.w3-tilte-bar{
+  padding-bottom: 15px;
+  height: 50px;
+  vertical-align: top;
+}
+
+.w3-tilte-bar h1{
+  margin: 0px;
+}
+
+.w3-tilte-bar nav{
+  margin-top: 5px;
+}
+
+.grid-buttons{
+  padding: 4px;
+}
+
+.grid-buttons button{
+  width: 38px;
+  background: transparent;
+  border-color: transparent;
+
+}
+.grid-buttons button i{
+   top: 1px;
+   color: #d4d4d4;
+}
+
+.grid-buttons button:hover i{
+  top: 1px;
+  color: #ffffff;
+}
