@@ -1,9 +1,19 @@
+
+/* CSS file for the Wellington Water Network Map */
+
 #map{
 	position:absolute;
 	margin: 0px 0px 0px 0px;
-	left:0px;
-	top:0px;
-	right:0px;
-	bottom:0px;
+	left:0%;
+	top:10%;
+	right:100%;
+	bottom:100%;
 }
-
+#toolbar{
+	position:absolute;
+	margin: 0px 0px 0px 0px;
+	left:0%;
+	top:0%;
+	right:100%;
+	bottom:10%;
+}

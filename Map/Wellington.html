@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html>
 
 <!-- 
 Carto Lab
@@ -8,24 +9,42 @@ Author: M. Lehmann
 Author: G. Tagliaferro
 Versions:
 2016-04-21: created
-
 -->
 
+<!-- **** HEAD **** -->
+
+<head>
 <meta charset="utf-8">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-<title>Welligton water network map</title>
-<link rel="stylesheet" type="text/css" href="CSS/Wellington.css">
-<link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />
-<script type="text/javascript" src="Leaflet/leaflet-src.js"></script>
+<title>Wellington Water Network Map</title>
+<!-- Scripts for toolbar -->
+<script type="text/javascript" src="../Scripts/jquery/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="../Scripts/w2utils.js"></script>
+<script type="text/javascript" src="../Scripts/w2fields.js"></script>
+<script type="text/javascript" src="../Scripts/w2toolbar.js"></script>
+<!-- Scripts for mapbox -->
+<script type="text/javascript" src="../Leaflet/leaflet-src.js"></script>
 <script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
+<!-- CSS ref for toolbar -->
+<link rel="stylesheet" type="text/css" media="screen" href="../CSS/w2ui.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="../CSS/font-awesome/font-awesome.css" />
+<!-- CSS ref for map -->
+<link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />
+<link rel="stylesheet" type="text/css" href="../CSS/Wellington.css">
+</head>
+
+<!-- **** BODY **** -->
+
 <body>
 
+<!-- Toolbar -->
+<div id="toolbar" style="padding: 4px; background-color: #efefef; margin: 0px "></div>
 <!-- The panel to place a map -->
 <div class="mappanel" id="map"></div>
 
-
 <!-- Load atlas script after the HTML elements are created -->
-</body>
-<script src="Scripts/main.js"></script>
+<script src="../Scripts/main.js"></script>
 
+</body>
+</html>
