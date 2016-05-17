@@ -115,7 +115,7 @@ jQuery(function () {
     jQuery('#sidebar').w2sidebar({
         name        : 'sidebar',
         img         : null,
-        topHTML     : '<div style="padding: 10px 5px;">Search: <input/> </div>',
+        topHTML     : '<div style="padding: 10px 5px;">Search layer: <input/> </div>',
         // bottomHTML  : '<div style="padding: 10px 5px; border-top: 1px solid black;">Bottom</div>',
         // style       : 'border: 1px solid black',
         routeData   : { id: 59, vid: '23.323.4' },
@@ -137,7 +137,7 @@ jQuery(function () {
         },
         //onKeydown: function (event) { console.log('keyboard', event); event.preventDefault(); },
         nodes: [
-            { id: 'level-1', text: 'Level 1', expanded: true, group: true,
+            { id: 'level-1', text: 'Level 1', expanded: false, group: true,
                 nodes: [
                     { id: 'level-1-1', text: function () { return  'Level 1.1' }, img1: 'icon-add', icon: 'fa-star', count: 1,
                         route: '/project',
@@ -151,7 +151,7 @@ jQuery(function () {
                     }
                 ]
             },
-            { id: 'level-2', text: 'Level 2', img: 'icon-folder', expanded: true, group: true,
+            { id: 'level-2', text: 'Level 2', img: 'icon-folder', expanded: false, group: true,
               nodes: [ { id: 'level-2-1', text: 'Level 2.1', img: 'icon-folder',
                          nodes: [
                            { id: 'level-2-1-1', text: function () { return 'Level 2.1.11' }, img: 'icon-page', count: '4', route: '/some/:id/:vid'},
@@ -170,7 +170,7 @@ jQuery(function () {
                            { id: 'level-2-1-14', text: 'Level 2.1.14', img: 'icon-page' },
                            { id: 'level-2-1-15', text: 'Level 2.1.15', img: 'icon-page' }
                      ]},
-                       { id: 'level-3-1', text: 'Level 3.1', img: 'icon-folder', expanded: true,
+                       { id: 'level-3-1', text: 'Level 3.1', img: 'icon-folder', expanded: false,
                          nodes: [
                            { id: 'level-3-1-1', text: 'Level 3.1.1', icon: 'fa-beer', disabled: true },
                            { id: 'level-3-1-2', text: 'Level 3.1.2', icon: 'fa-envelope' },
@@ -189,7 +189,7 @@ jQuery(function () {
                      ]}
                      ]
             },
-            { id: 'level-5', text: 'Level 5', img: 'icon-folder', expanded: true, group: true,
+            { id: 'level-5', text: 'Level 5', img: 'icon-folder', expanded: false, group: true,
               nodes: [ { id: 'level-5-1', text: 'Level 5.1', img: 'icon-page' },
                        { id: 'level-5-2', text: 'Level 5.2', img: 'icon-page' },
                        { id: 'level-5-3', text: 'Level 5.3', img: 'icon-page' }
@@ -215,13 +215,12 @@ var southWest = L.latLng(-41.3500, 174.6000),
     scrollWheelZoom: true, // We can also zoom with mousewheel
 	keyboard: true, // We can also navigate with keyboard
 	keyboardZoomOffset: 1, // Number of zoom levels to change when pressing + or - key.
-    })
-	.setView([-41.2833, 174.7666], 13);
+    }).setView([-41.2833, 174.7666], 13);
 
+
+// Change zoom position
+new L.Control.Zoom({ position: 'topright' }).addTo(map);
 
 //	Load OpenStreeMap data from Mapbox.
 L.mapbox.accessToken = 'pk.eyJ1IjoiZ2l1bGlvdCIsImEiOiJjaWg5ZGs1d2MwMDR0dnNtMzlydHhxaGs3In0.TfMvSNQas5gBS882h-Oh4g';
 L.mapbox.styleLayer('mapbox://styles/giuliot/cina7yy7000mad5m3dmzkaf1f').addTo(map);
-
-// Change zoom position
-new L.Control.Zoom({ position: 'topright' }).addTo(map);

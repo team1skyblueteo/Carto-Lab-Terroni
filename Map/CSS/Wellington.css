@@ -31,9 +31,9 @@
 	left:0%;
 	top:5%;
 	right:0%;
-	bottom:0%;
 	text-align: left;
 	vertical-align: left;
+	overflow: hidden;
 }
 
 
