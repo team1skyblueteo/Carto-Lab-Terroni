@@ -24,16 +24,16 @@
 
 #sidebar{
 	position:absolute;
-	margin: 0px 0px 0px 0px;
 	border-bottom: 1px solid black;
 	border-right: 1px solid black;
 	border-left: 1px solid black;
 	left:0%;
 	top:5%;
 	right:0%;
+	bottom:0%;
+	overflow: hidden;
 	text-align: left;
 	vertical-align: left;
-	height:100%;
 }
 
 #time-slider {
@@ -44,5 +44,6 @@
     left: 30%;
 
 }
+
 
 
