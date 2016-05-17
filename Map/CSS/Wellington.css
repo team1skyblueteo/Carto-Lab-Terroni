@@ -31,19 +31,17 @@
 	top:5%;
 	right:0%;
 	bottom:0%;
+	width:20%;
+	height:30%;
 	overflow: hidden;
 	text-align: left;
 	vertical-align: left;
 }
 
 #time-slider {
-
     width: 600px;
     position: absolute;
-    bottom: 15%;
+    bottom: 8%;
     left: 30%;
-
 }
-
-
 

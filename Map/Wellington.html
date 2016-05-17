@@ -24,6 +24,11 @@ Versions:
 <script type="text/javascript" src="Scripts/w2fields.js"></script>
 <script type="text/javascript" src="Scripts/w2toolbar.js"></script>
 <script type="text/javascript" src="Scripts/nouislider/nouislider.js"></script>
+<!-- Scripts for Popup windows -->
+<script type="text/javascript" src="Scripts/w2ui.js"></script>
+<script type="text/javascript" src="Scripts/w2fields.js"></script>
+<script type="text/javascript" src="Scripts/w2popup.js"></script>
+<script type="text/javascript" src="Scripts/w2grid.js"></script>
 <!-- Script for Sidebar -->
 <script type="text/javascript" src="Scripts/w2sidebar.js"></script>
 <!-- Scripts for mapbox -->
@@ -40,19 +45,24 @@ Versions:
 <link rel="stylesheet" type="text/css" href="CSS/nouislider/nouislider.pips.css"/>
 </head>
 
+
+
+
 <!-- **** BODY **** -->
 
 <body>
 
 <!-- Toolbar -->
 <div id="toolbar" style="padding: 4px; background-color: #efefef; margin: 0px "></div>
+
 <!-- The panel to place a map -->
 <div class="mappanel" id="map"></div>
 <!-- Sidebar -->
 <input placeholder="before sidebar" class="w2ui-input"/>
-<div id="sidebar" style="width: 250px; background-color: #efefef;">
+<div id="sidebar" style="background-color: #efefef;">
 </div>
 
+<!-- Time slider -->
 <div id="time-slider" class="time-slider"></div>
 
 <!-- Load atlas script after the HTML elements are created -->
