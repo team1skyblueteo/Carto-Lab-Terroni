@@ -1,0 +1,55 @@
+/** TIME SLIDER **/
+//with no ui slider
+
+
+var timeSlider = document.getElementById('time-slider');
+timeRange0 = {
+    "min": 1990,
+    "10.77%": 2003,
+    "80%": 2006,
+    "max": 2010
+}
+
+$(function() {
+    resfreshtimeline([1990, 1998, 2001, 2005, 2003, 2015, 2010], 2001);
+	resfreshtimeline([1993, 1998, 2001, 2005, 2003, 2015, 2010], 2001);
+	console.log('fgg');
+});
+/*
+years: array of year
+start: first year to load
+*/
+function resfreshtimeline(years, startyr) {	
+    years = years.sort();
+    var range = years[years.length - 1] - years[0];
+	$(".slider-container").css("width",(range*30).toString()+'px');
+	var mapwidth = parseFloat($(".mappanel").css("width"));
+	//mapwidth = mapwidth.substring(0, mapwidth.length - 2).toNum;
+	$(".slider-container").css("left",((mapwidth-range*30)/2).toString()+'px');
+    var timeRangetxt = '';
+    density1yr = 1 / range * 100;
+    for (i = 0; i < years.length; i++) {
+        if (i === 0) {
+            timeRangetxt = timeRangetxt + '{ \"min\":' + years[i].toString() + ','
+                //yearsPerc[i]='min';
+        } else if (i == years.length - 1) {
+            timeRangetxt = timeRangetxt + '\"max\":' + years[i].toString() + '}'
+                //yearsPerc[i]='max';
+        } else {
+            timeRangetxt = timeRangetxt + '\"' + ((years[i] - years[0]) * 100 / range).toString() + '%\":' + years[i].toString() + ','
+                //yearsPerc[i]=((years[i]-years[0])/range).toString()+"";
+        }
+    }
+    var timeRange = JSON.parse(timeRangetxt);
+    console.log(timeRange);
+	if (timeSlider.hasOwnProperty('noUiSlider')) {timeSlider.noUiSlider.destroy();}
+    noUiSlider.create(timeSlider, {
+        range: timeRange,
+        start: startyr,
+        snap: true,
+        pips: { // Show a scale with the slider
+            mode: 'steps',
+            density: density1yr
+        }
+    });
+}
