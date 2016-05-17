@@ -36,4 +36,13 @@
 	overflow: hidden;
 }
 
+#time-slider {
+
+    width: 600px;
+    position: absolute;
+    bottom: 15%;
+    left: 30%;
+
+}
+
 

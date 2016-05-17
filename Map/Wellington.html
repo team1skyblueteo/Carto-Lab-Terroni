@@ -23,6 +23,7 @@ Versions:
 <script type="text/javascript" src="Scripts/w2utils.js"></script>
 <script type="text/javascript" src="Scripts/w2fields.js"></script>
 <script type="text/javascript" src="Scripts/w2toolbar.js"></script>
+<script type="text/javascript" src="Scripts/nouislider/nouislider.js"></script>
 <!-- Script for Sidebar -->
 <script type="text/javascript" src="Scripts/w2sidebar.js"></script>
 <!-- Scripts for mapbox -->
@@ -33,7 +34,10 @@ Versions:
 <link rel="stylesheet" type="text/css" media="screen" href="CSS/font-awesome/font-awesome.css" />
 <!-- CSS ref for map -->
 <link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />
-<link rel="stylesheet" type="text/css" href="CSS/Wellington.css">
+<link rel="stylesheet" type="text/css" href="CSS/Wellington.css"/>
+<!--- CSS for time slider -->
+<link rel="stylesheet" type="text/css" href="CSS/nouislider/nouislider.css"/>
+<link rel="stylesheet" type="text/css" href="CSS/nouislider/nouislider.pips.css"/>
 </head>
 
 <!-- **** BODY **** -->
@@ -49,6 +53,8 @@ Versions:
 <div id="sidebar" style="width: 250px; height: 500px; background-color: #efefef;">
 <div style='clear:both;'></div>
 </div>
+
+<div id="time-slider" class="time-slider"></div>
 
 <!-- Load atlas script after the HTML elements are created -->
 <script src="Scripts/main.js"></script>
