@@ -22,8 +22,10 @@
 	vertical-align: middle;
 }
 
+
 #sidebar{
 	position:absolute;
+	background-color: #efefef;
 	border-bottom: 1px solid black;
 	border-right: 1px solid black;
 	border-left: 1px solid black;
@@ -32,7 +34,6 @@
 	right:0%;
 	bottom:0%;
 	width:20%;
-	height:30%;
 	overflow: hidden;
 	text-align: left;
 	vertical-align: left;

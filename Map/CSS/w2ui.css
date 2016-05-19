@@ -2536,7 +2536,7 @@ button.w2ui-btn-small:focus:before {
   position: relative;
   cursor: default;
   overflow: hidden !important;
-  background-color: #edf1f6 !important;
+  background-color: #edf1f6;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   -ms-box-sizing: border-box;
@@ -2619,6 +2619,7 @@ button.w2ui-btn-small:focus:before {
   border-bottom: 1px solid transparent;
   margin: 0px;
   padding: 1px 0px;
+  cursor:pointer;
 }
 .w2ui-sidebar .w2ui-sidebar-div .w2ui-node table {
   pointer-events: none;
@@ -2653,6 +2654,7 @@ button.w2ui-btn-small:focus:before {
 .w2ui-sidebar .w2ui-sidebar-div .w2ui-node input,
 .w2ui-sidebar .w2ui-sidebar-div .w2ui-node button {
   pointer-events: auto;
+  cursor: pointer;
 }
 .w2ui-sidebar .w2ui-sidebar-div .w2ui-selected,
 .w2ui-sidebar .w2ui-sidebar-div .w2ui-selected:hover {
@@ -2723,7 +2725,7 @@ button.w2ui-btn-small:focus:before {
   overflow: hidden;
   padding: 10px 0px 10px 10px;
   margin: 0px;
-  cursor: default;
+  cursor: pointer;
   color: #868b92;
   background-color: transparent;
 }
@@ -2912,15 +2914,15 @@ button.w2ui-btn-small:focus:before {
   table-layout: auto !important;
 }
 .w2ui-toolbar table td {
-  border: 0px !important;
+  border: 1px !important;
 }
 .w2ui-toolbar table.w2ui-button {
-  margin: 0px 1px;
+  margin: 1px 1px;
   border-radius: 4px;
   height: 24px;
   min-width: 24px;
-  border: 1px solid transparent;
-  background-color: transparent;
+  border: 1px solid silver;
+  background-color: white;
 }
 .w2ui-toolbar table.w2ui-button .w2ui-tb-image {
   width: 16px;
@@ -2988,7 +2990,7 @@ button.w2ui-btn-small:focus:before {
 .w2ui-toolbar table.w2ui-button table {
   height: 17px;
   border-radius: 4px;
-  cursor: default;
+  cursor: pointer;
 }
 .w2ui-toolbar .w2ui-break {
   background-image: -webkit-linear-gradient(top, rgba(153, 153, 153, 0.1) 0%, #999999 40%, #999999 60%, rgba(153, 153, 153, 0.1) 100%);

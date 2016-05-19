@@ -45,7 +45,7 @@ jQuery.noConflict();
             routeData: { id: 5, vid: '40-43' },
             tooltip: 'top',
             items: [
-                { type: 'menu',  id: 'item2', caption: 'Menu', img: 'icon-folder', icon: 'fa-reorder', hint: 'Menu button',
+                { type: 'menu',  id: 'item2', caption: 'Menu', img: 'icon-folder', icon: 'fa-reorder', hint: 'Menu button', style:'cursor: pointer; border: 1px solid rgb(128,128,128);',
                     items: [
                         { text: 'Item 1', img: 'icon-page', route: '/project/:id/item1', tooltip: 'some' },
                         { text: 'Item 2', img: 'icon-page', route: '/project/:id/item2', disabled: true },
@@ -54,19 +54,18 @@ jQuery.noConflict();
                 },
                 { type: 'spacer' },
                 // Menu button
-                { type: 'menu-check', id: 'menucheck', text: 'Topics',
-                    //  items: [
-                    //     { id: 'item1', text: '...', count: 3, icon: 'fa-heart' },
-                    //     { text: '--' },
-                    //     { id: 'item2', text: 'Item 2', icon: 'fa-user', count: 12, checked: true },
-                    //     { id: 'item3', text: 'Item 3', icon: 'fa-star-empty', hotkey: '⌘S' },
-                    //     { text: '--' },
-                    //     { id: 'item4', text: 'Item 4', icon: 'fa-link', hotkey: '⌘W', checked: true }
-                    // ],
+                { type: 'menu-check', id: 'menucheck', text: 'Topics', style:'cursor: pointer; border: 1px solid rgb(128,128,128);',
+                     items: [
+                        { id: 'item1', text: '...', count: 3, icon: 'fa-heart' },
+                        { text: '--' },
+                        { id: 'item2', text: 'Item 2', icon: 'fa-user', count: 12, checked: true },
+                        { id: 'item3', text: 'Item 3', icon: 'fa-star-empty', hotkey: '⌘S' },
+                        { text: '--' },
+                        { id: 'item4', text: 'Item 4', icon: 'fa-link', hotkey: '⌘W', checked: true }
+                    ],
                 },
                 { type: 'button',  id: 'Mapdescription',  caption: 'Map Description' },
                 { type: 'button',  id: 'Impressum',  caption: 'Impressum' },
-
             ],
             onClick: function (event) { console.log(event); }
         });
@@ -92,6 +91,7 @@ jQuery(function () {
     jQuery('#sidebar').w2sidebar({
         name        : 'sidebar',
         img         : null,
+        resizable   : true,
         topHTML     : '<div style="padding: 10px 5px;">Search layer: <input/> </div>',
         //bottomHTML  : '<div style="padding: 10px 5px; border-top: 1px solid black;">Bottom</div>',
         // style       : 'border: 1px solid black',
@@ -114,22 +114,22 @@ jQuery(function () {
         },
         onKeydown: function (event) { console.log('keyboard', event); event.preventDefault(); },
         nodes: [
-            { id: 'level-1', text: 'Level 1', expanded: false, group: true,
+            { id: 'level-1', text: 'Level 1', expanded: false, group: true, 
                 nodes: [
-                    { id: 'level-1-1', text: function () { return  'Level 1.1' }, img1: 'icon-add', icon: 'fa-star', count: 1,
+                    { id: 'level-1-1', text: '<div><input id="check" tabindex="0" type="checkbox" onClick="console.log(\'check clicked\')"/> Level 1-1</div>', icon: 'fa-star',
                         route: '/project',
                         onClick: function (event) { console.log('item', event); }
                     },
-                    { id: 'level-1-2', text: 'Level 1.2', img1: 'icon-save', icon: 'fa-camera', count: 'some',
+                    { id: 'level-1-2', text: '<div><input id="check1" tabindex="1" type="checkbox" onClick="console.log(\'check clicked\')"/> Level 1-2</div>', icon: 'fa-camera',
                         route: '/project/:id'
                     },
-                    { id: 'level-1-3', text: '<div>Level 2 <input id="check2" tabindex="-1" type="checkbox" style="float:right" onclick="console.log(\'check clicked\')"/></div>', img: 'icon-delete', disabled1: true,
+                    { id: 'level-1-3', text: '<div><input id="check2" tabindex="2" type="checkbox" onClick="console.log(\'check clicked\')"/> Level 1-3</div>',
                         route: '/project/:id/view'
                     }
                 ]
             },
             { id: 'level-2', text: 'Level 2', img: 'icon-folder', expanded: false, group: true,
-              nodes: [ { id: 'level-2-1', text: 'Level 2.1', img: 'icon-folder',
+              nodes: [ { id: 'level-2-1', text: 'Level 2.1', img: 'icon-folder', 
                          nodes: [
                            { id: 'level-2-1-1', text: function () { return 'Level 2.1.11' }, img: 'icon-page', count: '4', route: '/some/:id/:vid'},
                            { id: 'level-2-1-2', text: 'Level 2.1.2', img: 'icon-page', count: '10', route: '/some/:id/:vid/ok' },
