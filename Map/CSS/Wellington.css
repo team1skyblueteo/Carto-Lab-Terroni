@@ -5,7 +5,7 @@
 	position:absolute;
 	margin: 0px 0px 0px 0px;
 	left:0%;
-	top:5%;
+	top:6%;
 	right:0%;
 	bottom:0%;
 }
@@ -13,29 +13,34 @@
 #toolbar{
 	position:absolute;
 	margin: 0px 0px 0px 0px;
-	border: 1px solid black;
+	border-bottom: 1px solid silver;
 	left:0%;
 	top:0%;
 	right:0%;
-	bottom:95%;
+	bottom:94%;
 	text-align: center;
 	vertical-align: middle;
 	background-color:#efefef;
-	padding:4px;
+	padding:9px;
 }
 
+#split-bar {
+    background-color:black;
+    height:100%;
+    float: right;
+    width: 1px;
+    cursor: col-resize;
+}
 
 #sidebar{
 	position:absolute;
 	background-color: #efefef;
-	border-bottom: 1px solid black;
-	border-right: 1px solid black;
-	border-left: 1px solid black;
-	left:0%;
-	top:5%;
-	right:0%;
-	bottom:0%;
-	width:20%;
+	border-bottom: 1px solid silver;
+	border-right: 1px solid silver;
+	border-left: 1px solid silver;
+	top:6%;
+	width: 20%;
+	height:20%;
 	overflow: hidden;
 	text-align: left;
 	vertical-align: left;
@@ -51,11 +56,13 @@
 }
 
 .w2ui-btn {
+	position:relative;
 	float:right;
 	cursor:pointer;
 }
 
 #MapDescription {
+	position:relative;
 	display: none;
 	width: 650px;
 	height: 400px;
@@ -63,6 +70,7 @@
 }
 
 #Impressum {
+	position:relative;
 	display: none;
 	width: 650px;
 	height: 400px;

@@ -637,7 +637,6 @@ input[type=checkbox].w2ui-toggle:focus {
   background-size: 15px 13px;
 }
 button.w2ui-btn {
-  position: relative;
   display: inline-block;
   border-radius: 4px;
   margin: 0px 5px;

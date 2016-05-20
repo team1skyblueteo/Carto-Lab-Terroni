@@ -26,6 +26,9 @@ var southWest = L.latLng(-41.3500, 174.6000),
     keyboardZoomOffset: 1, // Number of zoom levels to change when pressing + or - key.
     }).setView([-41.2833, 174.7666], 13);
 
+var min = 20;
+var mainmin = 20;
+
 
 // Change zoom position
 new L.Control.Zoom({ position: 'topright' }).addTo(map);
@@ -87,14 +90,26 @@ L.mapbox.styleLayer('mapbox://styles/giuliot/cina7yy7000mad5m3dmzkaf1f').addTo(m
 ////////////////////////////////////////// Sidebar //////////////////////////////////////////
 
 
+jQuery('#split-bar').mousedown(function (e) {
+    e.preventDefault();
+    jQuery(document).mousemove(function (e) {
+        e.preventDefault();
+        var x = e.pageX - jQuery('#sidebar').offset().left;
+        if (x > min && e.pageX < (jQuery(window).width() - mainmin)) {  
+          jQuery('#sidebar').css("height", x);
+        }
+    })
+});
+jQuery(document).mouseup(function (e) {
+    jQuery(document).unbind('mousemove');
+});
+
 jQuery(function () {
     jQuery('#sidebar').w2sidebar({
         name        : 'sidebar',
         img         : null,
         resizable   : true,
         topHTML     : '<div style="padding: 10px 5px;">Search layer: <input/> </div>',
-        //bottomHTML  : '<div style="padding: 10px 5px; border-top: 1px solid black;">Bottom</div>',
-        // style       : 'border: 1px solid black',
         routeData   : { id: 59, vid: '23.323.4' },
         menu: [
             { id: 1, text: 'Select Item', icon: 'fa-star' },
