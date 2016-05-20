@@ -49,8 +49,11 @@
 	width: 100%;
 }
 .noUi-value-horizontal {
-	-webkit-transform: translate3d(-50%,50%,0);
-	transform: translate3d(-50%,50%,0);
+	-webkit-transform: translate3d(-50%,100%,0);
+	transform: translate3d(-50%,100%,0);
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 12px;
+	text-shadow: 0.8em 0.2em 0.4em white;
 }
 
 .noUi-marker-horizontal.noUi-marker {

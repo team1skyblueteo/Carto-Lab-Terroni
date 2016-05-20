@@ -68,6 +68,9 @@
 	height: 28px;
 	left: -17px;
 	top: -6px;
+	background-color: #efefef;
+    border: 1px solid silver;
+    cursor: pointer;
 }
 .noUi-vertical {
 	width: 18px;

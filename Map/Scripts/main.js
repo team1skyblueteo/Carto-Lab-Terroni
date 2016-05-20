@@ -38,50 +38,50 @@ L.mapbox.styleLayer('mapbox://styles/giuliot/cina7yy7000mad5m3dmzkaf1f').addTo(m
 ////////////////////////////////////////// Toolbar //////////////////////////////////////////
 
 
-jQuery.noConflict();
-    jQuery(function () {
-        jQuery('#toolbar').w2toolbar({
-            name: 'toolbar',
-            routeData: { id: 5, vid: '40-43' },
-            tooltip: 'top',
-            items: [
-                { type: 'menu',  id: 'item2', caption: 'Menu', img: 'icon-folder', icon: 'fa-reorder', hint: 'Menu button', style:'cursor: pointer; border: 1px solid rgb(128,128,128);',
-                    items: [
-                        { text: 'Item 1', img: 'icon-page', route: '/project/:id/item1', tooltip: 'some' },
-                        { text: 'Item 2', img: 'icon-page', route: '/project/:id/item2', disabled: true },
-                        { text: 'Item 3', value: 'Item Three', img: 'icon-page', route: '/project/:id/item2' }
-                    ]
-                },
-                { type: 'spacer' },
-                // Menu button
-                { type: 'menu-check', id: 'menucheck', text: 'Topics', style:'cursor: pointer; border: 1px solid rgb(128,128,128);',
-                     items: [
-                        { id: 'item1', text: '...', count: 3, icon: 'fa-heart' },
-                        { text: '--' },
-                        { id: 'item2', text: 'Item 2', icon: 'fa-user', count: 12, checked: true },
-                        { id: 'item3', text: 'Item 3', icon: 'fa-star-empty', hotkey: '⌘S' },
-                        { text: '--' },
-                        { id: 'item4', text: 'Item 4', icon: 'fa-link', hotkey: '⌘W', checked: true }
-                    ],
-                },
-                { type: 'button',  id: 'Mapdescription',  caption: 'Map Description' },
-                { type: 'button',  id: 'Impressum',  caption: 'Impressum' },
-            ],
-            onClick: function (event) { console.log(event); }
-        });
-    });
+// jQuery.noConflict();
+//     jQuery(function () {
+//         jQuery('#toolbar').w2toolbar({
+//             name: 'toolbar',
+//             routeData: { id: 5, vid: '40-43' },
+//             tooltip: 'top',
+    //         items: [
+    //             { type: 'menu',  id: 'item2', caption: 'Menu', img: 'icon-folder', icon: 'fa-reorder', hint: 'Menu button', style:'cursor: pointer; border: 1px solid rgb(128,128,128);',
+    //                 items: [
+    //                     { text: 'Item 1', img: 'icon-page', route: '/project/:id/item1', tooltip: 'some' },
+    //                     { text: 'Item 2', img: 'icon-page', route: '/project/:id/item2', disabled: true },
+    //                     { text: 'Item 3', value: 'Item Three', img: 'icon-page', route: '/project/:id/item2' }
+    //                 ]
+    //             },
+    //             { type: 'spacer' },
+    //             // Menu button
+    //             { type: 'menu-check', id: 'menucheck', text: 'Topics', style:'cursor: pointer; border: 1px solid rgb(128,128,128);',
+    //                  items: [
+    //                     { id: 'item1', text: '...', count: 3, icon: 'fa-heart' },
+    //                     { text: '--' },
+    //                     { id: 'item2', text: 'Item 2', icon: 'fa-user', count: 12, checked: true },
+    //                     { id: 'item3', text: 'Item 3', icon: 'fa-star-empty', hotkey: '⌘S' },
+    //                     { text: '--' },
+    //                     { id: 'item4', text: 'Item 4', icon: 'fa-link', hotkey: '⌘W', checked: true }
+    //                 ],
+    //             },
+    //             { type: 'button',  id: 'Mapdescription',  caption: 'Map Description' },
+    //             { type: 'button',  id: 'Impressum',  caption: 'Impressum' },
+    //         ],
+    //         onClick: function (event) { console.log(event); }
+    //      });
+    // });
 
-function changeTab() {
-    w2ui['tabs'].get('tab2').caption = '<div style="width: 300px">new and long</div>';
-    w2ui['tabs'].refresh();
-}
+// function changeTab() {
+//     w2ui['tabs'].get('tab2').caption = '<div style="width: 300px">new and long</div>';
+//     w2ui['tabs'].refresh();
+// }
 
-function showOverlay(el) {
-    jQuery(el).w2overlay({
-        html: '<div style="padding: 10px;">Some html</div>',
-        css: { width: '200px', padding: '10px' }
-    });
-}
+// function showOverlay(el) {
+//     jQuery(el).w2overlay({
+//         html: '<div style="padding: 10px;">Some html</div>',
+//         css: { width: '200px', padding: '10px' }
+//     });
+// }
 
 
 ////////////////////////////////////////// Sidebar //////////////////////////////////////////

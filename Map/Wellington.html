@@ -46,25 +46,60 @@ Versions:
 </head>
 
 
-
-
 <!-- **** BODY **** -->
+
 
 <body>
 
-<!-- Toolbar -->
-<div id="toolbar" style="padding: 4px; background-color: #efefef; margin: 0px "></div>
+<!-- TOOLBAR -->
+<div id="toolbar">
+<button class="w2ui-btn" value="Popup2"  onclick="jQuery('#MapDescription').w2popup({ showMax: true })">Map Description</button>
+<button class="w2ui-btn" value="Popup3"  onclick="jQuery('#Impressum').w2popup({ showMax: true })">Impressum</button>
+<button class="w2ui-btn" value="Popup4" style="float:left; left: 7%"  >Topics</button>
+</div>
 
-<!-- The panel to place a map -->
+<div id="MapDescription">
+        <div rel="title">Map Description</div>
+        <div rel="body">
+            <div style="padding: 10; font-size: 12px; line-height: 150%;" id="some">
+                This is body of popup #1. You can put any text or HTML inside the body (as well as title and buttons).
+                This is body of popup #1. You can put any text or HTML inside the body (as well as title and buttons).
+                This is body of popup #1. You can put any text or HTML inside the body (as well as title and buttons).
+                This is body of popup #1. You can put any text or HTML inside the body (as well as title and buttons).
+                This is body of popup #1. You can put any text or HTML inside the body (as well as title and buttons).
+                This is body of popup #1. You can put any text or HTML inside the body (as well as title and buttons).
+                This is body of popup #1. You can put any text or HTML inside the body (as well as title and buttons).
+                This is body of popup #1. You can put any text or HTML inside the body (as well as title and buttons).
+                This is body of popup #1. You can put any text or HTML inside the body (as well as title and buttons).
+                This is body of popup #1. You can put any text or HTML inside the body (as well as title and buttons).
+                This is body of popup #1. You can put any text or HTML inside the body (as well as title and buttons).
+                <br/>
+           </div>
+        </div>
+</div>
+<div id="Impressum">
+        <div rel="title">Impressum</div>
+        <div rel="body">
+            <div style="padding: 10; font-size: 12px; line-height: 150%;" id="some">
+                This is body of popup #1. You can put any text or HTML inside the body (as well as title and buttons).
+                This is body of popup #1. You can put any text or HTML inside the body (as well as title and buttons).
+                This is body of popup #1. You can put any text or HTML inside the body (as well as title and buttons).
+                <br/>
+           </div>
+        </div>
+</div>
+
+<!-- THE PANEL WHERE THE MAP IS PLACED -->
 <div class="mappanel" id="map"></div>
-<!-- Sidebar -->
+
+<!-- SIDEBAR -->
 <input placeholder="before sidebar" class="w2ui-input"/>
 <div id="sidebar"></div>
 
-<!-- Time slider -->
+<!-- TIME SLIDER -->
 <div id="time-slider" class="time-slider"></div>
 
-<!-- Load atlas script after the HTML elements are created -->
+<!-- LOAD ATLAS SCRIPT AFTER THE ELEMENTS ARE CREATED -->
 <script src="Scripts/main.js"></script>
 
 </body>

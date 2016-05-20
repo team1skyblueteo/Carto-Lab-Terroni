@@ -20,6 +20,8 @@
 	bottom:95%;
 	text-align: center;
 	vertical-align: middle;
+	background-color:#efefef;
+	padding:4px;
 }
 
 
@@ -44,5 +46,26 @@
     position: absolute;
     bottom: 8%;
     left: 30%;
+    background-color: #efefef;
+    border: 1px solid silver;
+}
+
+.w2ui-btn {
+	float:right;
+	cursor:pointer;
+}
+
+#MapDescription {
+	display: none;
+	width: 650px;
+	height: 400px;
+	overflow: auto;
+}
+
+#Impressum {
+	display: none;
+	width: 650px;
+	height: 400px;
+	overflow: auto;
 }
 
