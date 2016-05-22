@@ -14,6 +14,7 @@ function geocodeThis() {
         geocoderControl.geocoder.query({
             query: text,
             country: 'us',
+            // find data around wellgton preferably
             proximity: L.LatLng(41.881832, -87.623177)
         }, function(err, res) {
             $("#search-results").empty();
@@ -22,6 +23,7 @@ function geocodeThis() {
             results = res.results.features;
             if (results.length > 0) {
                 var maxitems = 4;
+                // bounding box to exclude result out of it
                 var southWest = L.latLng(42.363436, -87.6074225),
                     northEast = L.latLng(41.272109, -88.838157),
                     chicagoBounds = L.latLngBounds(southWest, northEast);
