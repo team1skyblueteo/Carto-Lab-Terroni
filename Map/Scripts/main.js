@@ -27,7 +27,7 @@ var southWest = L.latLng(-41.3500, 174.6000),
     }).setView([-41.2833, 174.7666], 13);
 
 var min = 20;
-var mainmin = 20;
+var mainmin = 80;
 
 
 // Change zoom position
@@ -38,77 +38,15 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiZ2l1bGlvdCIsImEiOiJjaWg5ZGs1d2MwMDR0dnNtMzlyd
 L.mapbox.styleLayer('mapbox://styles/giuliot/cina7yy7000mad5m3dmzkaf1f').addTo(map);
 
 
-////////////////////////////////////////// Toolbar //////////////////////////////////////////
-
-
-// jQuery.noConflict();
-//     jQuery(function () {
-//         jQuery('#toolbar').w2toolbar({
-//             name: 'toolbar',
-//             routeData: { id: 5, vid: '40-43' },
-//             tooltip: 'top',
-    //         items: [
-    //             { type: 'menu',  id: 'item2', caption: 'Menu', img: 'icon-folder', icon: 'fa-reorder', hint: 'Menu button', style:'cursor: pointer; border: 1px solid rgb(128,128,128);',
-    //                 items: [
-    //                     { text: 'Item 1', img: 'icon-page', route: '/project/:id/item1', tooltip: 'some' },
-    //                     { text: 'Item 2', img: 'icon-page', route: '/project/:id/item2', disabled: true },
-    //                     { text: 'Item 3', value: 'Item Three', img: 'icon-page', route: '/project/:id/item2' }
-    //                 ]
-    //             },
-    //             { type: 'spacer' },
-    //             // Menu button
-    //             { type: 'menu-check', id: 'menucheck', text: 'Topics', style:'cursor: pointer; border: 1px solid rgb(128,128,128);',
-    //                  items: [
-    //                     { id: 'item1', text: '...', count: 3, icon: 'fa-heart' },
-    //                     { text: '--' },
-    //                     { id: 'item2', text: 'Item 2', icon: 'fa-user', count: 12, checked: true },
-    //                     { id: 'item3', text: 'Item 3', icon: 'fa-star-empty', hotkey: '⌘S' },
-    //                     { text: '--' },
-    //                     { id: 'item4', text: 'Item 4', icon: 'fa-link', hotkey: '⌘W', checked: true }
-    //                 ],
-    //             },
-    //             { type: 'button',  id: 'Mapdescription',  caption: 'Map Description' },
-    //             { type: 'button',  id: 'Impressum',  caption: 'Impressum' },
-    //         ],
-    //         onClick: function (event) { console.log(event); }
-    //      });
-    // });
-
-// function changeTab() {
-//     w2ui['tabs'].get('tab2').caption = '<div style="width: 300px">new and long</div>';
-//     w2ui['tabs'].refresh();
-// }
-
-// function showOverlay(el) {
-//     jQuery(el).w2overlay({
-//         html: '<div style="padding: 10px;">Some html</div>',
-//         css: { width: '200px', padding: '10px' }
-//     });
-// }
-
-
 ////////////////////////////////////////// Sidebar //////////////////////////////////////////
 
-
-jQuery('#split-bar').mousedown(function (e) {
-    e.preventDefault();
-    jQuery(document).mousemove(function (e) {
-        e.preventDefault();
-        var x = e.pageX - jQuery('#sidebar').offset().left;
-        if (x > min && e.pageX < (jQuery(window).width() - mainmin)) {  
-          jQuery('#sidebar').css("height", x);
-        }
-    })
-});
-jQuery(document).mouseup(function (e) {
-    jQuery(document).unbind('mousemove');
-});
 
 jQuery(function () {
     jQuery('#sidebar').w2sidebar({
         name        : 'sidebar',
         img         : null,
-        resizable   : true,
+        resizable   : false,
+        height      : 'auto', 
         topHTML     : '<div style="padding: 10px 5px;">Search layer: <input/> </div>',
         routeData   : { id: 59, vid: '23.323.4' },
         menu: [
@@ -127,18 +65,18 @@ jQuery(function () {
             console.log('blur: ', this.name, event);
             // event.preventDefault();
         },
-        onKeydown: function (event) { console.log('keyboard', event); event.preventDefault(); },
+        // onKeydown: function (event) { console.log('keyboard', event); event.preventDefault(); 
+        // },
         nodes: [
             { id: 'level-1', text: 'Level 1', expanded: false, group: true, 
                 nodes: [
-                    { id: 'level-1-1', text: '<div><input id="check" tabindex="0" type="checkbox" onClick="console.log(\'check clicked\')"/> Level 1-1</div>', icon: 'fa-star',
-                        route: '/project',
-                        onClick: function (event) { console.log('item', event); }
+                    { id: 'level-1-1', text: '<div><input id="check" tabindex="-1" type="checkbox" onClick="console.log(\'check clicked\')"/> Level 1-1</div>', icon: 'fa-star',
+                        route: '/project'
                     },
-                    { id: 'level-1-2', text: '<div><input id="check1" tabindex="1" type="checkbox" onClick="console.log(\'check clicked\')"/> Level 1-2</div>', icon: 'fa-camera',
+                    { id: 'level-1-2', text: '<div><input id="check1" tabindex="-1" type="checkbox" onClick="console.log(\'check clicked\')" /> Level 1-2</div>', icon: 'fa-camera',
                         route: '/project/:id'
                     },
-                    { id: 'level-1-3', text: '<div><input id="check2" tabindex="2" type="checkbox" onClick="console.log(\'check clicked\')"/> Level 1-3</div>',
+                    { id: 'level-1-3', text: '<div><input id="check2" tabindex="-1" type="checkbox" onClick="console.log(\'check clicked\')"/> Level 1-3</div>', 
                         route: '/project/:id/view'
                     }
                 ]
@@ -146,21 +84,13 @@ jQuery(function () {
             { id: 'level-2', text: 'Level 2', img: 'icon-folder', expanded: false, group: true,
               nodes: [ { id: 'level-2-1', text: 'Level 2.1', img: 'icon-folder', 
                          nodes: [
-                           { id: 'level-2-1-1', text: function () { return 'Level 2.1.11' }, img: 'icon-page', count: '4', route: '/some/:id/:vid'},
-                           { id: 'level-2-1-2', text: 'Level 2.1.2', img: 'icon-page', count: '10', route: '/some/:id/:vid/ok' },
-                           { id: 'level-2-1-3', text: 'Level 2.1.3', img: 'icon-page', count: '22', route: '/some/:id/:vid,:id' },
+                           { id: 'level-2-1-1', text: function () { return 'Level 2.1.11' }, img: 'icon-page', route: '/some/:id/:vid'},
+                           { id: 'level-2-1-2', text: 'Level 2.1.2', img: 'icon-page', route: '/some/:id/:vid/ok' },
+                           { id: 'level-2-1-3', text: 'Level 2.1.3', img: 'icon-page', route: '/some/:id/:vid,:id' },
                            { id: 'level-2-1-4', text: 'Level 2.1.4', img: 'icon-page' },
                            { id: 'level-2-1-5', text: 'Level 2.1.5', img: 'icon-page' },
                            { id: 'level-2-1-6', text: 'Level 2.1.6', img: 'icon-page' },
                            { id: 'level-2-1-7', text: 'Level 2.1.7', img: 'icon-page' },
-                           { id: 'level-2-1-8', text: 'Level 2.1.7', img: 'icon-page' },
-                           { id: 'level-2-1-9', text: 'Level 2.1.7', img: 'icon-page' },
-                           { id: 'level-2-1-10', text: 'Level 2.1.10', img: 'icon-page' },
-                           { id: 'level-2-1-11', text: 'Level 2.1.11', img: 'icon-page' },
-                           { id: 'level-2-1-12', text: 'Level 2.1.12', img: 'icon-page' },
-                           { id: 'level-2-1-13', text: 'Level 2.1.13', img: 'icon-page' },
-                           { id: 'level-2-1-14', text: 'Level 2.1.14', img: 'icon-page' },
-                           { id: 'level-2-1-15', text: 'Level 2.1.15', img: 'icon-page' }
                      ]},
                        { id: 'level-3-1', text: 'Level 3.1', img: 'icon-folder', expanded: false,
                          nodes: [

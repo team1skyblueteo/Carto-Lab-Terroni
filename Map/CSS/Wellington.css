@@ -24,14 +24,6 @@
 	padding:9px;
 }
 
-#split-bar {
-    background-color:black;
-    height:100%;
-    float: right;
-    width: 1px;
-    cursor: col-resize;
-}
-
 #sidebar{
 	position:absolute;
 	background-color: #efefef;
@@ -40,7 +32,7 @@
 	border-left: 1px solid silver;
 	top:6%;
 	width: 20%;
-	height:20%;
+	height: 60%;
 	overflow: hidden;
 	text-align: left;
 	vertical-align: left;
