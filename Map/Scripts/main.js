@@ -237,7 +237,7 @@ function geocodeThis() {
                         })
                         jQuery("#add-res" + i).click(function() {
                             jQuery(".address-result").css("background-color", "white");
-                            jQuery(this).css("background-color", "#efefef");
+                            jQuery(this).css("background-color", "#cccccc");
                             //console.log("hey");
                             //console.log($(this).data("bbox"));
                             if (jQuery(this).data("bbox")) {

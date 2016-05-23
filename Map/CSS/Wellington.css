@@ -69,19 +69,24 @@
 	overflow: auto;
 }
 .address-result{
-	border:0.5px solid silver;
+	
+	border-bottom:0.5px solid silver;
+	border-left:0.5px solid silver;
+	border-right:0.5px solid silver;
 	font-size:medium;
 	padding:1px 10px 1px 10px;
 	z-index:1000;
 	cursor:pointer;
+	background-color: #efefef;
+	font-family: Verdana, Arial, sans-serif;
 }
 #search-results{
 	position:absolute;
 	top:35px;
 	right:40px;
-  background-color: white;
+  background-color: #efefef;
   cursor:context-menu;
-  border:1px solid silver;
+  border-top:0.5px solid silver;
   max-width: 400px;
    visibility: hidden;
 z-index:2;
