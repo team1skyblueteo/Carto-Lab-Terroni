@@ -15,10 +15,10 @@
 // Set variables for maxBounds and for map
 var southWest = L.latLng(-41.3500, 174.6000),
     northEast = L.latLng(-41.2100, 174.9000),
-    resBounds = L.latLngBounds(southWest, northEast),
+    wellingtonBounds = L.latLngBounds(southWest, northEast),
     map = L.map('map', {zoomControl: false,
     // Set that bounding box as maxBounds to restrict moving the map
-    maxBounds: resBounds,
+    maxBounds:  wellingtonBounds,
     maxZoom: 17,
     minZoom: 13,
     scrollWheelZoom: true, // We can also zoom with mousewheel
@@ -195,7 +195,7 @@ function geocodeThis() {
     if (text.length >= 1) {
         geocoderControl.geocoder.query({
             query: text,
-            country: 'us',
+            country: 'nz',
             // find data around Wellington preferably
             proximity: L.LatLng(-41.283333, 174.766667)
         }, function(err, res) {
@@ -228,6 +228,7 @@ function geocodeThis() {
                         var label=labels.join(',');
 
                         var newinstance = "<div class=\"address-result\" id=\"add-res" + i + "\">" + label+ "</div>";
+                        console.log(newinstance);
                         jQuery("#search-results").append(newinstance);
                         showCount++;
                         jQuery("#add-res" + i).data({
@@ -236,7 +237,7 @@ function geocodeThis() {
                         })
                         jQuery("#add-res" + i).click(function() {
                             jQuery(".address-result").css("background-color", "white");
-                            jQuery(this).css("background-color", "#eeeeee");
+                            jQuery(this).css("background-color", "#efefef");
                             //console.log("hey");
                             //console.log($(this).data("bbox"));
                             if (jQuery(this).data("bbox")) {
@@ -255,6 +256,14 @@ function geocodeThis() {
                     var newinstance = "<div class=\"address-result\" id=\"add-res-etc\">...</div>";
                     jQuery("#search-results").append(newinstance);
                 }
+                var searchOffSet =jQuery("#search").offset();
+                var searchHeight =jQuery("#search").height();
+                var searchResWidth =parseInt(jQuery("#search-results").css("max-width"))-jQuery("#search").width();
+                //var searchResWidth =jQuery("#search").width();
+                console.log
+                console.log(searchResWidth);
+                jQuery("#search-results").css("top", searchOffSet.top+searchHeight+11);
+                jQuery("#search-results").css("left", searchOffSet.left-searchResWidth/2);
                 jQuery("#search-results").css("visibility", "visible");
             } else {
                 jQuery("#search-results").css("visibility", "hidden");
