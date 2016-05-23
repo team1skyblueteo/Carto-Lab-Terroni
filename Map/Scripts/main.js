@@ -241,10 +241,10 @@ function geocodeThis() {
                             //console.log("hey");
                             //console.log($(this).data("bbox"));
                             if (jQuery(this).data("bbox")) {
-                                var bbox = $(this).data("bbox");
+                                var bbox = jQuery(this).data("bbox");
                                 map.fitBounds(bbox);
                             } else {
-                                var center = $(this).data("center");
+                                var center = jQuery(this).data("center");
 
                                 map.setView(center, 16);
                             }
@@ -274,7 +274,7 @@ function geocodeThis() {
     }
 }
 
-// Listener to keyup and enter four launch the geocoding
+// Listener to keyup and enter for launch the geocoding
 
 jQuery('#search').keyup(function() {
     geocodeThis();

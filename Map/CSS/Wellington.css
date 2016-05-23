@@ -69,26 +69,35 @@
 	overflow: auto;
 }
 .address-result{
-	
 	border-bottom:0.5px solid silver;
 	border-left:0.5px solid silver;
 	border-right:0.5px solid silver;
-	font-size:medium;
-	padding:1px 10px 1px 10px;
+	font-size:12px;
+	padding:1px;
 	z-index:1000;
 	cursor:pointer;
 	background-color: #efefef;
 	font-family: Verdana, sans-serif;
+	text-align: left;
+	vertical-align: left;
 }
+
 #search-results{
-	position:absolute;
+	position:relative;
 	top:35px;
 	right:40px;
-  background-color: #efefef;
-  cursor:context-menu;
-  border-top:0.5px solid silver;
-  max-width: 400px;
-   visibility: hidden;
-z-index:2;
-  }
+  	background-color: #efefef;
+  	cursor:context-menu;
+  	border-top:0px solid silver;
+  	max-width: 300px;
+   	visibility: hidden;
+	z-index:2;
+	text-align:left;
+	vertical-align:left;
+}
+
+#search {
+	float:right;
+	height: 20px;
+}
 
