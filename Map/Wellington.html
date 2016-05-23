@@ -31,8 +31,12 @@ Versions:
 <script type="text/javascript" src="Scripts/w2grid.js"></script>
 <!-- Script for Sidebar -->
 <script type="text/javascript" src="Scripts/w2sidebar.js"></script>
-<!-- Scripts for mapbox -->
+<!-- Script for Leaflet -->
 <script type="text/javascript" src="Leaflet/leaflet-src.js"></script>
+<script type="text/javascript" src="Leaflet/leaflet.js"></script>
+<!-- Main script -->
+<script type="text/javascript" src="Scripts/main.js"></script>
+<!-- Script for Mapbox -->
 <script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
 <!-- CSS ref for toolbar -->
 <link rel="stylesheet" type="text/css" media="screen" href="CSS/w2ui.css" />
@@ -43,6 +47,8 @@ Versions:
 <!--- CSS for time slider -->
 <link rel="stylesheet" type="text/css" href="CSS/nouislider/nouislider.css"/>
 <link rel="stylesheet" type="text/css" href="CSS/nouislider/nouislider.pips.css"/>
+<!--- CSS for Leaflet -->
+<link rel="stylesheet" type="text/css" href="Leaflet/leaflet.css"/>
 </head>
 
 
@@ -94,10 +100,12 @@ Versions:
 
 <!-- SIDEBAR -->
 <input placeholder="before sidebar" class="w2ui-input"/>
-<div id="layout"></div>
 <div id="sidebar">
 	<div id="split-bar"></div>
 </div>
+
+<!-- GEOCODER -->
+<input id="search" placeholder="Search-place">
 
 <!-- TIME SLIDER -->
 <div id="time-slider" class="time-slider"></div>

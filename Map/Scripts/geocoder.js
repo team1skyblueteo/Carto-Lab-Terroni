@@ -1,12 +1,9 @@
-/*
-	Add geocoder
-			*/
-			var geocoderControl = L.mapbox.geocoderControl('mapbox.places');
-			/*
 
+/* The function takes the text in the search field make a query to the mapbox geocoder,
+display only four result and when clicked on the result zoom either to its bbox (if present) or to its center */
 
-/* the fuction take the text in the search field make a query to the mapbox geocoder,
-display only four result and when clicked on the result zoom either to its bbox (if present) or to its center*/
+var geocoderControl = L.mapbox.geocoderControl('mapbox.places');
+
 function geocodeThis() {
     var text = document.getElementById('search').value;
     console.log(text);
@@ -14,8 +11,8 @@ function geocodeThis() {
         geocoderControl.geocoder.query({
             query: text,
             country: 'us',
-            // find data around wellgton preferably
-            proximity: L.LatLng(41.881832, -87.623177)
+            // find data around Wellington preferably
+            proximity: L.LatLng(-41.283333, 174.766667)
         }, function(err, res) {
             $("#search-results").empty();
             //console.log(err);
@@ -24,9 +21,9 @@ function geocodeThis() {
             if (results.length > 0) {
                 var maxitems = 4;
                 // bounding box to exclude result out of it
-                var southWest = L.latLng(42.363436, -87.6074225),
-                    northEast = L.latLng(41.272109, -88.838157),
-                    chicagoBounds = L.latLngBounds(southWest, northEast);
+                var southWest = L.latLng(-41.363182, 174.604347),
+                    northEast = L.latLng(-41.193927, 174.938057),
+                    wellingtonBounds = L.latLngBounds(southWest, northEast);
                 var showCount = 0;
                 for (i = 0; i < results.length; i++) {
                     if (showCount > 4) {
@@ -40,7 +37,7 @@ function geocodeThis() {
                         resBounds = false
                     }
                     var resCenter = L.latLng(results[i].center[1], results[i].center[0]);
-                    if ((chicagoBounds.contains(resCenter)) || (resBounds && chicagoBounds.intersects(resBounds)) ) {
+                    if ((wellingtonBounds.contains(resCenter)) || (resBounds && wellingtonBounds.intersects(resBounds)) ) {
 						var labels = results[i].place_name.split(',');
 						if (labels.length>2)
 							{labels.splice(-2,2);}
@@ -72,42 +69,32 @@ function geocodeThis() {
                         });
                     }
                     //console.log( $("#add-res"+i));
-
-
                 }
                 if (showCount > maxitems) {
                     var newinstance = "<div class=\"address-result\" id=\"add-res-etc\">...</div>";
                     $("#search-results").append(newinstance);
-
                 }
-
                 $("#search-results").css("visibility", "visible");
             } else {
                 $("#search-results").css("visibility", "hidden");
             }
-
         });
     } else {
         $("#search-results").css("visibility", "hidden");
     }
-
 }
-// listener to keyup and enter four lauch the geocoding
+
+// Listener to keyup and enter four launch the geocoding
 
 $('#search').keyup(function() {
     geocodeThis();
-
 });
 $('#search').keydown(function(e) {
     if (13 == e.keyCode) {
         geocodeThis();
     };
-
-});
-
+})
 geocoderControl.on('found', function(res) {
     console.log(res);
     //output.innerHTML = JSON.stringify(res.results.features[0]);
 });
-
-
