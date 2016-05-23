@@ -78,7 +78,7 @@
 	z-index:1000;
 	cursor:pointer;
 	background-color: #efefef;
-	font-family: Verdana, Arial, sans-serif;
+	font-family: Verdana, sans-serif;
 }
 #search-results{
 	position:absolute;
