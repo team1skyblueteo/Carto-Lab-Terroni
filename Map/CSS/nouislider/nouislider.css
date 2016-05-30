@@ -70,7 +70,7 @@
 	top: -6px;
 	background-color: #efefef;
     border: 1px solid silver;
-    cursor: pointer;
+    cursor: grab;
 }
 .noUi-vertical {
 	width: 18px;
