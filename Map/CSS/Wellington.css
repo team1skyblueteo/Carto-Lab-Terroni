@@ -36,6 +36,7 @@
 	overflow: hidden;
 	text-align: left;
 	vertical-align: left;
+	display:none;
 }
 
 #time-slider {
@@ -100,4 +101,3 @@
 	float:right;
 	height: 20px;
 }
-

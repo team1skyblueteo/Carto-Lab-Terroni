@@ -46,7 +46,7 @@ jQuery(function () {
         img         : null,
         resizable   : false,
         height      : 'auto', 
-        topHTML     : '<div style="padding: 10px 5px;">Search layer: <input/> </div>',
+        // topHTML     : '<div id="Searchlayer" style="padding: 10px 5px;">Search layer: <input/> </div>',
         routeData   : { id: 59, vid: '23.323.4' },
         menu: [
             { id: 1, text: 'Select Item', icon: 'fa-star' },
@@ -67,7 +67,7 @@ jQuery(function () {
         // onKeydown: function (event) { console.log('keyboard', event); event.preventDefault(); 
         // },
         nodes: [
-            { id: 'level-1', text: 'Level 1', expanded: false, group: true, 
+            { id: 'level-1', text: 'Level 1', expanded: true, group: true, 
                 nodes: [
                     { id: 'level-1-1', text: '<div><input id="check" tabindex="-1" type="checkbox" onClick="console.log(\'check clicked\')"/> Level 1-1</div>', icon: 'fa-star',
                         route: '/project'
@@ -80,7 +80,7 @@ jQuery(function () {
                     }
                 ]
             },
-            { id: 'level-2', text: 'Level 2', img: 'icon-folder', expanded: false, group: true,
+            { id: 'level-2', text: 'Level 2', img: 'icon-folder', expanded: true, group: true,
               nodes: [ { id: 'level-2-1', text: 'Level 2.1', img: 'icon-folder', 
                          nodes: [
                            { id: 'level-2-1-1', text: function () { return 'Level 2.1.11' }, img: 'icon-page', route: '/some/:id/:vid'},
@@ -110,7 +110,7 @@ jQuery(function () {
                      ]}
                      ]
             },
-            { id: 'level-5', text: 'Level 5', img: 'icon-folder', expanded: false, group: true,
+            { id: 'level-5', text: 'Level 5', img: 'icon-folder', expanded: true, group: true,
               nodes: [ { id: 'level-5-1', text: 'Level 5.1', img: 'icon-page' },
                        { id: 'level-5-2', text: 'Level 5.2', img: 'icon-page' },
                        { id: 'level-5-3', text: 'Level 5.3', img: 'icon-page' }
@@ -119,9 +119,21 @@ jQuery(function () {
         ],
         onClick: function (event) {
             console.log('click', event.target, event);
+            // It is possible to hide the sidebar after the selection is done!!
+            // sidebar.style.display = "none";
         }
     });
 });
+
+// OnClick event to show or hide the sidebar
+
+var Menu  = document.getElementById("Menu");
+var sidebar = document.getElementById("sidebar");
+var Searchlayer = document.getElementById("Searchlayer");
+
+Menu.addEventListener("click", function(){
+  sidebar.style.display = (sidebar.dataset.toggled ^= 1) ? "block" : "none";
+}, false);
 
 
 ////////////////////////////////////////// Time Slider //////////////////////////////////////////
