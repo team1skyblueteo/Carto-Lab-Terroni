@@ -69,52 +69,42 @@ jQuery(function () {
         nodes: [
             { id: 'level-1', text: 'Level 1', expanded: true, group: true, 
                 nodes: [
-                    { id: 'level-1-1', text: '<div><input id="check" tabindex="-1" type="checkbox" onClick="console.log(\'check clicked\')"/> Level 1-1</div>', icon: 'fa-star',
+                    { id: 'level-1-1', text: 'Level 1-1', icon: 'fa-star',
                         route: '/project'
                     },
-                    { id: 'level-1-2', text: '<div><input id="check1" tabindex="-1" type="checkbox" onClick="console.log(\'check clicked\')" /> Level 1-2</div>', icon: 'fa-camera',
+                    { id: 'level-1-2', text: 'Level 1-2', icon: 'fa-camera',
                         route: '/project/:id'
                     },
-                    { id: 'level-1-3', text: '<div><input id="check2" tabindex="-1" type="checkbox" onClick="console.log(\'check clicked\')"/> Level 1-3</div>', 
+                    { id: 'level-1-3', text: 'Level 1-3', 
                         route: '/project/:id/view'
                     }
                 ]
             },
             { id: 'level-2', text: 'Level 2', img: 'icon-folder', expanded: true, group: true,
-              nodes: [ { id: 'level-2-1', text: 'Level 2.1', img: 'icon-folder', 
-                         nodes: [
-                           { id: 'level-2-1-1', text: function () { return 'Level 2.1.11' }, img: 'icon-page', route: '/some/:id/:vid'},
-                           { id: 'level-2-1-2', text: 'Level 2.1.2', img: 'icon-page', route: '/some/:id/:vid/ok' },
-                           { id: 'level-2-1-3', text: 'Level 2.1.3', img: 'icon-page', route: '/some/:id/:vid,:id' },
-                           { id: 'level-2-1-4', text: 'Level 2.1.4', img: 'icon-page' },
-                           { id: 'level-2-1-5', text: 'Level 2.1.5', img: 'icon-page' },
-                           { id: 'level-2-1-6', text: 'Level 2.1.6', img: 'icon-page' },
-                           { id: 'level-2-1-7', text: 'Level 2.1.7', img: 'icon-page' },
-                     ]},
-                       { id: 'level-3-1', text: 'Level 3.1', img: 'icon-folder', expanded: false,
-                         nodes: [
-                           { id: 'level-3-1-1', text: 'Level 3.1.1', icon: 'fa-beer', disabled: true },
-                           { id: 'level-3-1-2', text: 'Level 3.1.2', icon: 'fa-envelope' },
-                           { id: 'level-3-1-3', text: 'Level 3.1.3', icon: 'fa-ok' },
-                           { id: 'level-3-1-4', text: 'Level 3.1.4', icon: 'fa-heart' },
-                           { id: 'level-3-1-5', text: 'Level 3.1.5', icon: 'fa-globe', disabled: true },
-                           { id: 'level-3-1-6', text: 'Level 3.1.6', icon: 'fa-reorder' },
-                           { id: 'level-3-1-7', text: 'Level 3.1.7', icon: 'fa-user-md' },
-                           { id: 'level-3-1-8', text: 'Level 3.1.8', icon: 'fa-download' }
-                     ]},
-                       { id: 'level-4-1', text: 'Level 4.1', img: 'icon-folder',
-                         nodes: [
-                           { id: 'level-4-1-1', text: 'Level 4.1.1', img: 'icon-page' },
-                           { id: 'level-4-1-2', text: 'Level 4.1.2', img: 'icon-page' },
-                           { id: 'level-4-1-3', text: 'Level 4.1.3', img: 'icon-page' }
-                     ]}
-                     ]
+              nodes: [
+                    { id: 'level-2-1', text: 'Level 2-1', icon: 'fa-star',
+                        route: '/project'
+                    },
+                    { id: 'level-2-2', text: 'Level 2-2', icon: 'fa-camera',
+                        route: '/project/:id'
+                    },
+                    { id: 'level-2-3', text: 'Level 2-3', 
+                        route: '/project/:id/view'
+                    }
+                ]
             },
-            { id: 'level-5', text: 'Level 5', img: 'icon-folder', expanded: true, group: true,
-              nodes: [ { id: 'level-5-1', text: 'Level 5.1', img: 'icon-page' },
-                       { id: 'level-5-2', text: 'Level 5.2', img: 'icon-page' },
-                       { id: 'level-5-3', text: 'Level 5.3', img: 'icon-page' }
-                     ]
+            { id: 'level-3', text: 'Level 3', img: 'icon-folder', expanded: true, group: true,
+              nodes: [
+                    { id: 'level-3-1', text: 'Level 3-1', icon: 'fa-star',
+                        route: '/project'
+                    },
+                    { id: 'level-3-2', text: 'Level 3-2', icon: 'fa-camera',
+                        route: '/project/:id'
+                    },
+                    { id: 'level-3-3', text: 'Level 3-3', 
+                        route: '/project/:id/view'
+                    }
+                ]
             }
         ],
         onClick: function (event) {
@@ -193,7 +183,7 @@ function resfreshtimeline(years, startyr) {
 }
 
 
-////////////////////////////////////////// Geocoder //////////////////////////////////////////
+////////////////////////////////////////// Toolbar //////////////////////////////////////////
 
 
 /* The function takes the text in the search field make a query to the mapbox geocoder,
@@ -280,6 +270,7 @@ function geocodeThis() {
             } else {
                 jQuery("#search-results").css("visibility", "hidden");
             }
+
         });
     } else {
         jQuery("#search-results").css("visibility", "hidden");
@@ -299,4 +290,10 @@ jQuery('#search').keydown(function(e) {
 geocoderControl.on('found', function(res) {
     console.log(res);
     //output.innerHTML = JSON.stringify(res.results.features[0]);
+});
+
+// Webpage Icon Reload
+var Reload  = document.getElementById("Reload");
+jQuery('#Reload').click(function() {
+    location.reload(true)
 });

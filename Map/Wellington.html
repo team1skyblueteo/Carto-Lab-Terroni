@@ -34,8 +34,6 @@ Versions:
 <!-- Script for Leaflet -->
 <script type="text/javascript" src="Leaflet/leaflet-src.js"></script>
 <script type="text/javascript" src="Leaflet/leaflet.js"></script>
-<!-- Main script -->
-<script type="text/javascript" src="Scripts/main.js"></script>
 <!-- Script for Mapbox -->
 <script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
 <!-- CSS ref for toolbar -->
@@ -62,7 +60,8 @@ Versions:
 <button class="w2ui-btn" value="Popup2"  onclick="jQuery('#MapDescription').w2popup({ showMax: true })">Map Description</button>
 <button class="w2ui-btn" value="Popup3"  onclick="jQuery('#Impressum').w2popup({ showMax: true })">Impressum</button>
 <button id="Menu" class="w2ui-btn" value="Popup4" style="float:left; left: 7%">Menu</button>
-<input id="search" placeholder="Search-place">
+<button id="Refresh" class="w2ui-btn" style="float:left; left: 35%">Webpage Icon</button>
+<input id="search" value="" placeholder="Search-place">
 
 <!-- div to add the results of the Geocoder -->
 <div id="search-results"></div>
