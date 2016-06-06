@@ -33,10 +33,10 @@ Versions:
 <!-- Script for Sidebar -->
 <script type="text/javascript" src="Scripts/w2ui/w2sidebar.js"></script>
 <!-- Script for Leaflet -->
-<script type="text/javascript" src="Leaflet/leaflet-src.js"></script>
-<script type="text/javascript" src="Leaflet/leaflet.js"></script>
+<!--<script type="text/javascript" src="Leaflet/leaflet-src.js"></script>-->
+<!--<script type="text/javascript" src="Leaflet/leaflet.js"></script>-->
 <!-- Script for Mapbox -->
-<script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
+<script src='mapbox.js-bower-2.4.0/mapbox.js'></script>
 <!-- CSS ref for toolbar -->
 <link rel="stylesheet" type="text/css" media="screen" href="CSS/w2ui/w2ui.css" />
 <link rel="stylesheet" type="text/css" media="screen" href="CSS/font-awesome/font-awesome.css" />
@@ -47,7 +47,9 @@ Versions:
 <link rel="stylesheet" type="text/css" href="CSS/nouislider/nouislider.css"/>
 <link rel="stylesheet" type="text/css" href="CSS/nouislider/nouislider.pips.css"/>
 <!--- CSS for Leaflet -->
-<link rel="stylesheet" type="text/css" href="Leaflet/leaflet.css"/>
+<!--<link rel="stylesheet" type="text/css" href="Leaflet/leaflet.css"/>-->
+<!--- CSS for MapBox -->
+<link rel="stylesheet" type="text/css" href="mapbox.js-bower-2.4.0/mapbox.css"/>
 </head>
 
 
@@ -114,7 +116,18 @@ Versions:
 <div id="time-slider" class="time-slider"></div>
 
 <!-- LOAD ATLAS SCRIPT AFTER THE ELEMENTS ARE CREATED -->
+<script>
+/*
+	Load Json has to be here to be in the main folder
+	*/
+function loadJson(fileName) {
+		var request = new XMLHttpRequest();
+		request.open("GET", fileName, false);
+		request.send(null);
+		return JSON.parse(request.responseText);
+	};
+</script>
 <script src="Scripts/main.js"></script>
-
+<script src="Scripts/networks.js"></script>
 </body>
 </html>
