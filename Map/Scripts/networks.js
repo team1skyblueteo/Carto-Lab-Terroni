@@ -61,13 +61,13 @@ infoPipe.update = function (props) {
                                 '<b>Material:  </b>'+props.Pipe_mat_1+'<br>'+
                                 '<b>Gradient:  </b>'+props.Gradient+'<br>'+
                                 '<b>Installed:  </b>'+props.Date_ins_1+'<br>'+
+                                '<b>Hydraulic Diameter:  </b>'+props.Diameter+'<br>'+
                           '</div>'+
                           '<div class=\'pipeshape\'></div>'+
                           '</div>'
                           :'Hover hover a pipe');
   if (props){
       shapeDiv= this._div.childNodes[2].childNodes[1];
-      console.log(shapeDiv.style);
       switch (props.Pipe_sha_1){
           case "U-shaped": shapeDiv.style.backgroundImage= "url(Scripts/svg-pipes/Ushaped.svg)";
                            break;
