@@ -20,7 +20,7 @@ var southWest = L.latLng(-41.3500, 174.6000),
     // Set that bounding box as maxBounds to restrict moving the map
     maxBounds:  wellingtonBounds,
     maxZoom: 17,
-    minZoom: 13,
+    minZoom: 12,
     scrollWheelZoom: true, // We can also zoom with mousewheel
     keyboard: true, // We can also navigate with keyboard
     keyboardZoomOffset: 1, // Number of zoom levels to change when pressing + or - key.

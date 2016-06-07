@@ -15,13 +15,13 @@
    vertical-align:top; 
    }
 .container{
-   height: 100px;}
+   height: 70px;}
 .pipeshape{
    /*position: absolute;
    right:0%;
    bottom:0%;*/
-   width:100px;
-   height:100px;
+   width:70px;
+   height:70px;
    background-size: 100% 100%;
    background-repeat: no-repeat;
    display: inline-block; 
