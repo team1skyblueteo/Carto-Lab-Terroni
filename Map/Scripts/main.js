@@ -67,20 +67,17 @@ jQuery(function () {
         // onKeydown: function (event) { console.log('keyboard', event); event.preventDefault(); 
         // },
         nodes: [
-            { id: 'level-1', text: 'Level 1', expanded: true, group: true, 
+            { id: 'level-1', text: 'Drainage Water Network', expanded: true, group: true, 
                 nodes: [
-                    { id: 'level-1-1', text: 'Level 1-1', icon: 'fa-star',
+                    { id: 'level-1-1', text: 'Drainage Water Network', img: 'Water_Drops.pdf',
                         route: '/project'
                     },
-                    { id: 'level-1-2', text: 'Level 1-2', icon: 'fa-camera',
-                        route: '/project/:id'
-                    },
-                    { id: 'level-1-3', text: 'Level 1-3', 
-                        route: '/project/:id/view'
-                    }
+                    // { id: 'level-1-2', text: 'Level 1-2', icon: 'fa-camera',
+                    //     route: '/project/:id'
+                    // }
                 ]
             },
-            { id: 'level-2', text: 'Level 2', img: 'icon-folder', expanded: true, group: true,
+            { id: 'level-2', text: 'Rain Water Network', img: 'icon-folder', expanded: true, group: true,
               nodes: [
                     { id: 'level-2-1', text: 'Level 2-1', icon: 'fa-star',
                         route: '/project'
@@ -93,19 +90,19 @@ jQuery(function () {
                     }
                 ]
             },
-            { id: 'level-3', text: 'Level 3', img: 'icon-folder', expanded: true, group: true,
-              nodes: [
-                    { id: 'level-3-1', text: 'Level 3-1', icon: 'fa-star',
-                        route: '/project'
-                    },
-                    { id: 'level-3-2', text: 'Level 3-2', icon: 'fa-camera',
-                        route: '/project/:id'
-                    },
-                    { id: 'level-3-3', text: 'Level 3-3', 
-                        route: '/project/:id/view'
-                    }
-                ]
-            }
+            // { id: 'level-3', text: 'Level 3', img: 'icon-folder', expanded: true, group: true,
+            //   nodes: [
+            //         { id: 'level-3-1', text: 'Level 3-1', icon: 'fa-star',
+            //             route: '/project'
+            //         },
+            //         { id: 'level-3-2', text: 'Level 3-2', icon: 'fa-camera',
+            //             route: '/project/:id'
+            //         },
+            //         { id: 'level-3-3', text: 'Level 3-3', 
+            //             route: '/project/:id/view'
+            //         }
+            //     ]
+            // }
         ],
         onClick: function (event) {
             console.log('click', event.target, event);
