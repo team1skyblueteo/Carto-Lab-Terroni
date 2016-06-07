@@ -65,7 +65,7 @@ Versions:
 <button class="w2ui-btn" value="Popup2"  onclick="jQuery('#MapDescription').w2popup({ showMax: true })">Map Description</button>
 <button class="w2ui-btn" value="Popup3"  onclick="jQuery('#Impressum').w2popup({ showMax: true })">Impressum</button>
 <button id="Menu" class="w2ui-btn" value="Popup4" style="float:left; left: 7%">Menu</button>
-<button id="Refresh" class="w2ui-btn" style="float:left; left: 35%">Webpage Icon</button>
+<button id="Reload" class="w2ui-btn" style="float:left; left: 35%">Webpage Icon</button>
 <input id="search" value="" placeholder="Search-place">
 
 <!-- div to add the results of the Geocoder -->
@@ -119,9 +119,9 @@ Versions:
 
 <!-- LOAD ATLAS SCRIPT AFTER THE ELEMENTS ARE CREATED -->
 <script>
-/*
-	Load Json has to be here to be in the main folder
-	*/
+
+// Load Json has to be here to be in the main folder
+
 function loadJson(fileName) {
 		var request = new XMLHttpRequest();
 		request.open("GET", fileName, false);

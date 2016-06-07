@@ -294,3 +294,6 @@ var Reload  = document.getElementById("Reload");
 jQuery('#Reload').click(function() {
     location.reload(true)
 });
+
+
+
