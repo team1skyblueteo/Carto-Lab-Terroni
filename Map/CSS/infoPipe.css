@@ -1,0 +1,34 @@
+.infoPipe {
+    padding: 6px 8px;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    background: white;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+    /*width: 500px;*/
+}
+.proplist{
+   /*width:49%;
+   position: absolute;
+   left:0%;*/
+   display: inline-block;
+   vertical-align:top; 
+   }
+.container{
+   height: 100px;}
+.pipeshape{
+   /*position: absolute;
+   right:0%;
+   bottom:0%;*/
+   width:100px;
+   height:100px;
+   background-size: 100% 100%;
+   background-repeat: no-repeat;
+   display: inline-block; 
+   vertical-align:top;
+   
+   }
+.infoPipe h4 {
+    margin: 0 0 5px;
+    color: #777;
+}
