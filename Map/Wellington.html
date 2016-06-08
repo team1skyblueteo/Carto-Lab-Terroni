@@ -32,6 +32,8 @@ Versions:
 <script type="text/javascript" src="Scripts/w2ui/w2grid.js"></script>
 <!-- Script for Sidebar -->
 <script type="text/javascript" src="Scripts/w2ui/w2sidebar.js"></script>
+<!--- Script for CSV parsing -->
+<script type="text/javascript" src="PapaParse-4.1.2/papaparse.js"></script>
 <!-- Script for Leaflet -->
 <!--<script type="text/javascript" src="Leaflet/leaflet-src.js"></script>-->
 <!--<script type="text/javascript" src="Leaflet/leaflet.js"></script>-->
@@ -52,6 +54,9 @@ Versions:
 <link rel="stylesheet" type="text/css" href="mapbox.js-bower-2.4.0/mapbox.css"/>
 <!-- CSS for the info pipe div -->
 <link rel="stylesheet" type="text/css" href="CSS/infoPipe.css"/>
+<!-- mapbox GL -->
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.19.1/mapbox-gl.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.19.1/mapbox-gl.css' rel='stylesheet' />
 </head>
 
 
@@ -105,7 +110,7 @@ Versions:
 
 <!-- THE PANEL WHERE THE MAP IS PLACED -->
 <div class="mappanel" id="map"></div>
-
+<div class="testPt">ziopera<div>
 <!-- SIDEBAR -->
 <div id="sidebar">
 	<div id="split-bar"></div>
@@ -119,7 +124,20 @@ Versions:
 
 <!-- LOAD ATLAS SCRIPT AFTER THE ELEMENTS ARE CREATED -->
 <script>
-
+/** 
+	This section contains script that for permission reason has to be run from top folder
+	**/
+// load csv file with node coord
+ var nodeurl = 'Data/waste-water-node.csv';
+ var xmlhttp = new XMLHttpRequest();
+var nodeArray;
+xmlhttp.onreadystatechange = function() {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        nodeArray = Papa.parse(xmlhttp.responseText,{delimiter: ","});
+    }
+};
+xmlhttp.open("GET", nodeurl, true);
+xmlhttp.send();
 // Load Json has to be here to be in the main folder
 
 function loadJson(fileName) {

@@ -9,7 +9,18 @@ function onEachFeature(feature, layer) {
 var WasteLayer = L.geoJson(WasteData, {style: style,
     					onEachFeature: onEachFeature
     					}).addTo(map);
-//WasteLayer.addData(WasteData, {style: style});
+ /*   					
+map.on('style.load', function () {
+map.addSource(
+"geojson-lines": {
+  "type": "geojson",
+  "data": "./Data/Wastwater_pipe200-2100.geojson"
+}
+
+});*/
+
+
+WasteLayer.addData(WasteData, {style: style});
 function style(feature) {
     return {
 	weigth: getDimension(feature.properties.Diameter),
@@ -92,7 +103,74 @@ infoPipe.update = function (props) {
 };}
 
 infoPipe.addTo(map);
+/** 
+	FLOW DIRECTION
+			***/
+console.log(nodeArray);
+console.log(WasteLayer);
+// only after zoom 14
+map.on('zoomend', function() {
+    if (map.getZoom() >= 14) {
+        
+        // to hide or show it.
+        map.on('move', function() {
+    		// Construct an empty list to fill with onscreen markers.
+    		var inBounds = [],
+    		// Get the map bounds - the top-left and bottom-right locations.
+    		    bounds = map.getBounds();
 
+    		// For each marker, consider whether it is currently visible by comparing
+    		// with the current map bounds.
+    		WasteLayer.options.onEachFeature(function(feature) {
+    		    if (bounds.contains(feature.getLatLng())) {
+    		        console.log(feature);
+    		    }
+    		});
+    	});
+    } else {
+        map.on('move', function() {});
+    }
+});
+
+
+console.log(map.latLngToContainerPoint([-41.2833, 174.7666]));
+var testCoo = map.latLngToContainerPoint([-41.2833, 174.7666]);
+var testDiv = document.getElementsByClassName("testPt")[0];
+console.log(parseInt(testCoo.y)+39);
+testDiv.style.top=(parseInt(testCoo.y)+39).toString()+'px';
+testDiv.style.left=testCoo.x+'px';
+
+function getFlowParam(DSid,UPis){
+	var DSn=ParseInt(DSid)-1;
+	var USn=ParseInt(USid)-1;
+	var tempNode=nodeArray.data[DSn];
+	if (tempNode[4]==0){
+		DSxy=[tempNode[0],tempNode[0]];
+		}
+	else{
+		tempNode=nodeArray.data[DSn-tempNode[4]];
+		DSxy=[tempNode[0],tempNode[0]];};
+	var tempNode=nodeArray.data[USn];
+	if (tempNode[4]==0){
+		USxy=[tempNode[0],tempNode[0]];
+		}
+	else{
+		tempNode=nodeArray.data[USn-tempNode[4]];
+		USxy=[tempNode[0],tempNode[0]];};
+	Meanxy = [(USxy[0]+DSxy[0])/2,(USxy[1]+DSxy[1])/2];
+	Bearing = Math.atan2(DSxy[0]-USxy[0], DSxy[1]-USxy[1]);
+	return [Meanxy,Bearing];		
+}
+
+function plotFlow(flowParam){
+	var arrayCoo = map.latLngToContainerPoint(flowParam[0].reverse());
+	var arrowDiv = document.createElement('div');
+	arrowDiv.className = 'arrowFlow';
+	
+	arrowDiv.style.top=(parseInt(testCoo.y)+39).toString()+'px';
+	arrowDiv.style.left=testCoo.x+'px';
+	document.body.appendChild(arrowDiv);
+	}
 
 /*// tile options
 var tileOptions = {

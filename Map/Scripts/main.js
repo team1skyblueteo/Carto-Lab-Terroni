@@ -13,9 +13,10 @@
 
 
 // Set variables for maxBounds and for map
+
 var southWest = L.latLng(-41.3500, 174.6000),
     northEast = L.latLng(-41.2100, 174.9000),
-    wellingtonBounds = L.latLngBounds(southWest, northEast),
+    wellingtonBounds = L.latLngBounds(southWest, northEast);
     map = L.map('map', {zoomControl: false,
     // Set that bounding box as maxBounds to restrict moving the map
     maxBounds:  wellingtonBounds,
@@ -26,16 +27,38 @@ var southWest = L.latLng(-41.3500, 174.6000),
     keyboardZoomOffset: 1, // Number of zoom levels to change when pressing + or - key.
     }).setView([-41.2833, 174.7666], 13);
 
-var min = 20;
-var mainmin = 80;
+
 
 // Change zoom position
 new L.Control.Zoom({ position: 'topright' }).addTo(map);
 
 //  Load OpenStreeMap data from Mapbox.
+
 L.mapbox.accessToken = 'pk.eyJ1IjoiZ2l1bGlvdCIsImEiOiJjaWg5ZGs1d2MwMDR0dnNtMzlydHhxaGs3In0.TfMvSNQas5gBS882h-Oh4g';
 L.mapbox.styleLayer('mapbox://styles/giuliot/cina7yy7000mad5m3dmzkaf1f').addTo(map);
 
+/**	
+	MAPBOX GL VERSION
+	**/
+	/*
+var southWest = new mapboxgl.LngLat(174.6000,-41.3500),
+    northEast = new mapboxgl.LngLat(174.9000,-41.2100),
+    wellingtonBounds = new mapboxgl.LngLatBounds(southWest, northEast);
+mapboxgl.accessToken = 'pk.eyJ1IjoiZ2l1bGlvdCIsImEiOiJjaWg5ZGs1d2MwMDR0dnNtMzlydHhxaGs3In0.TfMvSNQas5gBS882h-Oh4g';
+var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/giuliot/cina7yy7000mad5m3dmzkaf1f',
+    center: [174.7666,-41.2833],
+    maxBounds:  wellingtonBounds,
+    maxZoom: 17,
+    minZoom: 12,
+    zoom: 13,
+    scrollWheelZoom: true, // We can also zoom with mousewheel
+    keyboard: true, // We can also navigate with keyboard
+    keyboardZoomOffset: 1, // Number of zoom levels to change when pressing + or - key.
+});*/
+var min = 20;
+var mainmin = 80;
 
 ////////////////////////////////////////// Sidebar //////////////////////////////////////////
 
