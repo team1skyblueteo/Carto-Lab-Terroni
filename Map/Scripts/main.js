@@ -13,10 +13,14 @@
 
 
 // Set variables for maxBounds and for map
-
+/***
+	MAP BOX JS VERSION
+				***/
 var southWest = L.latLng(-41.3500, 174.6000),
     northEast = L.latLng(-41.2100, 174.9000),
-    wellingtonBounds = L.latLngBounds(southWest, northEast);
+    jswellingtonBounds = L.latLngBounds(southWest, northEast);
+/*
+
     map = L.map('map', {zoomControl: false,
     // Set that bounding box as maxBounds to restrict moving the map
     maxBounds:  wellingtonBounds,
@@ -34,13 +38,14 @@ new L.Control.Zoom({ position: 'topright' }).addTo(map);
 
 //  Load OpenStreeMap data from Mapbox.
 
-L.mapbox.accessToken = 'pk.eyJ1IjoiZ2l1bGlvdCIsImEiOiJjaWg5ZGs1d2MwMDR0dnNtMzlydHhxaGs3In0.TfMvSNQas5gBS882h-Oh4g';
-L.mapbox.styleLayer('mapbox://styles/giuliot/cina7yy7000mad5m3dmzkaf1f').addTo(map);
 
+L.mapbox.styleLayer('mapbox://styles/giuliot/cina7yy7000mad5m3dmzkaf1f').addTo(map);
+*/
+L.mapbox.accessToken = 'pk.eyJ1IjoiZ2l1bGlvdCIsImEiOiJjaWg5ZGs1d2MwMDR0dnNtMzlydHhxaGs3In0.TfMvSNQas5gBS882h-Oh4g';
 /**	
 	MAPBOX GL VERSION
 	**/
-	/*
+	
 var southWest = new mapboxgl.LngLat(174.6000,-41.3500),
     northEast = new mapboxgl.LngLat(174.9000,-41.2100),
     wellingtonBounds = new mapboxgl.LngLatBounds(southWest, northEast);
@@ -50,13 +55,14 @@ var map = new mapboxgl.Map({
     style: 'mapbox://styles/giuliot/cina7yy7000mad5m3dmzkaf1f',
     center: [174.7666,-41.2833],
     maxBounds:  wellingtonBounds,
-    maxZoom: 17,
+    maxZoom: 18,
     minZoom: 12,
     zoom: 13,
     scrollWheelZoom: true, // We can also zoom with mousewheel
     keyboard: true, // We can also navigate with keyboard
     keyboardZoomOffset: 1, // Number of zoom levels to change when pressing + or - key.
-});*/
+});
+
 var min = 20;
 var mainmin = 80;
 
@@ -189,7 +195,6 @@ function resfreshtimeline(years, startyr) {
         }
     }
     var timeRange = JSON.parse(timeRangetxt);
-    console.log(timeRange);
 	if (timeSlider.hasOwnProperty('noUiSlider')) {timeSlider.noUiSlider.destroy();}
     noUiSlider.create(timeSlider, {
         range: timeRange,
@@ -210,6 +215,8 @@ function resfreshtimeline(years, startyr) {
 display only four result and when clicked on the result zoom either to its bbox (if present) or to its center */
 
 var geocoderControl = L.mapbox.geocoderControl('mapbox.places');
+
+// IMPORTANT TO BE TRANSLATED TO MAPBOX GL IF POSSIBLE
 
 function geocodeThis() {
     var text = document.getElementById('search').value;
@@ -240,7 +247,7 @@ function geocodeThis() {
                         resBounds = false
                     }
                     var resCenter = L.latLng(results[i].center[1], results[i].center[0]);
-                    if ((wellingtonBounds.contains(resCenter)) || (resBounds && wellingtonBounds.intersects(resBounds)) ) {
+                    if ((jswellingtonBounds.contains(resCenter)) || (resBounds && jswellingtonBounds.intersects(resBounds)) ) {
                         var labels = results[i].place_name.split(',');
                         if (labels.length>2)
                             {labels.splice(-2,2);}
@@ -307,6 +314,7 @@ jQuery('#search').keydown(function(e) {
         geocodeThis();
     };
 })
+
 geocoderControl.on('found', function(res) {
     console.log(res);
     //output.innerHTML = JSON.stringify(res.results.features[0]);
@@ -317,6 +325,6 @@ var Reload  = document.getElementById("Reload");
 jQuery('#Reload').click(function() {
     location.reload(true)
 });
-
+ /////////////////////////////////////////GENERAL FUNCTIONS ///////////////////////////////////
 
 
