@@ -334,13 +334,69 @@ map.on('mousemove', function (e) {
     if (!features.length) {
         return;
     }
-
     var feature = features[0];
-    // TO ADD REFRESH INFO TAB
-    //infoPipe.update();
-
+    updatePipeInspector(feature);
     
 });
+/////////////////////////////////////////// PIPE INSPECTOR //////////////////////////////////////////////////
+function updatePipeInspector(feature){
+	var pipeInspDiv = document.getElementById('pipe-inspector');
+	switch (feature.properties.Pipe_sha_1){
+		  case "U-shaped": showU();
+		                   break;
+		  case "TRI": showTri();
+		                   break;
+		  case "Rectangular Box": showRect();
+		                   break;
+		  case "Ovoid A": showOvoid();
+		                   break;
+		  case "Ovoid B": showOvoid();
+		                   break;
+		  case "Ovoid": showOvoid();
+		                   break;
+		  case "Egg-Shaped": showOvoid();
+		                   break;
+		  case "Circular": showCircle();
+		                   break;
+		  case "CIRCC": showCircle();
+		                   break;
+		  default: shapeDiv.innerHTML = 'No shape info avaliabel';
+	  }
+	function showCircle(){
+		pipeInspDiv.innerHTML= circlepipe;
+	}
+	function showU(){
+		pipeInspDiv.innerHTML= upipe;
+	}
+	function showTri(){
+		pipeInspDiv.innerHTML= tripipe;
+	}
+	function showRect(){
+		pipeInspDiv.innerHTML= rectpipe;
+	}
+	function showOvoid(){
+		pipeInspDiv.innerHTML= ovopipe;
+	}
+	if (feature.properties.Diameter!=''||feature.properties.Diameter!='NaN'){
+		document.getElementById('myDiam').innerHTML= feature.properties.Diameter+' mm';
+	}
+	else{document.getElementById('myDate').innerHTML= 'unknown'};
+	if (feature.properties.Date_ins_1!=''){
+		document.getElementById('myDate').innerHTML= feature.properties.Date_ins_1;
+	}
+	else{document.getElementById('myDiam').innerHTML= 'unknown'};
+	if (feature.properties.Gradient!=''||feature.properties.Gradient!='NaN'){
+		
+		document.getElementById('myGrad').innerHTML= (Math.round(parseFloat(feature.properties.Gradient)*1000)/10000).toString();
+	}
+	else{document.getElementById('myGrad').innerHTML= 'unknown'};
+	if (feature.properties.Pipe_mat_1!=''){
+		document.getElementById('myMat').innerHTML= feature.properties.Pipe_mat_1;
+	}
+	else{document.getElementById('myMat').innerHTML= 'unknown'};
+
+}    
+
 /** 
 	FLOW DIRECTION
 			***/
@@ -422,10 +478,6 @@ function plotFlow(flowParam){
 		document.body.appendChild(arrowDiv);
 	}
 	}
-/////////////////////////////////////////// PIPE INSPECTOR //////////////////////////////////////////////////
-
-var pipeInspDiv = document.getElementsByID('pipe-inspector');
-
 
 ///////////////////////////////////////// GENERAL FUNCTION /////////////////////////////////////////////////////
 /***

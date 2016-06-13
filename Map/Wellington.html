@@ -139,7 +139,11 @@ Versions:
 <!-- THE PANEL WHERE THE MAP IS PLACED -->
 <div class="mappanel" id="map"></div>
 <!-- THE PANEL WHERE THE PIPE INSPECTOR IS PLACED -->
-<div class="pipe-inspector" id="pipe-inspector"></div>
+<div class="pipe-inspector-c" id="pipe-inspector-c">
+	<h7>Pipe inspector</h7>
+	<hr>
+	<div class="pipe-inspector" id="pipe-inspector"></div>
+</div>
 <!-- SIDEBAR -->
 <div id="sidebar">
 	<div id="split-bar"></div>
@@ -170,8 +174,12 @@ xmlhttp.send();
 /***
 		OPEN ALL SVG PIPE
 					**/
-var circlepipe = loadTxt('/Data/svg-pipes/circleII.svg');
-console.log(circlepipe);
+var circlepipe = loadTxt('./Data/svg-pipes/circle.svg');
+var rectpipe = loadTxt('./Data/svg-pipes/rect.svg');
+var upipe = loadTxt('./Data/svg-pipes/u.svg');
+var tri = loadTxt('./Data/svg-pipes/tri.svg');
+var ovopipe = loadTxt('./Data/svg-pipes/ovo.svg');
+//console.log(circlepipe);
 function loadTxt(fileName) {
 		var request = new XMLHttpRequest();
 		request.open("GET", fileName, false);
