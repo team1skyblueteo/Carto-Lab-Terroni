@@ -110,6 +110,8 @@ Versions:
 
 <!-- THE PANEL WHERE THE MAP IS PLACED -->
 <div class="mappanel" id="map"></div>
+<!-- THE PANEL WHERE THE PIPE INSPECTOR IS PLACED -->
+<div class="pipe-inspector" id="pipe-inspector"></div>
 <!-- SIDEBAR -->
 <div id="sidebar">
 	<div id="split-bar"></div>
@@ -137,6 +139,17 @@ xmlhttp.onreadystatechange = function() {
 };
 xmlhttp.open("GET", nodeurl, true);
 xmlhttp.send();
+/***
+		OPEN ALL SVG PIPE
+					**/
+var circlepipe = loadTxt('/Data/svg-pipes/circleII.svg');
+console.log(circlepipe);
+function loadTxt(fileName) {
+		var request = new XMLHttpRequest();
+		request.open("GET", fileName, false);
+		request.send(null);
+		return request.responseText;
+	};				
 // Load Json has to be here to be in the main folder
 
 function loadJson(fileName) {

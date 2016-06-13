@@ -422,9 +422,12 @@ function plotFlow(flowParam){
 		document.body.appendChild(arrowDiv);
 	}
 	}
-/***
-	GENERAL FUNCTION 
-			***/
+/////////////////////////////////////////// PIPE INSPECTOR //////////////////////////////////////////////////
+
+var pipeInspDiv = document.getElementsByID('pipe-inspector');
+
+
+///////////////////////////////////////// GENERAL FUNCTION /////////////////////////////////////////////////////
 /***
 	REMOVE ALL ELEMT OF A CLASS PLAIN JS
 					***/
