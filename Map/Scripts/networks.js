@@ -95,6 +95,23 @@ map.on("load", function(){
         
  	
 	for(var i=0; i < Diameters.length-1; i++) {
+		map.addLayer({
+			"id": "pipe-hover"+Diameters[i],
+			 "type": "line",
+       			 "source": "pipeline",
+   			 "layout": {
+			            "line-join": "round",
+				    "line-cap": "round",
+				},
+   			 "paint": {
+   		       		  "line-width":	Math.pow(Math.log10(( Diameters[i]+Diameters[i+1]) /2),2)/* {
+   		       		  	"stops":getLineWidthZoom(( Diameters[i]+Diameters[i+1]) /2)
+   		       		  	}*/,
+     			          "line-color": 'red',
+      		         	  "line-opacity": 0.8,
+   				 },
+			"filter": ["==", "Asset_ID", ""]
+		});
 		for (var j=0; j<materialGroups.length;j++){
 		     wasteLayersNames.push("pipe-"+Diameters[i]+materialGroups[j]);
 		     map.addLayer({
@@ -111,7 +128,7 @@ map.on("load", function(){
    		       		  	"stops":getLineWidthZoom(( Diameters[i]+Diameters[i+1]) /2)
    		       		  	}*/,
      			          "line-color": getGroupColor(materialGroups[j]),
-      		         	  "line-opacity": 0.8,
+      		         	  //"line-opacity": 0.8,
    				 }
 			  });
 			}
@@ -334,13 +351,30 @@ map.on('mousemove', function (e) {
     if (!features.length) {
         return;
     }
-    var feature = features[0];
-    updatePipeInspector(feature);
+    
+   // console.log(feature);
+    if (features.length) {
+    	    var feature = features[0];
+    	    updatePipeInspector(feature);
+    	    for(var i=0; i < Diameters.length-1; i++) {
+            	map.setFilter("pipe-hover"+Diameters[i], ["==", "Asset_ID", features[0].properties.Asset_ID]);
+            }
+        } else {
+            for(var i=0; i < Diameters.length-1; i++) {
+            	map.setFilter("pipe-hover"+Diameters[i], ["==", "Asset_ID", ""]);
+            }
+            updatePipeInspector('clear');
+    
+        }
     
 });
 /////////////////////////////////////////// PIPE INSPECTOR //////////////////////////////////////////////////
 function updatePipeInspector(feature){
+	
 	var pipeInspDiv = document.getElementById('pipe-inspector');
+	if (feature=='clear'){
+			pipeInspDiv.innerHTML= 'Hover over a pipe';
+		};
 	switch (feature.properties.Pipe_sha_1){
 		  case "U-shaped": showU();
 		                   break;
@@ -360,7 +394,7 @@ function updatePipeInspector(feature){
 		                   break;
 		  case "CIRCC": showCircle();
 		                   break;
-		  default: shapeDiv.innerHTML = 'No shape info avaliabel';
+		  default: ;
 	  }
 	function showCircle(){
 		pipeInspDiv.innerHTML= circlepipe;
@@ -401,7 +435,6 @@ function updatePipeInspector(feature){
 	FLOW DIRECTION
 			***/
 map.on('zoom', function() {
-	    console.log("alura?");
 	    // only after zoom 18
 	    if (map.getZoom() >= 17) {
 		
