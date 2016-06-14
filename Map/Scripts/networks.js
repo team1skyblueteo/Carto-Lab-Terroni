@@ -356,10 +356,6 @@ infoPipe.update = function (props) {
 					***/
 map.on('mousemove', function (e) {
     var features = map.queryRenderedFeatures(e.point, {layers: wasteLayersNames});
-    if (!features.length) {
-        return;
-    }
-    
    // console.log(feature);
     if (features.length) {
     	    var feature = features[0];
@@ -378,10 +374,14 @@ map.on('mousemove', function (e) {
 });
 /////////////////////////////////////////// PIPE INSPECTOR //////////////////////////////////////////////////
 function updatePipeInspector(feature){
-	
+	console.log(feature);
+	var pipeInspDivc = document.getElementById('pipe-inspector-c');
+	pipeInspDivc.style.height="170px";
 	var pipeInspDiv = document.getElementById('pipe-inspector');
 	if (feature=='clear'){
-			pipeInspDiv.innerHTML= 'Hover over a pipe';
+			console.log("ao");
+	    		pipeInspDivc.style.height="60px";
+			pipeInspDiv.innerHTML= "<span style=\"font-size:13px\">Hover over a pipe<span>";
 		};
 	switch (feature.properties.Pipe_sha_1){
 		  case "U-shaped": showU();
