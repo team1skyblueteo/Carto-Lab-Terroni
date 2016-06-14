@@ -19,6 +19,7 @@
 var southWest = L.latLng(-41.3500, 174.6000),
     northEast = L.latLng(-41.2100, 174.9000),
     jswellingtonBounds = L.latLngBounds(southWest, northEast);
+
 /*
 
     map = L.map('map', {zoomControl: false,
@@ -77,11 +78,6 @@ jQuery(function () {
         height      : 'auto', 
         // topHTML     : '<div id="Searchlayer" style="padding: 10px 5px;">Search layer: <input/> </div>',
         routeData   : { id: 59, vid: '23.323.4' },
-        menu: [
-            { id: 1, text: 'Select Item', icon: 'fa-star' },
-            { id: 2, text: 'View Item', icon: 'fa-camera' },
-            { id: 4, text: 'Delete Item', icon: 'fa-minus' }
-        ],
         onMenuClick: function (event) {
             console.log(event);
         },
@@ -98,8 +94,8 @@ jQuery(function () {
         nodes: [
             { id: 'level-1', text: 'Drainage Water Network', expanded: true, group: true, 
                 nodes: [
-                    { id: 'level-1-1', text: 'Drainage Water Network',
-                        route: '/project'
+                    { id: 'level-1-1', text: 'Drainage Water Network', img: 'DrainageIcon',
+                        route: '/project/Icons'
                     },
                     // { id: 'level-1-2', text: 'Level 1-2', icon: 'fa-camera',
                     //     route: '/project/:id'
@@ -108,7 +104,7 @@ jQuery(function () {
             },
             { id: 'level-2', text: 'Rain Water Network', img: 'icon-folder', expanded: true, group: true,
               nodes: [
-                    { id: 'level-2-1', text: 'Rain Water Network', icon: 'fa-star',
+                    { id: 'level-2-1', text: 'Rain Water Network', img: '',
                         route: '/project'
                     },
                     // { id: 'level-2-2', text: 'Level 2-2', icon: 'fa-camera',
@@ -119,24 +115,11 @@ jQuery(function () {
                     // }
                 ]
             },
-            // { id: 'level-3', text: 'Level 3', img: 'icon-folder', expanded: true, group: true,
-            //   nodes: [
-            //         { id: 'level-3-1', text: 'Level 3-1', icon: 'fa-star',
-            //             route: '/project'
-            //         },
-            //         { id: 'level-3-2', text: 'Level 3-2', icon: 'fa-camera',
-            //             route: '/project/:id'
-            //         },
-            //         { id: 'level-3-3', text: 'Level 3-3', 
-            //             route: '/project/:id/view'
-            //         }
-            //     ]
-            // }
         ],
         onClick: function (event) {
             console.log('click', event.target, event);
-            //It is possible to hide the sidebar after the selection is done!!
-            sidebar.style.display = "none";
+            //It is possible to hide the sidebar after that the selection is done!!
+            //sidebar.style.display = "none";
         }
     });
 });
@@ -145,7 +128,6 @@ jQuery(function () {
 
 var Menu  = document.getElementById("Menu");
 var sidebar = document.getElementById("sidebar");
-var Searchlayer = document.getElementById("Searchlayer");
 
 Menu.addEventListener("click", function(){
   sidebar.style.display = (sidebar.dataset.toggled ^= 1) ? "block" : "none";
@@ -325,6 +307,21 @@ var Reload  = document.getElementById("Reload");
 jQuery('#Reload').click(function() {
     location.reload(true)
 });
+
+// Slider button
+var Sliderbtn  = document.getElementById("sliderbtn");
+
+Sliderbtn.addEventListener("click", function(){
+    if (timeSlider.style.visibility == "visible") {
+        timeSlider.style.visibility = "hidden";
+        document.getElementById("sliderbtn").innerHTML="Show Time Slider";
+    }
+    else {
+        timeSlider.style.visibility = "visible";
+        document.getElementById("sliderbtn").innerHTML="Hide Time Slider";
+    }
+}, false);
+
  /////////////////////////////////////////GENERAL FUNCTIONS ///////////////////////////////////
 
 
