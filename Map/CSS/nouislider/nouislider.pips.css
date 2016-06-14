@@ -9,7 +9,7 @@
 }
 .noUi-pips {
 	position: absolute;
-	color: #999;
+	color: black;
 }
 
 /* Values;
@@ -29,13 +29,13 @@
  */
 .noUi-marker {
 	position: absolute;
-	background: #CCC;
+	background: black;
 }
 .noUi-marker-sub {
-	background: #AAA;
+	background: black;
 }
 .noUi-marker-large {
-	background: #AAA;
+	background: black;
 }
 
 /* Horizontal layout;
@@ -53,7 +53,8 @@
 	transform: translate3d(-50%,100%,0);
 	font-family: Verdana, Arial, sans-serif;
 	font-size: 12px;
-	text-shadow: 0.8em 0.2em 0.4em white;
+	color: black;
+	text-shadow: 0.1em 0.1em 0.1em white;
 }
 
 .noUi-marker-horizontal.noUi-marker {

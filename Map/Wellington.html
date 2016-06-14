@@ -67,21 +67,24 @@ Versions:
 
 <!-- TOOLBAR -->
 <div id="toolbar">
-<button class="w2ui-btn" value="Popup2"  onclick="jQuery('#MapDescription').w2popup({ showMax: true })">Map Description</button>
-<button class="w2ui-btn" value="Popup3"  onclick="jQuery('#Impressum').w2popup({ showMax: true })">Impressum</button>
-<button id="Menu" class="w2ui-btn" value="Popup4" style="float:left; left: 7%">Menu</button>
-<button id="Reload" class="w2ui-btn" style="float:left; left: 35%">Webpage Icon</button>
-<input id="search" value="" placeholder="Search-place">
+    <button id="Reload" class="w2ui-btn" style="float:left">Webpage Icon</button>
+    <button class="w2ui-btn" id="Impressum-btn"  onclick="jQuery('#Impressum').w2popup({ showMax: true })">Impressum</button>
+    <input id="search" value="" placeholder="Search-place">
+    <button class="w2ui-btn" id="Description-btn" onclick="jQuery('#MapDescription').w2popup({ showMax: true })">Map Description</button>
+    <!-- Button for time slider -->
+    <button class="w2ui-btn" id="sliderbtn">Show Time Slider</button>
+    <button class="w2ui-btn" id="Menu">Menu</button>
+</div>
 
 <!-- div to add the results of the Geocoder -->
 <div id="search-results"></div>
-</div>
 
 <!-- MAP DESCRIPTION -->
 <div id="MapDescription">
         <div rel="title">Map Description</div>
         <div rel="body">
             <div style="padding: 10; font-size: 12px; line-height: 150%;" id="some">
+                ...
                 <br/>
            </div>
         </div>
@@ -145,9 +148,7 @@ Versions:
 	<div class="pipe-inspector" id="pipe-inspector"></div>
 </div>
 <!-- SIDEBAR -->
-<div id="sidebar">
-	<div id="split-bar"></div>
-</div>
+<div id="sidebar"></div>
 
 <!-- GEOCODER -->
 <input id="search" placeholder="Search-place">

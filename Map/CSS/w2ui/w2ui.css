@@ -2594,13 +2594,11 @@ button.w2ui-btn-small:focus:before {
   right: 0px;
 }
 .w2ui-sidebar .w2ui-sidebar-div {
-  position: absolute;
+  position: relative;
   z-index: 1;
   overflow: auto;
   top: 0px;
   bottom: 0px;
-  left: 0px;
-  right: 0px;
   padding: 2px 0px;
   -webkit-user-select: none;
   -moz-user-select: none;
