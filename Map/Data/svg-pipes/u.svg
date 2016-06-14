@@ -71,12 +71,12 @@
            id="myDiam"
            style="font-size:10px;line-height:0%;stroke:none">myDiam</tspan></text>
       <path
-         d="M 275.69595,348.2324 261.52351,334.05996"
+         d="M 289.2569,348.2324 275.08446,334.05996"
          id="path5125"
          style="fill:none;stroke:#222222;stroke-width:0.80000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
          inkscape:connector-curvature="0" />
       <path
-         d="m 232.04417,334.27325 29.52547,0"
+         d="m 245.60512,334.27325 29.52547,0"
          id="path4291-1"
          style="fill:none;stroke:#222222;stroke-width:0.61613643;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
          inkscape:connector-curvature="0" />
@@ -85,7 +85,7 @@
          y="331.12521"
          id="myMat"
          xml:space="preserve"
-         style="font-size:6px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         style="font-size:8px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          sodipodi:linespacing="125%"><tspan
            x="195.83577"
            y="331.12521"
@@ -147,7 +147,7 @@
            id="tspan5151-3"
            style="font-size:10px">Hydraulic Diamter:</tspan></text>
       <g
-         transform="translate(-172.15647,121.2469)"
+         transform="translate(-158.59552,121.2469)"
          id="g4423">
         <path
            sodipodi:nodetypes="scssscs"

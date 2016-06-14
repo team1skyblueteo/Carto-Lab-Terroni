@@ -84,6 +84,7 @@ var Diameters = [0,150,200,400,800,2000];
     		         '',
     		         ];
 var materialGroups = ['ceramics','metals','concrete','fibre-composite','PVC-plastics','Polyethylene-plastics','other-unknown'];
+// CONSIDERE MIN AND MAX ZOOM
 var wasteLayersNames=[];
 map.on("load", function(){
     //get data using geojson -> you can also get it directly in data property of addSource method. Check out https://www.mapbox.com/mapbox-gl-style-spec/#sources-geojson
@@ -95,7 +96,8 @@ map.on("load", function(){
         
  	
 	for(var i=0; i < Diameters.length-1; i++) {
-		map.addLayer({
+	console.log(getMinZoom(i));
+		/*map.addLayer({
 			"id": "pipe-hover"+Diameters[i],
 			 "type": "line",
        			 "source": "pipeline",
@@ -104,29 +106,29 @@ map.on("load", function(){
 				    "line-cap": "round",
 				},
    			 "paint": {
-   		       		  "line-width":	Math.pow(Math.log10(( Diameters[i]+Diameters[i+1]) /2),2)/* {
-   		       		  	"stops":getLineWidthZoom(( Diameters[i]+Diameters[i+1]) /2)
-   		       		  	}*/,
+   		       		  "line-width":	Math.pow(Math.log10(( Diameters[i]+Diameters[i+1]) /2),2),
      			          "line-color": 'red',
       		         	  "line-opacity": 0.8,
    				 },
 			"filter": ["==", "Asset_ID", ""]
-		});
+		});*/
 		for (var j=0; j<materialGroups.length;j++){
 		     wasteLayersNames.push("pipe-"+Diameters[i]+materialGroups[j]);
 		     map.addLayer({
    			 "id": "pipe-"+Diameters[i]+materialGroups[j],
    			 "type": "line",
        			 "source": "pipeline",
+       			 "minzoom": getMinZoom(i),
    			 "filter": getFilter(Diameters[i],Diameters[i+1],materialGroups[j]),
    			 "layout": {
 			            "line-join": "round",
 				    "line-cap": "round",
 				},
    			 "paint": {
-   		       		  "line-width":	Math.pow(Math.log10(( Diameters[i]+Diameters[i+1]) /2),2)/* {
+   		       		  "line-width":	Math.pow(Math.log10(( Diameters[i]+Diameters[i+1]) /3),2),
+   		       		  	/*{
    		       		  	"stops":getLineWidthZoom(( Diameters[i]+Diameters[i+1]) /2)
-   		       		  	}*/,
+   		       		  	},*/
      			          "line-color": getGroupColor(materialGroups[j]),
       		         	  //"line-opacity": 0.8,
    				 }
@@ -134,6 +136,12 @@ map.on("load", function(){
 			}
 		}
 })
+/***
+	Get MIN ZOOM
+			***/
+function getMinZoom(i){
+	if (i=0){return 13}else{return 11};
+}
 /*** 
 	get random color - NOT USED
 				***/
@@ -268,14 +276,14 @@ function getFilter(diameterI,diameterII,material){
 		ZOOM DEPENDING LIEN WIDTH - NOT USED
 					***/
 function getLineWidthZoom(meanDiameter){
-	//return [[13, meanDiameter/250], [17,meanDiameter/50]];
-
+	return [[13, Math.pow(Math.log10(meanDiameter/3),2)], [17,Math.pow(Math.log10(meanDiameter),2)]];
+/*
 	if (meanDiameter<=180){
 		return [[13, 0], [17,meanDiameter/50]];
 		}
 	if (meanDiameter>180){
 		return [[13, meanDiameter/250], [17,meanDiameter/50]];
-		}
+		}*/
 
 }
 /***
@@ -356,13 +364,13 @@ map.on('mousemove', function (e) {
     if (features.length) {
     	    var feature = features[0];
     	    updatePipeInspector(feature);
-    	    for(var i=0; i < Diameters.length-1; i++) {
+    	    /*for(var i=0; i < Diameters.length-1; i++) {
             	map.setFilter("pipe-hover"+Diameters[i], ["==", "Asset_ID", features[0].properties.Asset_ID]);
-            }
+            }*/
         } else {
-            for(var i=0; i < Diameters.length-1; i++) {
+            /*for(var i=0; i < Diameters.length-1; i++) {
             	map.setFilter("pipe-hover"+Diameters[i], ["==", "Asset_ID", ""]);
-            }
+            }*/
             updatePipeInspector('clear');
     
         }
@@ -434,18 +442,21 @@ function updatePipeInspector(feature){
 /** 
 	FLOW DIRECTION
 			***/
-map.on('zoom', function() {
+map.on('move', function() {
+	    console.log(map);
+	    console.log(map.getZoom());
+	    var zoom = map.getZoom();
+	    removeElementsByClass('arrowFlow');
 	    // only after zoom 18
-	    if (map.getZoom() >= 17) {
+	    if (zoom >= 17) {
 		
 		// to hide or show it.
-		map.on('move', function() {
+		//map.on('move', function() {
 	    		// Get the map bounds - the top-left and bottom-right locations.
 	    		bounds = map.getBounds();
 	    		console.log(bounds);
 	    		var features = map.queryRenderedFeatures(bounds, {layers: wasteLayersNames});
 	    		console.log(features);
-	    		removeElementsByClass('arrowFlow');
 	    		for (i=0,l=features.length;i<l;i++){
 	    			if (features[i].properties.DS_node_ID!= 'undefined'&&features[i].properties.US_node_ID!= 'undefined'){
 		    			//var t0 = performance.now();
@@ -457,9 +468,11 @@ map.on('zoom', function() {
 		    			//console.log('plotFlow: '+(t2-t1));
 	    			}
 	    		}
-	    	});
+	    	//});
 	    } else {
-		map.on('move', function() {});
+	    
+	    	console.log('oppa');
+		//map.on('move', function() {});
 	    }
 	});
 
@@ -511,6 +524,32 @@ function plotFlow(flowParam){
 		document.body.appendChild(arrowDiv);
 	}
 	}
+///////////////////////////////////////// FILL LEGEND //////////////////////////////////////////////////
+updateLegend();
+function updateLegend(){
+	var divMat = document.getElementById('mat-legend');
+	var divDiam = document.getElementById('diam-legend');
+	for(var i=0; i < Diameters.length-1; i++) {
+		var newNode = document.createElement('div');      
+		newNode.innerHTML = "<svg class=\"legend-svg\" height=\"15\" width=\"30\">"+
+  					"<line x1=\"5\" y1=\"12\" x2=\"25\" y2=\"12\" stroke=\"rgb(255,0,0)\" stroke-width=\""+Math.pow(Math.log10(( Diameters[i]+Diameters[i+1]) /3),2).toString()+"\" stroke-linecap=\"round\"/>"+
+  					"Sorry, your browser does not support inline SVG."+
+				    "</svg><div class=\"legend-label\">   "+Diameters[i].toString()+" - "+Diameters[i+1].toString()+"</div>";
+  		newNode.className="legend-item";
+		divDiam.appendChild( newNode )
+	}
+	
+	for (var i=0; i<materialGroups.length;i++){
+		var newNode = document.createElement('div');      
+		newNode.innerHTML = "<svg class=\"legend-svg\" height=\"15\" width=\"30\">"+
+  					"<line x1=\"5\" y1=\"12\" x2=\"25\" y2=\"12\" stroke=\""+getGroupColor(materialGroups[i])+"\" stroke-width=\"6\" stroke-linecap=\"round\"/>"+
+  					"Sorry, your browser does not support inline SVG."+
+				    "</svg><div class=\"legend-label\">   "+materialGroups[i]+"</div>";
+		newNode.className="legend-item";  
+		divMat.appendChild( newNode )
+	}
+	
+}
 
 ///////////////////////////////////////// GENERAL FUNCTION /////////////////////////////////////////////////////
 /***
@@ -546,4 +585,5 @@ function LngLatToContainerPoint(lngLat){
 	console.log([x,y]);
 	return [x,y];
 }
+
 
