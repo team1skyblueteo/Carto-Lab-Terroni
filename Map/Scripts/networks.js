@@ -49,7 +49,8 @@ function resetHighlight(e) {
 
 
 var Diameters = [0,150,200,400,800,2000];
-        var Diameters = [0,160,250,675,1000,2100];
+        var wasteDiameters = [0,160,250,675,1000,2100];
+        var stormDiameters = [0,160,250,675,1000,2100];
         var Materials = ['uPVC',
     		         'Stoneware',
     		         'Steel - spiral weld',
@@ -86,14 +87,28 @@ var Diameters = [0,150,200,400,800,2000];
 var materialGroups = ['ceramics','metals','concrete','fibre-composite','PVC-plastics','Polyethylene-plastics','other-unknown'];
 // CONSIDERE MIN AND MAX ZOOM
 var wasteLayersNames=[];
+var stormLayersNames=[];
 map.on("load", function(){
-    //get data using geojson -> you can also get it directly in data property of addSource method. Check out https://www.mapbox.com/mapbox-gl-style-spec/#sources-geojson
-    //mapboxgl.util.getJSON("data/pipe.geojson", function(err, data){
-        map.addSource("pipeline",{
+	map.addSource("wastePipeline",{
             "type": "geojson",
-            "data": "Data/Wastwater_pipe.geojson",//data
+            "data": "Data/Wastwater_pipe2.geojson",//data
         });
         
+	map.addSource("stormPipeline",{
+            "type": "geojson",
+            "data": "Data/Stormwater_pipe.geojson",//data
+        });
+	//loadWasteWater();
+	loadStormWater();
+    //get data using geojson -> you can also get it directly in data property of addSource method. Check out https://www.mapbox.com/mapbox-gl-style-spec/#sources-geojson
+    //mapboxgl.util.getJSON("data/pipe.geojson", function(err, data){
+        
+})
+/***
+	SHOW WASTE WATER
+			***/
+function loadWasteWater(){
+	
  	
 	for(var i=0; i < Diameters.length-1; i++) {
 	console.log(getMinZoom(i));
@@ -113,11 +128,11 @@ map.on("load", function(){
 			"filter": ["==", "Asset_ID", ""]
 		});*/
 		for (var j=0; j<materialGroups.length;j++){
-		     wasteLayersNames.push("pipe-"+Diameters[i]+materialGroups[j]);
+		     wasteLayersNames.push("wastePipe-"+Diameters[i]+materialGroups[j]);
 		     map.addLayer({
-   			 "id": "pipe-"+Diameters[i]+materialGroups[j],
+   			 "id": "wastePipe-"+Diameters[i]+materialGroups[j],
    			 "type": "line",
-       			 "source": "pipeline",
+       			 "source": "wastePipeline",
        			 "minzoom": getMinZoom(i),
    			 "filter": getFilter(Diameters[i],Diameters[i+1],materialGroups[j]),
    			 "layout": {
@@ -135,7 +150,38 @@ map.on("load", function(){
 			  });
 			}
 		}
-})
+};
+/***
+	SHOW STORM WATER
+			***/
+function loadStormWater(){
+	
+        
+	for(var i=0; i < Diameters.length-1; i++) {
+		for (var j=0; j<materialGroups.length;j++){
+		     stormLayersNames.push("stormPipe-"+Diameters[i]+materialGroups[j]);
+		     map.addLayer({
+   			 "id": "stromPipe-"+Diameters[i]+materialGroups[j],
+   			 "type": "line",
+       			 "source": "stormPipeline",
+       			 "minzoom": getMinZoom(i),
+   			 "filter": getFilter(Diameters[i],Diameters[i+1],materialGroups[j]),
+   			 "layout": {
+			            "line-join": "round",
+				    "line-cap": "round",
+				},
+   			 "paint": {
+   		       		  "line-width":	Math.pow(Math.log10(( Diameters[i]+Diameters[i+1]) /3),2),
+   		       		  	/*{
+   		       		  	"stops":getLineWidthZoom(( Diameters[i]+Diameters[i+1]) /2)
+   		       		  	},*/
+     			          "line-color": getGroupColor(materialGroups[j]),
+      		         	  //"line-opacity": 0.8,
+   				 }
+			  });
+			}
+		}
+};
 /***
 	Get MIN ZOOM
 			***/
@@ -254,19 +300,19 @@ function getGroupColor(material){
 					***/
 function getFilter(diameterI,diameterII,material){
 	switch(material){
-		case'ceramics':return ["all", [">=", "Diameter", diameterI ] , ["<", "Diameter", diameterII ], ["in", "Pipe_mat_1", 'brick' , 'Earthenware' , 'Eare' , 'Stoneware' ]];
+		case'ceramics':return ["all", [">=", "Diameter", diameterI ] , ["<", "Diameter", diameterII ], ["in", "Material", 'brick' , 'Earthenware' , 'Eare' , 'Stoneware' ]];
 			break;
-		case'metals':return ["all", [">=", "Diameter", diameterI ] , ["<", "Diameter", diameterII ], ["in", "Pipe_mat_1", 'Steel - spiral weld' , 'Steel - epoxy lined' , 'Steel - cement lined' , 'Steel', 'Galvanised Steel' , 'Galvanised Iron' , 'Ductile Iron - cement lined' , 'Ductile Iron' , 'Copper' , 'Cast Iron' ]];
+		case'metals':return ["all", [">=", "Diameter", diameterI ] , ["<", "Diameter", diameterII ], ["in", "Material", 'Steel - spiral weld' , 'Steel - epoxy lined' , 'Steel - cement lined' , 'Steel', 'Galvanised Steel' , 'Galvanised Iron' , 'Ductile Iron - cement lined' , 'Ductile Iron' , 'Copper' , 'Cast Iron' ]];
 			break;
-		case'concrete':return ["all", [">=", "Diameter", diameterI ] , ["<", "Diameter", diameterII ], ["in", "Pipe_mat_1", 'Reinforced Concrete' , 'Concrete' ]];
+		case'concrete':return ["all", [">=", "Diameter", diameterI ] , ["<", "Diameter", diameterII ], ["in", "Material", 'Reinforced Concrete' , 'Concrete' ]];
 			break;
-		case'fibre-composite':return ["all", [">=", "Diameter", diameterI ] , ["<", "Diameter", diameterII ], ["in", "Pipe_mat_1", 'Pitch Fibre', 'Asbestos Cement' ]];
+		case'fibre-composite':return ["all", [">=", "Diameter", diameterI ] , ["<", "Diameter", diameterII ], ["in", "Material", 'Pitch Fibre', 'Asbestos Cement' ]];
 			break;
-		case'PVC-plastics':return ["all", [">=", "Diameter", diameterI ] , ["<", "Diameter", diameterII ], ["in", "Pipe_mat_1", 'uPVC' , 'PVC - Blue Brute' , 'Polyvinyl Chloride', 'mPVC' ]];
+		case'PVC-plastics':return ["all", [">=", "Diameter", diameterI ] , ["<", "Diameter", diameterII ], ["in", "Material", 'uPVC' , 'PVC - Blue Brute' , 'Polyvinyl Chloride', 'mPVC' ]];
 			break;
-		case'Polyethylene-plastics':return ["all", [">=", "Diameter", diameterI ] , ["<", "Diameter", diameterII ], ["in", "Pipe_mat_1", 'Polyethylene' , 'Medium Density Polyethylene' , 'High Pressure Polyethylene' , 'High Density Polyethylene' , 'Hdpe' ]];
+		case'Polyethylene-plastics':return ["all", [">=", "Diameter", diameterI ] , ["<", "Diameter", diameterII ], ["in", "Material", 'Polyethylene' , 'Medium Density Polyethylene' , 'High Pressure Polyethylene' , 'High Density Polyethylene' , 'Hdpe' ]];
 			break;
-		case'other-unknown':return ["all", [">=", "Diameter", diameterI ] , ["<", "Diameter", diameterII ], ["in", "Pipe_mat_1", 'PLST' , 'NPRN' , '' ]];
+		case'other-unknown':return ["all", [">=", "Diameter", diameterI ] , ["<", "Diameter", diameterII ], ["in", "Material", 'PLST' , 'NPRN' , '' ]];
 			break;
 	}
 	
@@ -316,7 +362,7 @@ infoPipe.update = function (props) {
     			  (props ?
     			  '<div class=\'container\'>'+
     			  '<div class=\'proplist\'>'+
-                                '<b>Material:  </b>'+props.Pipe_mat_1+'<br>'+
+                                '<b>Material:  </b>'+props.Material+'<br>'+
                                 '<b>Gradient:  </b>'+props.Gradient+'<br>'+
                                 '<b>Installed:  </b>'+props.Date_ins_1+'<br>'+
                                 '<b>Hydraulic Diameter:  </b>'+props.Diameter+'<br>'+
@@ -432,8 +478,8 @@ function updatePipeInspector(feature){
 		document.getElementById('myGrad').innerHTML= (Math.round(parseFloat(feature.properties.Gradient)*1000)/10000).toString();
 	}
 	else{document.getElementById('myGrad').innerHTML= 'unknown'};
-	if (feature.properties.Pipe_mat_1!=''){
-		document.getElementById('myMat').innerHTML= feature.properties.Pipe_mat_1;
+	if (feature.properties.Material!=''){
+		document.getElementById('myMat').innerHTML= feature.properties.Material;
 	}
 	else{document.getElementById('myMat').innerHTML= 'unknown'};
 
