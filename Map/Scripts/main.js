@@ -98,7 +98,7 @@ jQuery(function () {
         nodes: [
             { id: 'level-1', text: 'Drainage Water Network', expanded: true, group: true, 
                 nodes: [
-                    { id: 'level-1-1', text: 'Drainage Water Network', img: 'DrainageIcon',
+                    { id: 'level-1-1', text: 'Drainage Water Network', img: '/Icons/DrainageIcon.png',
                         route: '/project/Icons'
                     },
                     // { id: 'level-1-2', text: 'Level 1-2', icon: 'fa-camera',
@@ -108,7 +108,7 @@ jQuery(function () {
             },
             { id: 'level-2', text: 'Rain Water Network', img: 'icon-folder', expanded: true, group: true,
               nodes: [
-                    { id: 'level-2-1', text: 'Rain Water Network', img: '',
+                    { id: 'level-2-1', text: 'Rain Water Network', img: '/Icons/RainIcon.png',
                         route: '/project'
                     },
                     // { id: 'level-2-2', text: 'Level 2-2', icon: 'fa-camera',
