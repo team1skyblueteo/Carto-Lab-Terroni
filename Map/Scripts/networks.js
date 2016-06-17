@@ -48,9 +48,13 @@ function resetHighlight(e) {
 ////////////////////////////////////////// MAPBOX GL VERSION //////////////////////////////////////////
 
 
-var Diameters = [0,150,200,400,800,2000];
-        var wasteDiameters = [0,160,250,675,1000,2100];
-        var stormDiameters = [0,160,250,675,1000,2100];
+var wasteDiameters = [0,160,200,400,800,2000];
+/// temporary
+
+Diameters=wasteDiameters;
+
+        //var wasteDiameters = [0,160,250,675,1000,2100];
+        var stormDiameters = [0,355,760,1530,3500,6000];
         var Materials = ['uPVC',
     		         'Stoneware',
     		         'Steel - spiral weld',
@@ -93,27 +97,30 @@ map.on("load", function(){
             "type": "geojson",
             "data": "Data/Wastwater_pipe2.geojson",//data
         });
-        
+        /*map.addSource("wastePipeline",{
+            type: 'vector',
+        url: 'mapbox://giuliot.7os1815f'
+        });
+        */
 	map.addSource("stormPipeline",{
             "type": "geojson",
             "data": "Data/Stormwater_pipe.geojson",//data
         });
-	//loadWasteWater();
-	loadStormWater();
+	loadWasteWater();
+	//loadStormWater();
     //get data using geojson -> you can also get it directly in data property of addSource method. Check out https://www.mapbox.com/mapbox-gl-style-spec/#sources-geojson
     //mapboxgl.util.getJSON("data/pipe.geojson", function(err, data){
         
 })
 /***
-	SHOW WASTE WATER
+	LOAD WASTE WATER
 			***/
+
 function loadWasteWater(){
 	
- 	
-	for(var i=0; i < Diameters.length-1; i++) {
-	console.log(getMinZoom(i));
+	for(var i=0; i < wasteDiameters.length-1; i++) {
 		/*map.addLayer({
-			"id": "pipe-hover"+Diameters[i],
+			"id": "pipe-hover"+wasteDiameters[i],
 			 "type": "line",
        			 "source": "pipeline",
    			 "layout": {
@@ -121,72 +128,79 @@ function loadWasteWater(){
 				    "line-cap": "round",
 				},
    			 "paint": {
-   		       		  "line-width":	Math.pow(Math.log10(( Diameters[i]+Diameters[i+1]) /2),2),
+   		       		  "line-width":	Math.pow(Math.log10(( wasteDiameters[i]+wasteDiameters[i+1]) /2),2),
      			          "line-color": 'red',
       		         	  "line-opacity": 0.8,
    				 },
 			"filter": ["==", "Asset_ID", ""]
 		});*/
 		for (var j=0; j<materialGroups.length;j++){
-		     wasteLayersNames.push("wastePipe-"+Diameters[i]+materialGroups[j]);
+		     wasteLayersNames.push("wastePipe-"+wasteDiameters[i]+materialGroups[j]);
 		     map.addLayer({
-   			 "id": "wastePipe-"+Diameters[i]+materialGroups[j],
+   			 "id": "wastePipe-"+wasteDiameters[i]+materialGroups[j],
    			 "type": "line",
        			 "source": "wastePipeline",
-       			 "minzoom": getMinZoom(i),
-   			 "filter": getFilter(Diameters[i],Diameters[i+1],materialGroups[j]),
+       			 "source-layer": "Wastwater_pipe",
+       			 //"minzoom": getMinZoom(i),
+   			 "filter": getFilter(wasteDiameters[i],wasteDiameters[i+1],materialGroups[j]),
    			 "layout": {
 			            "line-join": "round",
 				    "line-cap": "round",
 				},
    			 "paint": {
-   		       		  "line-width":	Math.pow(Math.log10(( Diameters[i]+Diameters[i+1]) /3),2),
+   		       		  "line-width":	Math.pow(Math.log10(( wasteDiameters[i]+wasteDiameters[i+1]) /3),2),
    		       		  	/*{
-   		       		  	"stops":getLineWidthZoom(( Diameters[i]+Diameters[i+1]) /2)
+   		       		  	"stops":getLineWidthZoom(( wasteDiameters[i]+wasteDiameters[i+1]) /2)
    		       		  	},*/
      			          "line-color": getGroupColor(materialGroups[j]),
-      		         	  //"line-opacity": 0.8,
+      		         	  "line-opacity": 0.8,
+      		         	  	/*{
+      		         	  		"stops":[[12,0.3],[18,0.8]],
+      		         	  	},*/
    				 }
 			  });
 			}
 		}
+		Diameters=wasteDiameters;
 };
 /***
-	SHOW STORM WATER
+	LOAD STORM WATER
 			***/
+
 function loadStormWater(){
 	
         
-	for(var i=0; i < Diameters.length-1; i++) {
+	for(var i=0; i < stormDiameters.length-1; i++) {
 		for (var j=0; j<materialGroups.length;j++){
-		     stormLayersNames.push("stormPipe-"+Diameters[i]+materialGroups[j]);
+		     stormLayersNames.push("stormPipe-"+stormDiameters[i]+materialGroups[j]);
 		     map.addLayer({
-   			 "id": "stromPipe-"+Diameters[i]+materialGroups[j],
+   			 "id": "stormPipe-"+stormDiameters[i]+materialGroups[j],
    			 "type": "line",
        			 "source": "stormPipeline",
        			 "minzoom": getMinZoom(i),
-   			 "filter": getFilter(Diameters[i],Diameters[i+1],materialGroups[j]),
+   			 "filter": getFilter(stormDiameters[i],stormDiameters[i+1],materialGroups[j]),
    			 "layout": {
 			            "line-join": "round",
 				    "line-cap": "round",
 				},
    			 "paint": {
-   		       		  "line-width":	Math.pow(Math.log10(( Diameters[i]+Diameters[i+1]) /3),2),
+   		       		  "line-width":	Math.pow(Math.log10(( stormDiameters[i]+stormDiameters[i+1]) /3),2),
    		       		  	/*{
-   		       		  	"stops":getLineWidthZoom(( Diameters[i]+Diameters[i+1]) /2)
+   		       		  	"stops":getLineWidthZoom(( stormDiameters[i]+stormDiameters[i+1]) /2)
    		       		  	},*/
      			          "line-color": getGroupColor(materialGroups[j]),
-      		         	  //"line-opacity": 0.8,
+      		         	  "line-opacity": 0.8,
    				 }
 			  });
 			}
 		}
+		Diameters=stormDiameters;
 };
 /***
 	Get MIN ZOOM
 			***/
 function getMinZoom(i){
-	if (i=0){return 13}else{return 11};
+	if (i==0){return 13}else{return 12};
 }
 /*** 
 	get random color - NOT USED
@@ -300,29 +314,29 @@ function getGroupColor(material){
 					***/
 function getFilter(diameterI,diameterII,material){
 	switch(material){
-		case'ceramics':return ["all", [">=", "Diameter", diameterI ] , ["<", "Diameter", diameterII ], ["in", "Material", 'brick' , 'Earthenware' , 'Eare' , 'Stoneware' ]];
+		case'ceramics':return ["all", [">", "Diameter", diameterI ] , ["<=", "Diameter", diameterII ], ["in", "Material", 'brick' , 'Earthenware' , 'Eare' , 'Stoneware' ]];
 			break;
-		case'metals':return ["all", [">=", "Diameter", diameterI ] , ["<", "Diameter", diameterII ], ["in", "Material", 'Steel - spiral weld' , 'Steel - epoxy lined' , 'Steel - cement lined' , 'Steel', 'Galvanised Steel' , 'Galvanised Iron' , 'Ductile Iron - cement lined' , 'Ductile Iron' , 'Copper' , 'Cast Iron' ]];
+		case'metals':return ["all", [">", "Diameter", diameterI ] , ["<=", "Diameter", diameterII ], ["in", "Material", 'Steel - spiral weld' , 'Steel - epoxy lined' , 'Steel - cement lined' , 'Steel', 'Galvanised Steel' , 'Galvanised Iron' , 'Ductile Iron - cement lined' , 'Ductile Iron' , 'Copper' , 'Cast Iron' ]];
 			break;
-		case'concrete':return ["all", [">=", "Diameter", diameterI ] , ["<", "Diameter", diameterII ], ["in", "Material", 'Reinforced Concrete' , 'Concrete' ]];
+		case'concrete':return ["all", [">", "Diameter", diameterI ] , ["<=", "Diameter", diameterII ], ["in", "Material", 'Reinforced Concrete' , 'Concrete' ]];
 			break;
-		case'fibre-composite':return ["all", [">=", "Diameter", diameterI ] , ["<", "Diameter", diameterII ], ["in", "Material", 'Pitch Fibre', 'Asbestos Cement' ]];
+		case'fibre-composite':return ["all", [">", "Diameter", diameterI ] , ["<=", "Diameter", diameterII ], ["in", "Material", 'Pitch Fibre', 'Asbestos Cement' ]];
 			break;
-		case'PVC-plastics':return ["all", [">=", "Diameter", diameterI ] , ["<", "Diameter", diameterII ], ["in", "Material", 'uPVC' , 'PVC - Blue Brute' , 'Polyvinyl Chloride', 'mPVC' ]];
+		case'PVC-plastics':return ["all", [">", "Diameter", diameterI ] , ["<=", "Diameter", diameterII ], ["in", "Material", 'uPVC' , 'PVC - Blue Brute' , 'Polyvinyl Chloride', 'mPVC' ]];
 			break;
-		case'Polyethylene-plastics':return ["all", [">=", "Diameter", diameterI ] , ["<", "Diameter", diameterII ], ["in", "Material", 'Polyethylene' , 'Medium Density Polyethylene' , 'High Pressure Polyethylene' , 'High Density Polyethylene' , 'Hdpe' ]];
+		case'Polyethylene-plastics':return ["all", [">", "Diameter", diameterI ] , ["<=", "Diameter", diameterII ], ["in", "Material", 'Polyethylene' , 'Medium Density Polyethylene' , 'High Pressure Polyethylene' , 'High Density Polyethylene' , 'Hdpe' ]];
 			break;
-		case'other-unknown':return ["all", [">=", "Diameter", diameterI ] , ["<", "Diameter", diameterII ], ["in", "Material", 'PLST' , 'NPRN' , '' ]];
+		case'other-unknown':return ["all", [">", "Diameter", diameterI ] , ["<=", "Diameter", diameterII ], ["in", "Material", 'PLST' , 'NPRN' , '' ]];
 			break;
 	}
 	
 }
 
 /*** 
-		ZOOM DEPENDING LIEN WIDTH - NOT USED
+		ZOOM DEPENDING LIEN WIDTH - NOT USED - NOT WORKING
 					***/
 function getLineWidthZoom(meanDiameter){
-	return [[13, Math.pow(Math.log10(meanDiameter/3),2)], [17,Math.pow(Math.log10(meanDiameter),2)]];
+	return [[12, Math.pow(Math.log10(meanDiameter/4),2)], [17,Math.pow(Math.log10(meanDiameter/1.5),2)]];
 /*
 	if (meanDiameter<=180){
 		return [[13, 0], [17,meanDiameter/50]];
@@ -420,12 +434,10 @@ map.on('mousemove', function (e) {
 });
 /////////////////////////////////////////// PIPE INSPECTOR //////////////////////////////////////////////////
 function updatePipeInspector(feature){
-	console.log(feature);
 	var pipeInspDivc = document.getElementById('pipe-inspector-c');
 	pipeInspDivc.style.height="170px";
 	var pipeInspDiv = document.getElementById('pipe-inspector');
 	if (feature=='clear'){
-			console.log("ao");
 	    		pipeInspDivc.style.height="60px";
 			pipeInspDiv.innerHTML= "<span style=\"font-size:13px\">Hover over a pipe<span>";
 		};
@@ -580,7 +592,7 @@ function updateLegend(){
 		newNode.innerHTML = "<svg class=\"legend-svg\" height=\"15\" width=\"30\">"+
   					"<line x1=\"5\" y1=\"12\" x2=\"25\" y2=\"12\" stroke=\"rgb(255,0,0)\" stroke-width=\""+Math.pow(Math.log10(( Diameters[i]+Diameters[i+1]) /3),2).toString()+"\" stroke-linecap=\"round\"/>"+
   					"Sorry, your browser does not support inline SVG."+
-				    "</svg><div class=\"legend-label\">   "+Diameters[i].toString()+" - "+Diameters[i+1].toString()+"</div>";
+				    "</svg><div class=\"legend-label\">   "+(Diameters[i]+1).toString()+" - "+Diameters[i+1].toString()+"</div>";
   		newNode.className="legend-item";
 		divDiam.appendChild( newNode )
 	}

@@ -53,7 +53,9 @@ var southWest = new mapboxgl.LngLat(174.6000,-41.3500),
 mapboxgl.accessToken = 'pk.eyJ1IjoiZ2l1bGlvdCIsImEiOiJjaWg5ZGs1d2MwMDR0dnNtMzlydHhxaGs3In0.TfMvSNQas5gBS882h-Oh4g';
 var map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/giuliot/cina7yy7000mad5m3dmzkaf1f',
+    //style: 'mapbox://styles/mapbox/streets-v8',
+    style:'mapbox://styles/giuliot/cipjidy9h005ccnng1p9qidf1',
+    
     center: [174.7666,-41.2833],
     maxBounds:  wellingtonBounds,
     maxZoom: 18,
@@ -63,6 +65,8 @@ var map = new mapboxgl.Map({
     keyboard: true, // We can also navigate with keyboard
     keyboardZoomOffset: 1, // Number of zoom levels to change when pressing + or - key.
 });
+
+map.addControl(new mapboxgl.Navigation());
 
 var min = 20;
 var mainmin = 80;
