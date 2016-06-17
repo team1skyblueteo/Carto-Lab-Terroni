@@ -18,7 +18,6 @@
 .noUi-target {
 	position: relative;
 	direction: ltr;
-	border-color: black;
 }
 .noUi-base {
 	width: 100%;
@@ -57,6 +56,7 @@
 .noUi-handle {
 	-webkit-transform: translate3d(0,0,0);
 	transform: translate3d(0,0,0);
+	border: 1px solid black;
 }
 
 /* Slider size and handle placement;
