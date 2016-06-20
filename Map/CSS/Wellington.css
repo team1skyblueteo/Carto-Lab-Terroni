@@ -32,7 +32,7 @@
 
 /*CSS code for the Menu space*/
 #sidebar{
-	left:52%;
+	left:47%;
 	position:absolute;
 	background-color: #efefef;
 	border-bottom: 1px solid silver;
@@ -66,7 +66,9 @@
 .w2ui-btn {
 	position:relative;
 	cursor:pointer;
+	height: 100%;
 	vertical-align: middle;
+	text-align: middle;
 }
 
 #Impressum-btn {
@@ -128,6 +130,7 @@
 	position:relative;
 	top:6%;
 	right:43%;
+	font-size: 12px;
   	background-color: #efefef;
   	cursor:context-menu;
   	border-top:0.5px solid silver;

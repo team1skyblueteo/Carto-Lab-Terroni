@@ -39,10 +39,9 @@ h6 {
   font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
 }
 p {
-  font-size: 16px;
   line-height: 1.5;
   margin-bottom: 20px;
-  border-color: black;
+  font-size: 18px;
 }
 .bg-primary {
   background-color: #f05f40;
@@ -152,6 +151,7 @@ header {
   -o-background-size: cover;
   background-position: center;
   background-image: url('../img/Background_Landingpage.png');
+  background-
   text-align: center;
   color: white;
 }
@@ -166,8 +166,8 @@ header .header-content .header-content-inner h1 {
   text-transform: uppercase;
   margin-top: 0;
   margin-bottom: 0;
-  color:white;
-  text-shadow: 1px 0 0 black, -1px 0 0 black, 0 1px 0 black, 0 -1px 0 black, .5px .5px black, -.5px -.5px 0 black, .5px -.5px 0 black, -.5px .5px 0 black;
+  color: white;
+  text-shadow: 1px 1px 3px black, 1px 1px 3px black, 1px 1px 3px black, -1px -1px 0 black, 1px 1px 0 black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black;
 }
 header .header-content .header-content-inner hr {
   margin: 30px auto;
@@ -175,9 +175,9 @@ header .header-content .header-content-inner hr {
 header .header-content .header-content-inner p {
   font-weight: 300;
   color: white;
-  font-size: 16px;
+  font-size: 20px;
   margin-bottom: 50px;
-  text-shadow: .5px 0 0 black, -.5px 0 0 black, 0 .5px 0 black, 0 -.5px 0 black, .25px .25px black, -.25px -.25px 0 black, .25px -.25px 0 black, -.25px .25px 0 black;
+  text-shadow: .9px .9px 1px black, .9px .9px 1px black, .9px .9px 1px black, -.9px -.9px 0 black, .9px .9px 0 black, -.9px -.9px 0 black, .9px -.9px 0 black, -.9px .9px 0 black;
 }
 @media (min-width: 768px) {
   header {
@@ -408,4 +408,15 @@ img::-moz-selection {
 }
 body {
   webkit-tap-highlight-color: #222222;
+}
+
+img {
+  position:absolute;
+  float:right;
+  top: 11%;
+  right: 43%;
+  /*border-radius: 8px;*/
+  width: 200px;
+  height: 100px;
+  z-index: 1;
 }
