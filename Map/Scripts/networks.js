@@ -100,8 +100,8 @@ map.on("load", function(){
         /*map.addSource("wastePipeline",{
             type: 'vector',
         url: 'mapbox://giuliot.7os1815f'
-        });
-        */
+        });*/
+        
 	map.addSource("stormPipeline",{
             "type": "geojson",
             "data": "Data/Stormwater_pipe.geojson",//data
@@ -141,7 +141,7 @@ function loadWasteWater(){
    			 "type": "line",
        			 "source": "wastePipeline",
        			 "source-layer": "Wastwater_pipe",
-       			 //"minzoom": getMinZoom(i),
+       			 "minzoom": getMinZoom(i),
    			 "filter": getFilter(wasteDiameters[i],wasteDiameters[i+1],materialGroups[j]),
    			 "layout": {
 			            "line-join": "round",

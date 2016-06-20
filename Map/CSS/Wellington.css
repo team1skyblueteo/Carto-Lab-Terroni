@@ -14,6 +14,7 @@
 	bottom:0%;
 }
 
+/*CSS code for the toolbar space*/
 #toolbar{
 	position:absolute;
 	margin: 0px 0px 0px 0px;
@@ -29,6 +30,7 @@
 	z-index:15;
 }
 
+/*CSS code for the Menu space*/
 #sidebar{
 	left:52%;
 	position:absolute;
@@ -49,6 +51,7 @@
 	height: 100%;
 }
 
+/*CSS code for the time slider*/
 #time-slider {
     width: 600px;
     position: absolute;
@@ -59,9 +62,11 @@
     visibility: hidden;
 }
 
+/*CSS code for the buttons of the toolbar space*/
 .w2ui-btn {
 	position:relative;
 	cursor:pointer;
+	vertical-align: middle;
 }
 
 #Impressum-btn {
@@ -73,14 +78,19 @@
 #search {
 	float:right;	
 	height: 20px;
+	vertical-align: middle;
 }
 #Menu {
+	float:right;
+}
+#legend {
 	float:right;
 }
 #sliderbtn {
 	float:right;
 }
 
+/*CSS code for the html of the map description*/
 #MapDescription {
 	position:relative;
 	display: none;
@@ -89,6 +99,7 @@
 	overflow: auto;
 }
 
+/*CSS code for the html of the impressum*/
 #Impressum {
 	position:relative;
 	display: none;
@@ -96,6 +107,8 @@
 	height: 400px;
 	overflow: auto;
 }
+
+/*CSS code for the html of the results of the search place*/
 .address-result{
 	border-bottom:0.5px solid silver;
 	border-left:0.5px solid silver;
@@ -110,6 +123,7 @@
 	vertical-align: left;
 }
 
+/*CSS code for the search place*/
 #search-results{
 	position:relative;
 	top:6%;
@@ -124,6 +138,7 @@
 	vertical-align:left;
 }
 
+/*CSS code for the arrows of the pipes*/
 .arrowFlow{
    position:absolute;
     /*width:20px;
@@ -133,6 +148,8 @@
    background-repeat: no-repeat;*/
    z-index: 10;
 }
+
+/*CSS code for the pipe inspector*/
 .pipe-inspector-c{
 	border-radius: 5px;
 	border: 1px solid silver;
@@ -140,12 +157,19 @@
 	padding: 10px 10px 10px 10px;
 	width: 220px;
 	height: 60px;
+<<<<<<< HEAD
 	top:10%;
 	right:50px;
+=======
+	top:75%;
+	right:10px;
+>>>>>>> 9896c6743210c789368e2166e74275d13a8c648c
 	z-index: 11;
-	background: #fafafa;
+	background: #efefef;
 	box-shadow: 0px 0px 20px #888888;
 }
+
+/*CSS code for the Legend*/
 .legend-c{
 	border-radius: 5px;
 	border: 1px solid silver;
@@ -153,11 +177,12 @@
 	padding: 10px 10px 10px 10px;
 	width: 240px;
 	height: 200px;
-	top:50%;
+	top:40%;
 	right:10px;
 	z-index: 11;
-	background: #fafafa;
+	background: #efefef;
 	box-shadow: 0px 0px 20px #888888;
+	visibility:hidden;
 }
 .legend-title{
 	font-size:14px }
@@ -170,17 +195,16 @@
 	padding-left: 7px;
 	vertical-align: middle;
 	height: 100%;
-	
 }
 .legend-item{
 	height:20px;
-	;
 }
 .legend-svg{
 	height:19px;
-
 }
 #mat-legend{
 	float:left;}
 #diam-legend{
 	float:right;}
+
+

@@ -98,7 +98,7 @@ jQuery(function () {
         nodes: [
             { id: 'level-1', text: 'Drainage Water Network', expanded: true, group: true, 
                 nodes: [
-                    { id: 'level-1-1', text: 'Drainage Water Network', img: '/Icons/DrainageIcon.png',
+                    { id: 'level-1-1', text: 'Drainage Water Network', img: 'icon-drainage',
                         route: '/project/Icons'
                     },
                     // { id: 'level-1-2', text: 'Level 1-2', icon: 'fa-camera',
@@ -108,7 +108,7 @@ jQuery(function () {
             },
             { id: 'level-2', text: 'Rain Water Network', img: 'icon-folder', expanded: true, group: true,
               nodes: [
-                    { id: 'level-2-1', text: 'Rain Water Network', img: '/Icons/RainIcon.png',
+                    { id: 'level-2-1', text: 'Rain Water Network', img: 'icon-rain',
                         route: '/project'
                     },
                     // { id: 'level-2-2', text: 'Level 2-2', icon: 'fa-camera',
@@ -323,6 +323,21 @@ Sliderbtn.addEventListener("click", function(){
     else {
         timeSlider.style.visibility = "visible";
         document.getElementById("sliderbtn").innerHTML="Hide Time Slider";
+    }
+}, false);
+
+// Legend button
+var Legendbtn  = document.getElementById("legend");
+var Legend  = document.getElementById("legend-c");
+
+Legendbtn.addEventListener("click", function(){
+    if (Legend.style.visibility == "visible") {
+        Legend.style.visibility = "hidden";
+        document.getElementById("legend").innerHTML="Show Legend";
+    }
+    else {
+        Legend.style.visibility = "visible";
+        document.getElementById("legend").innerHTML="Hide Legend";
     }
 }, false);
 
