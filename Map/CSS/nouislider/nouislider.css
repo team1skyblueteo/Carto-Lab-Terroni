@@ -56,7 +56,7 @@
 .noUi-handle {
 	-webkit-transform: translate3d(0,0,0);
 	transform: translate3d(0,0,0);
-	border: 1px solid black;
+	box-shadow: .5px .5px 3px black, .5px .5px 3px black, .5px .5px 3px black, -.5px -.5px 0 black, .5px .5px 0 black, -.5px -.5px 0 black, .5px -.5px 0 black, -.5px .5px 0 black;
 }
 
 /* Slider size and handle placement;
@@ -70,8 +70,8 @@
 	left: -17px;
 	top: -6px;
 	background-color: #efefef;
-    border: 1px solid black;
     cursor: grab;
+    box-shadow: .5px .5px 3px black, .5px .5px 3px black, .5px .5px 3px black, -.5px -.5px 0 black, .5px .5px 0 black, -.5px -.5px 0 black, .5px -.5px 0 black, -.5px .5px 0 black;
 }
 .noUi-vertical {
 	width: 18px;
