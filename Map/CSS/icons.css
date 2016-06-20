@@ -1,0 +1,9 @@
+.w2ui-icon.icon-rain {
+  background: url(../Icons/RainIcon.png) no-repeat center !important;
+  background-size: 15px 15px !important;
+}
+
+.w2ui-icon.icon-drainage {
+  background: url(../Icons/DrainageIcon.png) no-repeat center !important;
+  background-size: 15px 15px !important;
+}
