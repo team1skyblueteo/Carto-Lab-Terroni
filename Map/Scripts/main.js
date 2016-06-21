@@ -141,8 +141,7 @@ var timeSlider = document.getElementById('time-slider');
     "max": 2010
 }*/
     var startyr=[1840,2015];
-//jQuery(function() {
-setTimeout(//function(){ updateLegend(); }
+jQuery(function() {
 	    resfreshtimeline(years.slice(1), startyr);
 	    timeSlider.noUiSlider.on('update', function( values, handle ) {
 		if ( handle ) {//max
@@ -153,8 +152,7 @@ setTimeout(//function(){ updateLegend(); }
 			console.log( values[handle]+"2");
 		}
 	});
-, 18000);
-//});
+});
 /*
 years: array of year
 start: first year to load
