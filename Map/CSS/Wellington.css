@@ -2,6 +2,15 @@
  font-family: "Lato",Helvetica,Arial,sans-serif;
 }
 
+body {
+	position:absolute;
+	top:0;
+	bottom:0;
+	left: 0;
+	right:0;
+	margin: 0;
+	overflow: hidden;
+}
 
 /* CSS file for the Wellington Water Network Map */
 
@@ -19,21 +28,18 @@
 	position:absolute;
 	margin: 0px 0px 0px 0px;
 	border-bottom: 1px solid silver;
+	right:0%;
 	left:0%;
 	top:0%;
-	right:0%;
 	bottom:94%;
-	text-align: center;
-	vertical-align: middle;
 	background-color:#efefef;
-	padding:9px;
 	z-index:15;
 }
 
 /*CSS code for the Menu space*/
 #sidebar{
-	left:52%;
-	position:absolute;
+	left:47%;
+	position:relative;
 	background-color: #efefef;
 	border-bottom: 1px solid silver;
 	border-right: 1px solid silver;
@@ -66,19 +72,24 @@
 .w2ui-btn {
 	position:relative;
 	cursor:pointer;
-	vertical-align: middle;
+	top:20%;
+	height:60%;
+	text-align: center;
 }
 
 #Impressum-btn {
 	float:right;
+	top:;
 }
 #Description-btn {
 	float:right;
 }
 #search {
-	float:right;	
-	height: 20px;
-	vertical-align: middle;
+	position:relative;
+	float:right;
+	font-size: 12px;
+	height:40%;
+	top:20%;
 }
 #Menu {
 	float:right;
@@ -128,6 +139,7 @@
 	position:relative;
 	top:6%;
 	right:43%;
+	font-size: 12px;
   	background-color: #efefef;
   	cursor:context-menu;
   	border-top:0.5px solid silver;

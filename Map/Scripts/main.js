@@ -100,23 +100,14 @@ jQuery(function () {
                 nodes: [
                     { id: 'level-1-1', text: 'Drainage Water Network', img: 'icon-drainage',
                         route: '/project/Icons'
-                    },
-                    // { id: 'level-1-2', text: 'Level 1-2', icon: 'fa-camera',
-                    //     route: '/project/:id'
-                    // }
+                    }
                 ]
             },
             { id: 'level-2', text: 'Rain Water Network', img: 'icon-folder', expanded: true, group: true,
               nodes: [
                     { id: 'level-2-1', text: 'Rain Water Network', img: 'icon-rain',
                         route: '/project'
-                    },
-                    // { id: 'level-2-2', text: 'Level 2-2', icon: 'fa-camera',
-                    //     route: '/project/:id'
-                    // },
-                    // { id: 'level-2-3', text: 'Level 2-3', 
-                    //     route: '/project/:id/view'
-                    // }
+                    }
                 ]
             },
         ],
