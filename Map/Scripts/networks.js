@@ -501,8 +501,6 @@ function updatePipeInspector(feature){
 	FLOW DIRECTION
 			***/
 map.on('move', function() {
-	    console.log(map);
-	    console.log(map.getZoom());
 	    var zoom = map.getZoom();
 	    removeElementsByClass('arrowFlow');
 	    // only after zoom 18
@@ -512,9 +510,7 @@ map.on('move', function() {
 		//map.on('move', function() {
 	    		// Get the map bounds - the top-left and bottom-right locations.
 	    		bounds = map.getBounds();
-	    		console.log(bounds);
 	    		var features = map.queryRenderedFeatures(bounds, {layers: wasteLayersNames});
-	    		console.log(features);
 	    		for (i=0,l=features.length;i<l;i++){
 	    			if (features[i].properties.DS_node_ID!= 'undefined'&&features[i].properties.US_node_ID!= 'undefined'){
 		    			//var t0 = performance.now();
@@ -529,7 +525,6 @@ map.on('move', function() {
 	    	//});
 	    } else {
 	    
-	    	console.log('oppa');
 		//map.on('move', function() {});
 	    }
 	});
@@ -637,10 +632,10 @@ function LngLatToContainerPoint(lngLat){
 	var bounds = map.getBounds();
 	var leftLng= bounds._ne.lng/180*Math.PI;
 	var topLat= bounds._ne.lat/180*Math.PI;
-	console.log(lng-leftLng,lat,topLat);
+	//console.log(lng-leftLng,lat,topLat);
 	x=128/Math.PI*Math.pow(2,zoom)*(lng+Math.PI)-128/Math.PI*Math.pow(2,zoom)*(leftLng+Math.PI);
 	y=128/Math.PI*Math.pow(2,zoom)*(Math.PI-Math.log(Math.tan(Math.PI/4+lat/2)))-128/Math.PI*Math.pow(2,zoom)*(Math.PI-Math.log(Math.tan(Math.PI/4+topLat/2)));
-	console.log([x,y]);
+	//console.log([x,y]);
 	return [x,y];
 }
 

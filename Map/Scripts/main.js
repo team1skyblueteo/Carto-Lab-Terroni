@@ -144,7 +144,6 @@ timeRange0 = {
 jQuery(function() {
     resfreshtimeline([1990, 1998, 2001, 2005, 2003, 2015, 2010], 2001);
 	resfreshtimeline([1993, 1998, 2001, 2005, 2003, 2015, 2010], 2001);
-	console.log('fgg');
 });
 /*
 years: array of year
@@ -217,14 +216,18 @@ function geocodeThis() {
                         break
                     }
                     if (results[i].hasOwnProperty('bbox')) {
-                        var southWest = L.latLng(results[i].bbox[1], results[i].bbox[0]),
+                       var southWest = L.latLng(results[i].bbox[1], results[i].bbox[0]),
                             northEast = L.latLng(results[i].bbox[3], results[i].bbox[2]),
-                            resBounds = L.latLngBounds(southWest, northEast);
+                            jsresBounds = L.latLngBounds(southWest, northEast);
+                            var southWest = new mapboxgl.LngLat(results[i].bbox[0],results[i].bbox[1]),
+			    northEast = new mapboxgl.LngLat(results[i].bbox[2],results[i].bbox[3]),
+			    resBounds  = new mapboxgl.LngLatBounds(southWest, northEast);
                     } else {
                         resBounds = false
                     }
-                    var resCenter = L.latLng(results[i].center[1], results[i].center[0]);
-                    if ((jswellingtonBounds.contains(resCenter)) || (resBounds && jswellingtonBounds.intersects(resBounds)) ) {
+                    var resCenter =new mapboxgl.LngLat(results[i].center[0],results[i].center[1]);
+                    var jsresCenter = L.latLng(results[i].center[1], results[i].center[0]);
+                    if ((jswellingtonBounds.contains(jsresCenter)) || (jsresBounds && jswellingtonBounds.intersects(jsresBounds)) ) {
                         var labels = results[i].place_name.split(',');
                         if (labels.length>2)
                             {labels.splice(-2,2);}
@@ -234,7 +237,7 @@ function geocodeThis() {
                         var label=labels.join(',');
 
                         var newinstance = "<div class=\"address-result\" id=\"add-res" + i + "\">" + label+ "</div>";
-                        console.log(newinstance);
+                        //console.log(newinstance);
                         jQuery("#search-results").append(newinstance);
                         showCount++;
                         jQuery("#add-res" + i).data({
@@ -252,7 +255,8 @@ function geocodeThis() {
                             } else {
                                 var center = jQuery(this).data("center");
 
-                                map.setView(center, 16);
+                                //map.setView(center, 16);
+                                map.setCenter(resCenter);
                             }
                         });
                     }
