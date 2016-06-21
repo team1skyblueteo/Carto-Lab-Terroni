@@ -132,32 +132,42 @@ Menu.addEventListener("click", function(){
 ////////////////////////////////////////// Time Slider //////////////////////////////////////////
 
 
-//with no ui slider
+//Time slider global variable
 var timeSlider = document.getElementById('time-slider');
-timeRange0 = {
+/*timeRange0 = {
     "min": 1990,
     "10.77%": 2003,
     "80%": 2006,
     "max": 2010
-}
-
-jQuery(function() {
-    resfreshtimeline([1990, 1998, 2001, 2005, 2003, 2015, 2010], 2001);
-	resfreshtimeline([1993, 1998, 2001, 2005, 2003, 2015, 2010], 2001);
-});
+}*/
+    var startyr=[1840,2015];
+//jQuery(function() {
+setTimeout(//function(){ updateLegend(); }
+	    resfreshtimeline(years.slice(1), startyr);
+	    timeSlider.noUiSlider.on('update', function( values, handle ) {
+		if ( handle ) {//max
+			changeYear(parseInt(values[handle]),'max')
+			console.log( values[handle]+"1");
+		} else {//min
+			changeYear(parseInt(values[handle]),'min')
+			console.log( values[handle]+"2");
+		}
+	});
+, 18000);
+//});
 /*
 years: array of year
 start: first year to load
 */
 function resfreshtimeline(years, startyr) {	
-    years = years.sort();
+    //years = years.sort();
     var range = years[years.length - 1] - years[0];
 	jQuery(".slider-container").css("width",(range*30).toString()+'px');
 	var mapwidth = parseFloat(jQuery(".mappanel").css("width"));
 	//mapwidth = mapwidth.substring(0, mapwidth.length - 2).toNum;
 	jQuery(".slider-container").css("left",((mapwidth-range*30)/2).toString()+'px');
     var timeRangetxt = '';
-    density1yr = 1 / range * 100;
+    density1yr = 5 / range * 100;
     for (i = 0; i < years.length; i++) {
         if (i === 0) {
             timeRangetxt = timeRangetxt + '{ \"min\":' + years[i].toString() + ','
@@ -174,6 +184,7 @@ function resfreshtimeline(years, startyr) {
 	if (timeSlider.hasOwnProperty('noUiSlider')) {timeSlider.noUiSlider.destroy();}
     noUiSlider.create(timeSlider, {
         range: timeRange,
+        connect: true,
         start: startyr,
         snap: true,
         pips: { // Show a scale with the slider
@@ -182,7 +193,6 @@ function resfreshtimeline(years, startyr) {
         }
     });
 }
-
 
 ////////////////////////////////////////// Toolbar //////////////////////////////////////////
 

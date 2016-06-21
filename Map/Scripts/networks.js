@@ -89,6 +89,7 @@ Diameters=wasteDiameters;
     		         '',
     		         ];
 var materialGroups = ['ceramics','metals','concrete','fibre-composite','PVC-plastics','Polyethylene-plastics','other-unknown'];
+var years = [9999,1840,1900,1920,1940,1950,1960,1970,1980,1990,2000,2010,2015];
 // CONSIDERE MIN AND MAX ZOOM
 var wasteLayersNames=[];
 var stormLayersNames=[];
@@ -115,11 +116,7 @@ map.on("load", function(){
 /***
 	LOAD WASTE WATER
 			***/
-
-function loadWasteWater(){
-	
-	for(var i=0; i < wasteDiameters.length-1; i++) {
-		/*map.addLayer({
+/*map.addLayer({
 			"id": "pipe-hover"+wasteDiameters[i],
 			 "type": "line",
        			 "source": "pipeline",
@@ -134,15 +131,19 @@ function loadWasteWater(){
    				 },
 			"filter": ["==", "Asset_ID", ""]
 		});*/
+function loadWasteWater(){
+	for (var k=0; k < years.length-1; k++) {
+	for(var i=0; i < wasteDiameters.length-1; i++) {
+		
 		for (var j=0; j<materialGroups.length;j++){
-		     wasteLayersNames.push("wastePipe-"+wasteDiameters[i].toString()+materialGroups[j]);
+		     wasteLayersNames.push("wastePipe-"+wasteDiameters[i].toString()+materialGroups[j]+years[k].toString());
 		     map.addLayer({
-   			 "id": "wastePipe-"+wasteDiameters[i].toString()+materialGroups[j],
+   			 "id": "wastePipe-"+wasteDiameters[i].toString()+materialGroups[j]+years[k].toString(),
    			 "type": "line",
        			 "source": "wastePipeline",
        			 "source-layer": "Wastwater_pipe",
        			 "minzoom": getMinZoom(i),
-   			 "filter": getFilter(wasteDiameters[i],wasteDiameters[i+1],materialGroups[j]),
+   			 "filter": getFilter(wasteDiameters[i],wasteDiameters[i+1],materialGroups[j],years[k],years[k+1]),
    			 "layout": {
 			            "line-join": "round",
 				    "line-cap": "round",
@@ -161,6 +162,7 @@ function loadWasteWater(){
    				 }
 			  });
 			}
+		}
 		}
 		Diameters=wasteDiameters;
 };
@@ -314,22 +316,42 @@ function getGroupColor(material){
 /**** 
 		GET FILTERS
 					***/
-function getFilter(diameterI,diameterII,material){
-	switch(material){
-		case'ceramics':return ["all", [">", "Diameter", diameterI ] , ["<=", "Diameter", diameterII ], ["in", "Material", 'brick' , 'Earthenware' , 'Eare' , 'Stoneware' ]];
-			break;
-		case'metals':return ["all", [">", "Diameter", diameterI ] , ["<=", "Diameter", diameterII ], ["in", "Material", 'Steel - spiral weld' , 'Steel - epoxy lined' , 'Steel - cement lined' , 'Steel', 'Galvanised Steel' , 'Galvanised Iron' , 'Ductile Iron - cement lined' , 'Ductile Iron' , 'Copper' , 'Cast Iron' ]];
-			break;
-		case'concrete':return ["all", [">", "Diameter", diameterI ] , ["<=", "Diameter", diameterII ], ["in", "Material", 'Reinforced Concrete' , 'Concrete' ]];
-			break;
-		case'fibre-composite':return ["all", [">", "Diameter", diameterI ] , ["<=", "Diameter", diameterII ], ["in", "Material", 'Pitch Fibre', 'Asbestos Cement' ]];
-			break;
-		case'PVC-plastics':return ["all", [">", "Diameter", diameterI ] , ["<=", "Diameter", diameterII ], ["in", "Material", 'uPVC' , 'PVC - Blue Brute' , 'Polyvinyl Chloride', 'mPVC' ]];
-			break;
-		case'Polyethylene-plastics':return ["all", [">", "Diameter", diameterI ] , ["<=", "Diameter", diameterII ], ["in", "Material", 'Polyethylene' , 'Medium Density Polyethylene' , 'High Pressure Polyethylene' , 'High Density Polyethylene' , 'Hdpe' ]];
-			break;
-		case'other-unknown':return ["all", [">", "Diameter", diameterI ] , ["<=", "Diameter", diameterII ], ["in", "Material", 'PLST' , 'NPRN' , '' ]];
-			break;
+function getFilter(diameterI,diameterII,material,yearI,yearII){
+	if (yearI==9999){
+		switch(material){
+			case'ceramics':return ["all", [">", "Diameter", diameterI ] , ["<=", "Diameter", diameterII ], ["in", "Material", 'brick' , 'Earthenware' , 'Eare' , 'Stoneware' ],["in", "year", ""]];
+				break;
+			case'metals':return ["all", [">", "Diameter", diameterI ] , ["<=", "Diameter", diameterII ], ["in", "Material", 'Steel - spiral weld' , 'Steel - epoxy lined' , 'Steel - cement lined' , 'Steel', 'Galvanised Steel' , 'Galvanised Iron' , 'Ductile Iron - cement lined' , 'Ductile Iron' , 'Copper' , 'Cast Iron' ],["in", "year", ""]];
+				break;
+			case'concrete':return ["all", [">", "Diameter", diameterI ] , ["<=", "Diameter", diameterII ], ["in", "Material", 'Reinforced Concrete' , 'Concrete' ],["in", "year", ""]];
+				break;
+			case'fibre-composite':return ["all", [">", "Diameter", diameterI ] , ["<=", "Diameter", diameterII ], ["in", "Material", 'Pitch Fibre', 'Asbestos Cement' ],["in", "year", ""]];
+				break;
+			case'PVC-plastics':return ["all", [">", "Diameter", diameterI ] , ["<=", "Diameter", diameterII ], ["in", "Material", 'uPVC' , 'PVC - Blue Brute' , 'Polyvinyl Chloride', 'mPVC' ],["in", "year", ""]];
+				break;
+			case'Polyethylene-plastics':return ["all", [">", "Diameter", diameterI ] , ["<=", "Diameter", diameterII ], ["in", "Material", 'Polyethylene' , 'Medium Density Polyethylene' , 'High Pressure Polyethylene' , 'High Density Polyethylene' , 'Hdpe' ],["in", "year", ""]];
+				break;
+			case'other-unknown':return ["all", [">", "Diameter", diameterI ] , ["<=", "Diameter", diameterII ], ["in", "Material", 'PLST' , 'NPRN' , '' ],["in", "year", ""]];
+				break;
+		}
+	}
+	else{
+		switch(material){
+			case'ceramics':return ["all", [">", "Diameter", diameterI ] , ["<=", "Diameter", diameterII ], ["in", "Material", 'brick' , 'Earthenware' , 'Eare' , 'Stoneware' ],[">=", "year", yearI],["<", "year", yearII ]];
+				break;
+			case'metals':return ["all", [">", "Diameter", diameterI ] , ["<=", "Diameter", diameterII ], ["in", "Material", 'Steel - spiral weld' , 'Steel - epoxy lined' , 'Steel - cement lined' , 'Steel', 'Galvanised Steel' , 'Galvanised Iron' , 'Ductile Iron - cement lined' , 'Ductile Iron' , 'Copper' , 'Cast Iron' ],[">=", "year", yearI],["<", "year", yearII ]];
+				break;
+			case'concrete':return ["all", [">", "Diameter", diameterI ] , ["<=", "Diameter", diameterII ], ["in", "Material", 'Reinforced Concrete' , 'Concrete' ],[">=", "year", yearI],["<", "year", yearII ]];
+				break;
+			case'fibre-composite':return ["all", [">", "Diameter", diameterI ] , ["<=", "Diameter", diameterII ], ["in", "Material", 'Pitch Fibre', 'Asbestos Cement' ],[">=", "year", yearI],["<", "year", yearII ]];
+				break;
+			case'PVC-plastics':return ["all", [">", "Diameter", diameterI ] , ["<=", "Diameter", diameterII ], ["in", "Material", 'uPVC' , 'PVC - Blue Brute' , 'Polyvinyl Chloride', 'mPVC' ],[">=", "year", yearI],["<", "year", yearII ]];
+				break;
+			case'Polyethylene-plastics':return ["all", [">", "Diameter", diameterI ] , ["<=", "Diameter", diameterII ], ["in", "Material", 'Polyethylene' , 'Medium Density Polyethylene' , 'High Pressure Polyethylene' , 'High Density Polyethylene' , 'Hdpe' ],[">=", "year", yearI],["<", "year", yearII ]];
+				break;
+			case'other-unknown':return ["all", [">", "Diameter", diameterI ] , ["<=", "Diameter", diameterII ], ["in", "Material", 'PLST' , 'NPRN' , '' ],[">=", "year", yearI],["<", "year", yearII ]];
+				break;
+		}
 	}
 	
 }
@@ -360,7 +382,7 @@ function getVisibility(maxDiameter){
 		}
 }		
 
-/** SECTION TAB WITH INFO ABOUT THE PIPE **/
+/** SECTION TAB WITH INFO ABOUT THE PIPE - NOT USED JS**/
 
 
 var infoPipe = L.control();
@@ -615,8 +637,10 @@ function updateLegend(){
 // SOLVE WAIT FOR ASYNCH TASK 
 function toggleDiamVisbility(Diam){
 	function tDv(callback){
-		for (j=0;j<materialGroups.length;j++){
-			toggleLayerVisbility("wastePipe-"+Diam+materialGroups[j]);
+		for (var k=0; k < years.length-1; k++) {
+			for (j=0;j<materialGroups.length;j++){
+				toggleLayerVisbility("wastePipe-"+Diam+materialGroups[j]+years[k].toString());
+			}
 		}
 
 		callback.call();}
@@ -628,7 +652,6 @@ function toggleDiamVisbility(Diam){
 	tDv(tCv);
         };
 function toggleLayerVisbility(id){
-	console.log(id);
 	var visibility = map.getLayoutProperty(id, 'visibility');
   	if (visibility === 'visible') {
 	    map.setLayoutProperty(id, 'visibility', 'none');
@@ -638,7 +661,56 @@ function toggleLayerVisbility(id){
 	    map.setLayoutProperty(id, 'visibility', 'visible');
 	}
         };
+////////////////////////////////// CHANGE LAYERS VISIBILITY wrt TIME ///////////////////////////////////////////
+// global variable to see what changed in the years
+var yearChange ={miny:[null,startyr[0]],maxy:[null,startyr[1]]};
+function changeYear(newY,flag){
+	if (flag=='min'){
+		yearChange.miny.push(newY);
+		yearChange.miny=yearChange.miny.slice(1);
+		var yearsToChange=getInBetween(years.slice(1,years.length-1),yearChange.miny);
+		yearsToChange=yearsToChange.slice(0,yearsToChange.length-1);
+	}
+	if (flag=='max'){
+		yearChange.maxy.push(newY);
+		yearChange.maxy=yearChange.maxy.slice(1);
+		var yearsToChange=getInBetween(years.slice(1,years.length-1),yearChange.maxy);
+		yearsToChange=yearsToChange.slice(1);
+	}
+	console.log(yearsToChange);
+	for (var k=0; k < yearsToChange.length; k++) {
+		for(var i=0; i < wasteDiameters.length-1; i++) {
+			for (j=0;j<materialGroups.length;j++){
+				toggleLayerVisbility("wastePipe-"+wasteDiameters[i].toString()+materialGroups[j]+yearsToChange[k].toString());
+			}
+		}
+	}
+	
+	
+};
+function getInBetween(array,bounds){
+console.log(array);
+console.log(bounds);
 
+	bounds.sort();
+	for (var i=0;i<array.length;i++){
+		if (array[i]>=bounds[0]){
+			array = array.slice(i);
+			break;
+		}
+		if (i==array.length-1){
+			array =[];
+			break;
+		};
+	}
+	for (var i=0;i<array.length;i++){
+		if (array[i]>=bounds[1]){
+			array = array.slice(0,i+1);
+			break;
+		}
+	 }
+	return array;
+}
 ///////////////////////////////////////// GENERAL FUNCTION /////////////////////////////////////////////////////
 /***
 	REMOVE ALL ELEMT OF A CLASS PLAIN JS
