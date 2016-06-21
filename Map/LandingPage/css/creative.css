@@ -380,8 +380,9 @@ fieldset[disabled] .btn-primary.active {
 }
 .btn {
   font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14px;
   border: none;
-  border-radius: 300px;
+  border-radius: 350px;
   font-weight: 700;
   text-transform: uppercase;
 }
@@ -410,13 +411,22 @@ body {
   webkit-tap-highlight-color: #222222;
 }
 
-img {
-  position:absolute;
-  float:right;
+img.ETH {
+  position: absolute;
   top: 7%;
-  right: 43%;
-  /*border-radius: 8px;*/
+  margin-left: -100px;
+  left: 50%;
   width: 200px;
   height: 100px;
+  z-index: 1;
+}
+
+img.Logo {
+  position:absolute;
+  bottom: 7%;
+  left: 50%;
+  margin-left:-97px;
+  width:15%;
+  height:auto;
   z-index: 1;
 }

@@ -9,7 +9,6 @@ body {
 	left: 0;
 	right:0;
 	margin: 0;
-	overflow: hidden;
 }
 
 /* CSS file for the Wellington Water Network Map */
@@ -88,8 +87,9 @@ body {
 	position:relative;
 	float:right;
 	font-size: 12px;
-	height:40%;
-	top:20%;
+	height:20px;
+	top:50%;
+	margin-top:-14px;
 }
 #Menu {
 	float:right;
@@ -125,7 +125,7 @@ body {
 	border-left:0.5px solid silver;
 	border-right:0.5px solid silver;
 	font-size:12px;
-	padding:1px;
+	padding:4px;
 	z-index:1000;
 	cursor:pointer;
 	background-color: #efefef;
@@ -136,16 +136,15 @@ body {
 
 /*CSS code for the search place*/
 #search-results{
-	position:relative;
-	top:6%;
-	right:43%;
+	margin-top: 6px;
+	position:absolute;
 	font-size: 12px;
   	background-color: #efefef;
   	cursor:context-menu;
   	border-top:0.5px solid silver;
   	max-width: 300px;
    	visibility: hidden;
-	z-index:2;
+	z-index:20;
 	text-align:left;
 	vertical-align:left;
 }
@@ -217,4 +216,22 @@ body {
 #diam-legend{
 	float:right;}
 
+.icon-drainage {
+	opacity: 0.6;
+}
+.icon-rain {
+	opacity: 0.6;
+}
 
+#Logo {
+  position:absolute;
+  cursor: pointer;
+  left:1%;
+  width:9%;
+  height:auto;
+  z-index: 1;
+}
+
+#node_level-1-1 {
+	visibility: visible;
+}

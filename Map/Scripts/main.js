@@ -73,7 +73,6 @@ var mainmin = 80;
 
 ////////////////////////////////////////// Sidebar //////////////////////////////////////////
 
-
 jQuery(function () {
     jQuery('#sidebar').w2sidebar({
         name        : 'sidebar',
@@ -115,6 +114,7 @@ jQuery(function () {
             console.log('click', event.target, event);
             //It is possible to hide the sidebar after that the selection is done!!
             //sidebar.style.display = "none";
+            
         }
     });
 });
@@ -301,11 +301,14 @@ geocoderControl.on('found', function(res) {
     //output.innerHTML = JSON.stringify(res.results.features[0]);
 });
 
-// Webpage Icon Reload
-var Reload  = document.getElementById("Reload");
-jQuery('#Reload').click(function() {
-    location.reload(true)
-});
+// Webpage Logo Reload
+var Reload  = document.getElementById("Logo");
+// jQuery('#Reload').click(function() {
+//     location.reload(true);
+// });
+Reload.addEventListener("click", function(){
+    location.reload(true);
+}, false);
 
 // Slider button
 var Sliderbtn  = document.getElementById("sliderbtn");
