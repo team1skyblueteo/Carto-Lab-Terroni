@@ -135,9 +135,9 @@ function loadWasteWater(){
 			"filter": ["==", "Asset_ID", ""]
 		});*/
 		for (var j=0; j<materialGroups.length;j++){
-		     wasteLayersNames.push("wastePipe-"+wasteDiameters[i]+materialGroups[j]);
+		     wasteLayersNames.push("wastePipe-"+wasteDiameters[i].toString()+materialGroups[j]);
 		     map.addLayer({
-   			 "id": "wastePipe-"+wasteDiameters[i]+materialGroups[j],
+   			 "id": "wastePipe-"+wasteDiameters[i].toString()+materialGroups[j],
    			 "type": "line",
        			 "source": "wastePipeline",
        			 "source-layer": "Wastwater_pipe",
@@ -146,6 +146,7 @@ function loadWasteWater(){
    			 "layout": {
 			            "line-join": "round",
 				    "line-cap": "round",
+				    'visibility': 'visible'
 				},
    			 "paint": {
    		       		  "line-width":	Math.pow(Math.log10(( wasteDiameters[i]+wasteDiameters[i+1]) /3),2),
@@ -172,9 +173,9 @@ function loadStormWater(){
         
 	for(var i=0; i < stormDiameters.length-1; i++) {
 		for (var j=0; j<materialGroups.length;j++){
-		     stormLayersNames.push("stormPipe-"+stormDiameters[i]+materialGroups[j]);
+		     stormLayersNames.push("stormPipe-"+stormDiameters[i].toString()+materialGroups[j]);
 		     map.addLayer({
-   			 "id": "stormPipe-"+stormDiameters[i]+materialGroups[j],
+   			 "id": "stormPipe-"+stormDiameters[i].toString()+materialGroups[j],
    			 "type": "line",
        			 "source": "stormPipeline",
        			 "minzoom": getMinZoom(i),
@@ -182,6 +183,7 @@ function loadStormWater(){
    			 "layout": {
 			            "line-join": "round",
 				    "line-cap": "round",
+				    'visibility': 'visible'
 				},
    			 "paint": {
    		       		  "line-width":	Math.pow(Math.log10(( stormDiameters[i]+stormDiameters[i+1]) /3),2),
@@ -578,18 +580,20 @@ function plotFlow(flowParam){
 	}
 	}
 ///////////////////////////////////////// FILL LEGEND //////////////////////////////////////////////////
-updateLegend();
+ setTimeout(function(){ updateLegend(); }, 18000);
 function updateLegend(){
 	var divMat = document.getElementById('mat-legend');
 	var divDiam = document.getElementById('diam-legend');
-	for(var i=0; i < Diameters.length-1; i++) {
+	for(var i=0; i < Diameters.length-1; i++) {(function(i){ // for onclik
 		var newNode = document.createElement('div');      
-		newNode.innerHTML = "<svg class=\"legend-svg\" height=\"15\" width=\"30\">"+
+		newNode.innerHTML = "<input type=\"checkbox\" id=\"diamCheckBox"+(Diameters[i]).toString()+"\"checked=\"checked\"><svg class=\"legend-svg\" height=\"15\" width=\"30\">"+
   					"<line x1=\"5\" y1=\"12\" x2=\"25\" y2=\"12\" stroke=\"rgb(255,0,0)\" stroke-width=\""+Math.pow(Math.log10(( Diameters[i]+Diameters[i+1]) /3),2).toString()+"\" stroke-linecap=\"round\"/>"+
   					"Sorry, your browser does not support inline SVG."+
 				    "</svg><div class=\"legend-label\">   "+(Diameters[i]+1).toString()+" - "+Diameters[i+1].toString()+"</div>";
-  		newNode.className="legend-item";
-		divDiam.appendChild( newNode )
+  		newNode.className="legend-item-diam";
+  		newNode.className+=" legend-item";
+  		newNode.addEventListener('click',function(){toggleDiamVisbility(Diameters[i].toString());});
+		divDiam.appendChild( newNode );})(i)
 	}
 	
 	for (var i=0; i<materialGroups.length;i++){
@@ -598,11 +602,42 @@ function updateLegend(){
   					"<line x1=\"5\" y1=\"12\" x2=\"25\" y2=\"12\" stroke=\""+getGroupColor(materialGroups[i])+"\" stroke-width=\"6\" stroke-linecap=\"round\"/>"+
   					"Sorry, your browser does not support inline SVG."+
 				    "</svg><div class=\"legend-label\">   "+materialGroups[i]+"</div>";
-		newNode.className="legend-item";  
-		divMat.appendChild( newNode )
+		newNode.className="legend-item-mat";
+		newNode.className+=" legend-item";  
+		divMat.appendChild( newNode );
 	}
 	
 }
+
+/**** toggle visibility of Dimater *****/
+
+// IMPORATNT GENRALIZE FOR STORM TOO  
+// SOLVE WAIT FOR ASYNCH TASK 
+function toggleDiamVisbility(Diam){
+	function tDv(callback){
+		for (j=0;j<materialGroups.length;j++){
+			toggleLayerVisbility("wastePipe-"+Diam+materialGroups[j]);
+		}
+
+		callback.call();}
+	function tCv(){
+		var currentCheckBox=document.getElementById("diamCheckBox"+Diam);
+		if (currentCheckBox.checked == true){
+			currentCheckBox.checked=false;			
+		}else{currentCheckBox.checked=true;};}
+	tDv(tCv);
+        };
+function toggleLayerVisbility(id){
+	console.log(id);
+	var visibility = map.getLayoutProperty(id, 'visibility');
+  	if (visibility === 'visible') {
+	    map.setLayoutProperty(id, 'visibility', 'none');
+	   // this.className = '';
+	} else {
+	    //this.className = 'active';
+	    map.setLayoutProperty(id, 'visibility', 'visible');
+	}
+        };
 
 ///////////////////////////////////////// GENERAL FUNCTION /////////////////////////////////////////////////////
 /***

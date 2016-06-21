@@ -182,7 +182,7 @@ body {
 	border: 1px solid silver;
 	position: absolute;
 	padding: 10px 10px 10px 10px;
-	width: 240px;
+	width: 260px;
 	height: 200px;
 	top:40%;
 	right:10px;
@@ -205,6 +205,9 @@ body {
 }
 .legend-item{
 	height:20px;
+}
+.legend-item-diam{
+	cursor: pointer;
 }
 .legend-svg{
 	height:19px;
