@@ -100,22 +100,31 @@ jQuery(function () {
                     { id: 'level-1-1', text: 'Drainage Water Network', img: 'icon-drainage',
                         route: '/project/Icons'
                     }
-                ]
+                 ],
+                // onClick: function (event) {
+                //     console.log('click', event.target, event);
+                //         // It is possible to hide the sidebar after that the selection is done!!
+                //         // sidebar.style.display = "none";
+
+                //         // Change opacity of Icon and use it as checkbox. If opacity is 1 than the layer is visible.
+                //         if (document.getElementById("").opacity == 0.6) {
+                //             document.getElementById("").opacity = 1;
+                //         }
+                //         else {
+                //             document.getElementById("").opacity = 0.6;
+
+                //         }
+
+                // }
             },
             { id: 'level-2', text: 'Rain Water Network', img: 'icon-folder', expanded: true, group: true,
               nodes: [
                     { id: 'level-2-1', text: 'Rain Water Network', img: 'icon-rain',
                         route: '/project'
                     }
-                ]
+                ],
             },
         ],
-        onClick: function (event) {
-            console.log('click', event.target, event);
-            // It is possible to hide the sidebar after that the selection is done!!
-            // sidebar.style.display = "none";
-            
-        }
     });
 });
 

@@ -76,7 +76,6 @@ body {
 	height:60%;
 	text-align: center;
 }
-
 #Impressum-btn {
 	float:right;
 	right:15px;
@@ -114,6 +113,7 @@ body {
 }
 
 /*CSS code for the html of the map description*/
+
 #MapDescription {
 	position:relative;
 	display: none;
@@ -123,6 +123,7 @@ body {
 }
 
 /*CSS code for the html of the impressum*/
+
 #Impressum {
 	position:relative;
 	display: none;
@@ -132,6 +133,7 @@ body {
 }
 
 /*CSS code for the html of the results of the search place*/
+
 .address-result{
 	border-bottom:0.5px solid silver;
 	border-left:0.5px solid silver;
@@ -147,6 +149,7 @@ body {
 }
 
 /*CSS code for the search place*/
+
 #search-results{
 	margin-top: 6px;
 	position:absolute;
@@ -162,17 +165,19 @@ body {
 }
 
 /*CSS code for the arrows of the pipes*/
+
 .arrowFlow{
    position:absolute;
     /*width:20px;
-   height:10px;
-  background-size: 100% 100%;
-   background-image: url("../data/arrow.svg");
-   background-repeat: no-repeat;*/
-   z-index: 10;
+  	height:10px;
+  	background-size: 100% 100%;
+  	background-image: url("../data/arrow.svg");
+   	background-repeat: no-repeat;*/
+   	z-index: 10;
 }
 
 /*CSS code for the pipe inspector*/
+
 .pipe-inspector-c{
 	border-radius: 5px;
 	border: 1px solid silver;
@@ -188,6 +193,7 @@ body {
 }
 
 /*CSS code for the Legend*/
+
 .legend-c{
 	border-radius: 5px;
 	border: 1px solid silver;
@@ -228,12 +234,7 @@ body {
 #diam-legend{
 	float:right;}
 
-.icon-drainage {
-	opacity: 0.6;
-}
-.icon-rain {
-	opacity: 0.6;
-}
+/*CSS code for the Web-page logo*/
 
 #Logo {
   position:absolute;
@@ -244,8 +245,24 @@ body {
   z-index: 1;
 }
 
-#node_level-1-1 {
-	visibility: visible;
+/*Icon opacity to 1 when layer is selected*/
+
+.w2ui-icon.icon-rain {
+  background: url(../Icons/RainIcon.png) no-repeat center !important;
+  background-size: 15px 15px !important;
+  opacity: 0.5;
+}
+.w2ui-icon.icon-rain.w2ui-icon-selected {
+  opacity: 1;
+}
+
+.w2ui-icon.icon-drainage {
+  background: url(../Icons/DrainageIcon.png) no-repeat center !important;
+  background-size: 15px 15px !important;
+  opacity: 0.5;
+}
+.w2ui-icon.icon-drainage.w2ui-icon-selected {
+  opacity: 1;
 }
 
 .noUi-value-horizontal {
