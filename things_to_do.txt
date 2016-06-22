@@ -5,17 +5,23 @@ LANDING PAGE
 PIPE INSPECTOR
 -show ID of the pipe
 GEOCODER
--zoom to finded area
+-zoom to finded area - DONE
 HOME
 -put logo
 LEGEND
--check box on diameter
+-check box on diameter -DONE
 MENU
 -center it below the button
 TIMESLIDER
--two slider toggle visibility
+-two slider toggle visibility - DONE
 MENU
 -cenetr button and search
 GENERALIZE MAP
 -find how to generalize it
+-overview map
+-thiny map
+TECHINCAL DOCUMENT
+-generate pdf
+QUERY FOR HEIGHT
+common gateway interface
 

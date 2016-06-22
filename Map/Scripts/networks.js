@@ -98,6 +98,7 @@ map.on("load", function(){
             "type": "geojson",
             "data": "Data/Wastwater_pipe2.geojson",//data
         });
+        // get data from the server - DISABLED
         /*map.addSource("wastePipeline",{
             type: 'vector',
         url: 'mapbox://giuliot.7os1815f'
@@ -113,9 +114,11 @@ map.on("load", function(){
     //mapboxgl.util.getJSON("data/pipe.geojson", function(err, data){
         
 })
+function loadData(callback){}
 /***
 	LOAD WASTE WATER
 			***/
+// feature higligts when hover - DISABLED TOO SLOW
 /*map.addLayer({
 			"id": "pipe-hover"+wasteDiameters[i],
 			 "type": "line",
@@ -132,6 +135,27 @@ map.on("load", function(){
 			"filter": ["==", "Asset_ID", ""]
 		});*/
 function loadWasteWater(){
+	 // uniform layer to be shown at higher zooms
+	 map.addLayer({
+   			 "id": "wastePipe-ow2",
+   			 "type": "line",
+       			 "source": "wastePipeline",
+       			 "source-layer": "Wastwater_pipe",
+       			 "minzoom": 13,
+       			 "maxzoom": 14,//getMinZoom(i),
+   			 //"filter": getFilter(wasteDiameters[i],wasteDiameters[i+1],materialGroups[j],years[k],years[k+1]),
+   			 "layout": {
+			            "line-join": "round",
+				    "line-cap": "round",
+				    'visibility': 'visible'
+				},
+   			 "paint": {
+   		       		  "line-width":	0.6,//Math.pow(Math.log10(( wasteDiameters[i]+wasteDiameters[i+1]) /3),2),
+     			          "line-color": 'blue',
+      		         	  "line-opacity": 0.6,
+   				 }
+			  });
+	// create different styled layer depending on year, diameter and material type
 	for (var k=0; k < years.length-1; k++) {
 	for(var i=0; i < wasteDiameters.length-1; i++) {
 		
@@ -142,7 +166,8 @@ function loadWasteWater(){
    			 "type": "line",
        			 "source": "wastePipeline",
        			 "source-layer": "Wastwater_pipe",
-       			 "minzoom": getMinZoom(i),
+       			 "minzoom": 14,//getMinZoom(i),
+       			 // get the correct filter depending on the prop
    			 "filter": getFilter(wasteDiameters[i],wasteDiameters[i+1],materialGroups[j],years[k],years[k+1]),
    			 "layout": {
 			            "line-join": "round",
