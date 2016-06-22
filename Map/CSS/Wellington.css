@@ -37,16 +37,17 @@ body {
 
 /*CSS code for the Menu space*/
 #sidebar{
-	left:47%;
 	position:relative;
+	float: right;
+	right:505px;
+	/*margin-right: -110px;*/
 	background-color: #efefef;
 	border-bottom: 1px solid silver;
 	border-right: 1px solid silver;
 	border-left: 1px solid silver;
 	top:6%;
-	width: 17%;
+	width: 220px;
 	height: 20%;
-	overflow: hidden;
 	text-align: left;
 	vertical-align: left;
 	display:none;
@@ -78,27 +79,38 @@ body {
 
 #Impressum-btn {
 	float:right;
-	top:;
+	right:15px;
+	width: 100px;
 }
 #Description-btn {
 	float:right;
-}
-#search {
-	position:relative;
-	float:right;
-	font-size: 12px;
-	height:20px;
-	top:50%;
-	margin-top:-14px;
-}
-#Menu {
-	float:right;
+	right:25px;
+	width: 130px;
 }
 #legend {
 	float:right;
+	right: 35px;
+	width:110px;
 }
 #sliderbtn {
 	float:right;
+	right: 45px;
+	width: 130px;
+}
+#Menu {
+	float:right;
+	right: 55px;
+	width: 80px;
+}
+#search {
+	position:absolute; 
+	top:0; 
+	bottom:0;
+	left: -200px;
+	right: 0;
+	margin:auto;
+	font-size: 12px;
+	height:20px;
 }
 
 /*CSS code for the html of the map description*/
@@ -168,7 +180,7 @@ body {
 	padding: 10px 10px 10px 10px;
 	width: 220px;
 	height: 60px;
-	top:75%;
+	top:72%;
 	right:10px;
 	z-index: 11;
 	background: #efefef;

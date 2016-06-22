@@ -112,8 +112,8 @@ jQuery(function () {
         ],
         onClick: function (event) {
             console.log('click', event.target, event);
-            //It is possible to hide the sidebar after that the selection is done!!
-            //sidebar.style.display = "none";
+            // It is possible to hide the sidebar after that the selection is done!!
+            // sidebar.style.display = "none";
             
         }
     });
