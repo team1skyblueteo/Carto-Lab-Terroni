@@ -364,7 +364,7 @@ map.on('click', function (e) {
     // Populate the popup and set its coordinates
     // based on the feature found.
     var height=queryElevation(e.lngLat);
-    height = Math.round(height*100)/100;
+    height = Math.round(height*10)/10;
     if (height!=-9999){
 	    var popup = new mapboxgl.Popup()
 		.setLngLat(e.lngLat)
