@@ -224,7 +224,7 @@ function loadJson(fileName) {
 		request.send(null);
 		return JSON.parse(request.responseText);
 	};
-function queryElevation(latLong){
+function queryElevation(latLng){
 		var request = new XMLHttpRequest();
 		url="/cgi-bin/queryTiffPtCgi.py?lon="+latLng.lng.toString()+"&lat="+latLng.lat.toString();
 		request.open("POST", url, true);
