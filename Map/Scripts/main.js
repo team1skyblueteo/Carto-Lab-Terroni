@@ -363,11 +363,14 @@ map.on('click', function (e) {
     console.log(e);
     // Populate the popup and set its coordinates
     // based on the feature found.
-    html=queryElevation(e.lngLat);
-    var popup = new mapboxgl.Popup()
-        .setLngLat(e.lngLat)
-        .setHTML(html)
-        .addTo(map);
+    var height=queryElevation(e.lngLat);
+    height = Math.round(height*100)/100;
+    if (height!=-9999){
+	    var popup = new mapboxgl.Popup()
+		.setLngLat(e.lngLat)
+		.setHTML("Height: "+height.toString()+" m ")
+		.addTo(map);
+    }
 });
  /////////////////////////////////////////GENERAL FUNCTIONS ///////////////////////////////////
 

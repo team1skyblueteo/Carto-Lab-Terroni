@@ -225,11 +225,14 @@ function loadJson(fileName) {
 		return JSON.parse(request.responseText);
 	};
 function queryElevation(latLng){
+		console.log("ci sono");
 		var request = new XMLHttpRequest();
-		url="/cgi-bin/queryTiffPtCgi.py?lon="+latLng.lng.toString()+"&lat="+latLng.lat.toString();
-		request.open("POST", url, true);
-		request.send(null);
-		return request.responseText;
+		var url="/cgi-bin/queryTiffPtCgi.py?lon="+latLng.lng.toString()+"&lat="+latLng.lat.toString();
+		request.open("POST", url, false);
+		request.send();
+		request.responseText;
+		console.log(request);
+		return parseFloat(request.response);		
 }
 </script>
 <script src="Scripts/main.js"></script>
