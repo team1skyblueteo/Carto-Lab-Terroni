@@ -355,7 +355,20 @@ Legendbtn.addEventListener("click", function(){
         document.getElementById("legend").innerHTML="Hide Legend";
     }
 }, false);
-
+/////////////////////////////// DISPLAY ELEVATION //////////////////////////////////
+/***
+	on click listener e poup
+				***/
+map.on('click', function (e) {
+    console.log(e);
+    // Populate the popup and set its coordinates
+    // based on the feature found.
+    html=queryElevation(e.lngLat);
+    var popup = new mapboxgl.Popup()
+        .setLngLat(e.lngLat)
+        .setHTML(html)
+        .addTo(map);
+});
  /////////////////////////////////////////GENERAL FUNCTIONS ///////////////////////////////////
 
 
