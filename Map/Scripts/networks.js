@@ -93,28 +93,33 @@ var years = [9999,1840,1900,1920,1940,1950,1960,1970,1980,1990,2000,2010,2015];
 // CONSIDERE MIN AND MAX ZOOM
 var wasteLayersNames=[];
 var stormLayersNames=[];
+var wasteLayersNamesOw=[];
+var stormLayersNamesOw=[];
+var vlayer='';
 map.on("load", function(){
 	map.addSource("wastePipeline",{
             "type": "geojson",
-            "data": "Data/Wastwater_pipe2.geojson",//data
+            "data": "./Data/Wastwater_pipe2.geojson",//data
         });
         // get data from the server - DISABLED
         /*map.addSource("wastePipeline",{
             type: 'vector',
         url: 'mapbox://giuliot.7os1815f'
         });*/
-        
+        //mapboxgl.util.getJSON("./Data/Stormwater.geojson", function(err, data){
 	map.addSource("stormPipeline",{
             "type": "geojson",
-            "data": "Data/Stormwater_pipe.geojson",//data
+            "data": "./Data/Stormwater2.geojson",//data
         });
+        vlayer='waste';
+        Diameters=wasteDiameters;
+        //});
+        loadStormWater();
 	loadWasteWater();
-	//loadStormWater();
     //get data using geojson -> you can also get it directly in data property of addSource method. Check out https://www.mapbox.com/mapbox-gl-style-spec/#sources-geojson
     //mapboxgl.util.getJSON("data/pipe.geojson", function(err, data){
         
 })
-function loadData(callback){}
 /***
 	LOAD WASTE WATER
 			***/
@@ -136,14 +141,16 @@ function loadData(callback){}
 		});*/
 function loadWasteWater(){
 	 // uniform layer to be shown at higher zooms
+	 for (var k=0; k < years.length-1; k++) {
+	 wasteLayersNamesOw.push("wastePipe-ow"+years[k].toString());
 	 map.addLayer({
-   			 "id": "wastePipe-ow2",
+   			 "id": "wastePipe-ow"+years[k].toString(),
    			 "type": "line",
        			 "source": "wastePipeline",
        			 "source-layer": "Wastwater_pipe",
        			 "minzoom": 13,
        			 "maxzoom": 14,//getMinZoom(i),
-   			 //"filter": getFilter(wasteDiameters[i],wasteDiameters[i+1],materialGroups[j],years[k],years[k+1]),
+   			 "filter": getFilterY(years[k],years[k+1]),
    			 "layout": {
 			            "line-join": "round",
 				    "line-cap": "round",
@@ -154,21 +161,21 @@ function loadWasteWater(){
      			          "line-color": 'blue',
       		         	  "line-opacity": 0.6,
    				 }
-			  });
+			  },"housenum-label");
+	}
 	// create different styled layer depending on year, diameter and material type
-	for (var k=0; k < years.length-1; k++) {
 	for(var i=0; i < wasteDiameters.length-1; i++) {
 		
 		for (var j=0; j<materialGroups.length;j++){
-		     wasteLayersNames.push("wastePipe-"+wasteDiameters[i].toString()+materialGroups[j]+years[k].toString());
+		     wasteLayersNames.push("wastePipe-"+wasteDiameters[i].toString()+materialGroups[j]);
 		     map.addLayer({
-   			 "id": "wastePipe-"+wasteDiameters[i].toString()+materialGroups[j]+years[k].toString(),
+   			 "id": "wastePipe-"+wasteDiameters[i].toString()+materialGroups[j],
    			 "type": "line",
        			 "source": "wastePipeline",
        			 "source-layer": "Wastwater_pipe",
        			 "minzoom": 14,//getMinZoom(i),
        			 // get the correct filter depending on the prop
-   			 "filter": getFilter(wasteDiameters[i],wasteDiameters[i+1],materialGroups[j],years[k],years[k+1]),
+   			 "filter": getFilterMD(wasteDiameters[i],wasteDiameters[i+1],materialGroups[j]),
    			 "layout": {
 			            "line-join": "round",
 				    "line-cap": "round",
@@ -185,18 +192,38 @@ function loadWasteWater(){
       		         	  		"stops":[[12,0.3],[18,0.8]],
       		         	  	},*/
    				 }
-			  });
+			  },"housenum-label");
 			}
 		}
-		}
-		Diameters=wasteDiameters;
+		//Diameters=wasteDiameters;
 };
 /***
 	LOAD STORM WATER
 			***/
 
 function loadStormWater(){
-	
+	for (var k=0; k < years.length-1; k++) {
+	stormLayersNamesOw.push("stormPipe-ow"+years[k].toString());
+	map.addLayer({
+   			 "id": "stormPipe-ow"+years[k].toString(),
+   			 "type": "line",
+       			 "source": "stormPipeline",
+       			 //"source-layer": "Stormwater-pipe-noSump",
+       			 "minzoom": 13,
+       			 "maxzoom": 14,//getMinZoom(i),
+   			 "filter": getFilterY(years[k],years[k+1]),
+   			 "layout": {
+			            "line-join": "round",
+				    "line-cap": "round",
+				    'visibility': 'none'
+				},
+   			 "paint": {
+   		       		  "line-width":	0.6,//Math.pow(Math.log10(( wasteDiameters[i]+wasteDiameters[i+1]) /3),2),
+     			          "line-color": 'red',
+      		         	  "line-opacity": 0.6,
+   				 }
+			  },"housenum-label");
+	}
         
 	for(var i=0; i < stormDiameters.length-1; i++) {
 		for (var j=0; j<materialGroups.length;j++){
@@ -205,26 +232,74 @@ function loadStormWater(){
    			 "id": "stormPipe-"+stormDiameters[i].toString()+materialGroups[j],
    			 "type": "line",
        			 "source": "stormPipeline",
-       			 "minzoom": getMinZoom(i),
-   			 "filter": getFilter(stormDiameters[i],stormDiameters[i+1],materialGroups[j]),
+       			 //"source-layer": "Stormwater-pipe-noSump",
+       			 "minzoom": 14,
+   			 "filter": getFilterMD(stormDiameters[i],stormDiameters[i+1],materialGroups[j]),
    			 "layout": {
 			            "line-join": "round",
 				    "line-cap": "round",
-				    'visibility': 'visible'
+				    'visibility': 'none'
 				},
    			 "paint": {
    		       		  "line-width":	Math.pow(Math.log10(( stormDiameters[i]+stormDiameters[i+1]) /3),2),
-   		       		  	/*{
-   		       		  	"stops":getLineWidthZoom(( stormDiameters[i]+stormDiameters[i+1]) /2)
-   		       		  	},*/
      			          "line-color": getGroupColor(materialGroups[j]),
       		         	  "line-opacity": 0.8,
    				 }
-			  });
+			  },"housenum-label");
 			}
 		}
-		Diameters=stormDiameters;
+		
+		//Diameters=stormDiameters;
 };
+function toggleWaste(){
+	Diameters=wasteDiameters;
+	vlayer='waste';
+	updateLegend();
+	for (var k=0; k < years.length-1; k++) {
+			toggleLayerVisbility("wastePipe-ow"+years[k].toString());
+	}
+	for(var i=0; i < wasteDiameters.length-1; i++) {
+			for (var j=0; j<materialGroups.length;j++){
+			toggleLayerVisbility("wastePipe-"+stormDiameters[i].toString()+materialGroups[j]);
+			}
+		}
+}
+function toggleStorm(){
+	console.log("togg");
+	Diameters=stormDiameters;
+	vlayer='storm';
+	updateLegend();
+	for (var k=0; k < years.length-1; k++) {
+			toggleLayerVisbility("stormPipe-ow"+years[k].toString());
+	}
+	for(var i=0; i < stormDiameters.length-1; i++) {
+			for (var j=0; j<materialGroups.length;j++){
+			toggleLayerVisbility("stormPipe-"+stormDiameters[i].toString()+materialGroups[j]);
+			}
+		}
+}
+function togglePipe(){
+	if (vlayer=='waste'){Diameters=stormDiameters;
+	vlayer='storm';}
+	else{
+	Diameters=wasteDiameters;
+	vlayer='waste';}
+	updateLegend();
+	for (var k=0; k < years.length-1; k++) {
+			toggleLayerVisbility("wastePipe-ow"+years[k].toString());
+			toggleLayerVisbility("stormPipe-ow"+years[k].toString());
+	}
+	
+	for (var j=0; j<materialGroups.length;j++){
+		for(var i=0; i < stormDiameters.length-1; i++) {
+			toggleLayerVisbility("stormPipe-"+stormDiameters[i].toString()+materialGroups[j]);
+			}
+		for(var i=0; i < wasteDiameters.length-1; i++) {
+			toggleLayerVisbility("wastePipe-"+wasteDiameters[i].toString()+materialGroups[j]);
+			}
+			
+		}
+}
 /***
 	Get MIN ZOOM
 			***/
@@ -380,7 +455,40 @@ function getFilter(diameterI,diameterII,material,yearI,yearII){
 	}
 	
 }
-
+/****	
+		GET FILTER YEAR
+					****/
+function getFilterY(yearI,yearII){
+	if (yearI==9999){
+		return ["in", "year", ""];		
+	}
+	else{
+		return ["all",[">=", "year", yearI],["<", "year", yearII ]];
+		
+	}
+	
+}
+/**** 
+		GET FILTERS MAT DIAM
+					***/
+function getFilterMD(diameterI,diameterII,material){
+		switch(material){
+			case'ceramics':return ["all", [">", "Diameter", diameterI ] , ["<=", "Diameter", diameterII ], ["in", "Material", 'brick' , 'Earthenware' , 'Eare' , 'Stoneware' ]];
+				break;
+			case'metals':return ["all", [">", "Diameter", diameterI ] , ["<=", "Diameter", diameterII ], ["in", "Material", 'Steel - spiral weld' , 'Steel - epoxy lined' , 'Steel - cement lined' , 'Steel', 'Galvanised Steel' , 'Galvanised Iron' , 'Ductile Iron - cement lined' , 'Ductile Iron' , 'Copper' , 'Cast Iron' ]];
+				break;
+			case'concrete':return ["all", [">", "Diameter", diameterI ] , ["<=", "Diameter", diameterII ], ["in", "Material", 'Reinforced Concrete' , 'Concrete' ]];
+				break;
+			case'fibre-composite':return ["all", [">", "Diameter", diameterI ] , ["<=", "Diameter", diameterII ], ["in", "Material", 'Pitch Fibre', 'Asbestos Cement' ]];
+				break;
+			case'PVC-plastics':return ["all", [">", "Diameter", diameterI ] , ["<=", "Diameter", diameterII ], ["in", "Material", 'uPVC' , 'PVC - Blue Brute' , 'Polyvinyl Chloride', 'mPVC' ]];
+				break;
+			case'Polyethylene-plastics':return ["all", [">", "Diameter", diameterI ] , ["<=", "Diameter", diameterII ], ["in", "Material", 'Polyethylene' , 'Medium Density Polyethylene' , 'High Pressure Polyethylene' , 'High Density Polyethylene' , 'Hdpe' ]];
+				break;
+			case'other-unknown':return ["all", [">", "Diameter", diameterI ] , ["<=", "Diameter", diameterII ], ["in", "Material", 'PLST' , 'NPRN' , '' ]];
+				break;
+		}	
+}
 /*** 
 		ZOOM DEPENDING LIEN WIDTH - NOT USED - NOT WORKING
 					***/
@@ -464,9 +572,9 @@ infoPipe.update = function (props) {
 		MOUSE OVER EVENT
 					***/
 map.on('mousemove', function (e) {
-    var features = map.queryRenderedFeatures(e.point, {layers: wasteLayersNames});
-   // console.log(feature);
-    if (features.length) {
+
+    var features = map.queryRenderedFeatures(e.point, {layers: wasteLayersNames.concat(wasteLayersNamesOw.concat(stormLayersNames.concat(stormLayersNamesOw)))});
+    if (features.length>0) {
     	    var feature = features[0];
     	    updatePipeInspector(feature);
     	    /*for(var i=0; i < Diameters.length-1; i++) {
@@ -489,8 +597,9 @@ function updatePipeInspector(feature){
 	if (feature=='clear'){
 	    		pipeInspDivc.style.height="60px";
 			pipeInspDiv.innerHTML= "<span style=\"font-size:13px\">Hover over a pipe<span>";
-		};
-	switch (feature.properties.Pipe_sha_1){
+		}else{
+		
+	switch (feature.properties.Pipe_Shape){
 		  case "U-shaped": showU();
 		                   break;
 		  case "TRI": showTri();
@@ -543,7 +652,7 @@ function updatePipeInspector(feature){
 		document.getElementById('myMat').innerHTML= feature.properties.Material;
 	}
 	else{document.getElementById('myMat').innerHTML= 'unknown'};
-
+}
 }    
 
 /** 
@@ -553,7 +662,7 @@ map.on('move', function() {
 	    var zoom = map.getZoom();
 	    removeElementsByClass('arrowFlow');
 	    // only after zoom 18
-	    if (zoom >= 17) {
+	    if (zoom >= 17&&vlayer=="waste") {
 		
 		// to hide or show it.
 		//map.on('move', function() {
@@ -627,10 +736,12 @@ function plotFlow(flowParam){
 	}
 	}
 ///////////////////////////////////////// FILL LEGEND //////////////////////////////////////////////////
- setTimeout(function(){ updateLegend(); }, 18000);
+updateLegend();
 function updateLegend(){
 	var divMat = document.getElementById('mat-legend');
+	divMat.innerHTML = "";
 	var divDiam = document.getElementById('diam-legend');
+	divDiam.innerHTML = "";
 	for(var i=0; i < Diameters.length-1; i++) {(function(i){ // for onclik
 		var newNode = document.createElement('div');      
 		newNode.innerHTML = "<input type=\"checkbox\" id=\"diamCheckBox"+(Diameters[i]).toString()+"\"checked=\"checked\"><svg class=\"legend-svg\" height=\"15\" width=\"30\">"+
@@ -662,11 +773,11 @@ function updateLegend(){
 // SOLVE WAIT FOR ASYNCH TASK 
 function toggleDiamVisbility(Diam){
 	function tDv(callback){
-		for (var k=0; k < years.length-1; k++) {
+		//for (var k=0; k < years.length-1; k++) {
 			for (j=0;j<materialGroups.length;j++){
-				toggleLayerVisbility("wastePipe-"+Diam+materialGroups[j]+years[k].toString());
+				toggleLayerVisbility(vlayer+"Pipe-"+Diam+materialGroups[j]);//+years[k].toString()
 			}
-		}
+		//}
 
 		callback.call();}
 	function tCv(){
@@ -702,20 +813,20 @@ function changeYear(newY,flag){
 		var yearsToChange=getInBetween(years.slice(1,years.length-1),yearChange.maxy);
 		yearsToChange=yearsToChange.slice(1);
 	}
-	console.log(yearsToChange);
+	//console.log(yearsToChange);
 	for (var k=0; k < yearsToChange.length; k++) {
-		for(var i=0; i < wasteDiameters.length-1; i++) {
-			for (j=0;j<materialGroups.length;j++){
-				toggleLayerVisbility("wastePipe-"+wasteDiameters[i].toString()+materialGroups[j]+yearsToChange[k].toString());
-			}
-		}
+		//for(var i=0; i < wasteDiameters.length-1; i++) {
+			//for (j=0;j<materialGroups.length;j++){
+				toggleLayerVisbility(vlayer+"Pipe-ow"+yearsToChange[k].toString());
+			//}
+		//}
 	}
 	
 	
 };
 function getInBetween(array,bounds){
-console.log(array);
-console.log(bounds);
+//console.log(array);
+//console.log(bounds);
 
 	bounds.sort();
 	for (var i=0;i<array.length;i++){

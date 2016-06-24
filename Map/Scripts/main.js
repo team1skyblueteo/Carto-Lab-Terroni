@@ -84,7 +84,12 @@ jQuery(function () {
         onMenuClick: function (event) {
             console.log(event);
         },
-        onFocus: function (event) {
+        onClick: function (event) {
+            if (event.target=='level-2-1'||event.target=='level-1-1'){
+            	togglePipe()
+            }
+        },
+        /*onFocus: function (event) {
             console.log('focus: ', this.name, event);
             // event.preventDefault();
         },
@@ -93,11 +98,11 @@ jQuery(function () {
             // event.preventDefault();
         },
         // onKeydown: function (event) { console.log('keyboard', event); event.preventDefault(); 
-        // },
+        // },*/
         nodes: [
-            { id: 'level-1', text: 'Drainage Water Network', expanded: true, group: true, 
+            { id: 'level-1', text: 'Waste Water Network', expanded: true, group: true, 
                 nodes: [
-                    { id: 'level-1-1', text: 'Drainage Water Network', img: 'icon-drainage',
+                    { id: 'level-1-1', text: 'Waste Water Network', img: 'icon-drainage',
                         route: '/project/Icons'
                     }
                  ],
@@ -117,15 +122,18 @@ jQuery(function () {
 
                 // }
             },
-            { id: 'level-2', text: 'Rain Water Network', img: 'icon-folder', expanded: true, group: true,
+            { id: 'level-2', text: 'Storm Water Network', img: 'icon-folder', expanded: true, group: true,
               nodes: [
-                    { id: 'level-2-1', text: 'Rain Water Network', img: 'icon-rain',
+                    { id: 'level-2-1', text: 'Storm Water Network', img: 'icon-rain',
                         route: '/project'
                     }
                 ],
             },
         ],
     });
+    // add evenlistener to the two layer
+    //document.getElementById("node_level-1_sub").onClick=function(){togglePipe()};
+    //document.getElementById("node_level-2_sub").onClick=function(){togglePipe()};
 });
 
 // OnClick event to show or hide the sidebar
@@ -155,10 +163,8 @@ jQuery(function() {
 	    timeSlider.noUiSlider.on('update', function( values, handle ) {
 		if ( handle ) {//max
 			changeYear(parseInt(values[handle]),'max')
-			console.log( values[handle]+"1");
 		} else {//min
 			changeYear(parseInt(values[handle]),'min')
-			console.log( values[handle]+"2");
 		}
 	});
 });
@@ -331,13 +337,15 @@ Reload.addEventListener("click", function(){
 var Sliderbtn  = document.getElementById("sliderbtn");
 
 Sliderbtn.addEventListener("click", function(){
-    if (timeSlider.style.visibility == "visible") {
-        timeSlider.style.visibility = "hidden";
-        document.getElementById("sliderbtn").innerHTML="Show Time Slider";
-    }
-    else {
-        timeSlider.style.visibility = "visible";
-        document.getElementById("sliderbtn").innerHTML="Hide Time Slider";
+	if (map.getZoom()<14){
+	    if (timeSlider.style.visibility == "visible") {
+		timeSlider.style.visibility = "hidden";
+		document.getElementById("sliderbtn").innerHTML="Show Time Slider";
+	    }
+	    else {
+		timeSlider.style.visibility = "visible";
+		document.getElementById("sliderbtn").innerHTML="Hide Time Slider";
+	    }
     }
 }, false);
 
@@ -346,13 +354,15 @@ var Legendbtn  = document.getElementById("legend");
 var Legend  = document.getElementById("legend-c");
 
 Legendbtn.addEventListener("click", function(){
-    if (Legend.style.visibility == "visible") {
-        Legend.style.visibility = "hidden";
-        document.getElementById("legend").innerHTML="Show Legend";
-    }
-    else {
-        Legend.style.visibility = "visible";
-        document.getElementById("legend").innerHTML="Hide Legend";
+    if (map.getZoom()>=14){
+	    if (Legend.style.visibility == "visible") {
+		Legend.style.visibility = "hidden";
+		document.getElementById("legend").innerHTML="Show Legend";
+	    }
+	    else {
+		Legend.style.visibility = "visible";
+		document.getElementById("legend").innerHTML="Hide Legend";
+	    }
     }
 }, false);
 /////////////////////////////// DISPLAY ELEVATION //////////////////////////////////
@@ -370,6 +380,17 @@ map.on('click', function (e) {
 		.setLngLat(e.lngLat)
 		.setHTML("Height: "+height.toString()+" m ")
 		.addTo(map);
+    }
+});
+////////////////////////// ZOOM event for LEGEND and time slider //////////////////////////
+map.on('zoom', function (e) {
+    if (map.getZoom()>=14){
+    	timeSlider.style.visibility = "hidden";
+	document.getElementById("sliderbtn").innerHTML="Show Time Slider";
+    }
+    if (map.getZoom()<14){
+    	Legend.style.visibility = "hidden";
+    	document.getElementById("legend").innerHTML="Show Legend";
     }
 });
  /////////////////////////////////////////GENERAL FUNCTIONS ///////////////////////////////////
