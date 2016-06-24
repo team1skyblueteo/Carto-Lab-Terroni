@@ -23,5 +23,7 @@ GENERALIZE MAP
 TECHINCAL DOCUMENT
 -generate pdf
 QUERY FOR HEIGHT
-common gateway interface
+common gateway interface-DONE
+BASEMAP 
+fix countour and his labels 
 
