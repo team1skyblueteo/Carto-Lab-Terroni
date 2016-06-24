@@ -391,6 +391,7 @@ map.on('zoom', function (e) {
     if (map.getZoom()<14){
     	Legend.style.visibility = "hidden";
     	document.getElementById("legend").innerHTML="Show Legend";
+    	resfreshtimeline(years.slice(1), startyr);
     }
 });
  /////////////////////////////////////////GENERAL FUNCTIONS ///////////////////////////////////
