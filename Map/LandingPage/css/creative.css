@@ -413,11 +413,11 @@ body {
 
 img.ETH {
   position: absolute;
-  top: 7%;
-  margin-left: -100px;
+  top: 8%;
   left: 50%;
-  width: 200px;
-  height: 100px;
+  margin-left: -118px;
+  width: 236px;
+  height: 40px;
   z-index: 1;
 }
 
@@ -425,8 +425,8 @@ img.Logo {
   position:absolute;
   bottom: 7%;
   left: 50%;
-  margin-left:-97px;
-  width:15%;
-  height:auto;
+  margin-left:-102px;
+  width:204px;
+  height:45px;
   z-index: 1;
 }

@@ -237,11 +237,13 @@ body {
 
 #Logo {
   position:absolute;
+  top:50%;
+  margin-top: -20px;
   cursor: pointer;
   left:1%;
-  width:9%;
-  height:auto;
-  z-index: 1;
+  width:177px;
+  height:39px;
+  z-index: 15;
 }
 
 /*Icon opacity to 1 when layer is selected*/

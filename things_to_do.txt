@@ -1,6 +1,6 @@
 LANDING PAGE
--scritte non si leggono.
--aggiungere logo
+-scritte non si leggono -DONE
+-aggiungere logo -DONE
 *****MAP****
 PIPE INSPECTOR
 -show ID of the pipe
@@ -11,11 +11,11 @@ HOME
 LEGEND
 -check box on diameter -DONE
 MENU
--center it below the button
+-center it below the button -DONE
 TIMESLIDER
--two slider toggle visibility - DONE
+-two slider toggle visibility -DONE
 MENU
--cenetr button and search
+-cenetr button and search -DONE
 GENERALIZE MAP
 -find how to generalize it
 -overview map
