@@ -197,12 +197,13 @@ Versions:
 	This section contains script that for permission reason has to be run from top folder
 	**/
 // load csv file with node coord
- var nodeurl = 'Data/waste-water-node.csv';
+ var nodeurl = 'Data/waste-water-node.csv';//'Data/waste-water-node.csv';
  var xmlhttp = new XMLHttpRequest();
 var nodeArray;
 xmlhttp.onreadystatechange = function() {
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
         nodeArray = Papa.parse(xmlhttp.responseText,{delimiter: ","});
+        console.log(nodeArray);
     }
 };
 xmlhttp.open("GET", nodeurl, true);

@@ -656,9 +656,15 @@ function updatePipeInspector(feature){
 }
 }    
 
-/** 
-	FLOW DIRECTION
-			***/
+
+////////////////////////////////   FLOW DIRECTION    ////////////////////////////////////////////
+var menuHeight=document.getElementById("toolbar").offsetHeight;
+console.log(menuHeight);
+window.addEventListener("resize", function(){
+menuHeight=document.getElementById("toolbar").offsetHeight;
+console.log(menuHeight);
+} );
+
 map.on('move', function() {
 	    var zoom = map.getZoom();
 	    removeElementsByClass('arrowFlow');
@@ -671,13 +677,14 @@ map.on('move', function() {
 	    		bounds = map.getBounds();
 	    		var features = map.queryRenderedFeatures(bounds, {layers: wasteLayersNames});
 	    		for (i=0,l=features.length;i<l;i++){
-	    			if (features[i].properties.DS_node_ID!= 'undefined'&&features[i].properties.US_node_ID!= 'undefined'){
+	    			if (features[i].properties.DS_node_ID&&features[i].properties.US_node_ID){
 		    			//var t0 = performance.now();
 		    			flowParam = getFlowParam(features[i].properties.DS_node_ID,features[i].properties.US_node_ID);
 		    			//var t1 = performance.now();
 		    			//console.log('flowParam: '+(t1-t0));
-		    			plotFlow(flowParam);
-		    			//var t2 = performance.now();
+		    			if (flowParam){
+		    				plotFlow(flowParam,features[i].properties.DS_node_ID,features[i].properties.US_node_ID);
+		    			}//var t2 = performance.now();
 		    			//console.log('plotFlow: '+(t2-t1));
 	    			}
 	    		}
@@ -701,33 +708,66 @@ function getFlowParam(DSid,USid){
 	var DSn=parseInt(DSid.substring(2))-1;
 	var USn=parseInt(USid.substring(2))-1;
 	var tempNode=nodeArray.data[DSn];
-	if (tempNode[4]==0){
+	DSxy=[parseFloat(tempNode[0]),parseFloat(tempNode[1])];
+	var tempNode=nodeArray.data[USn];
+	USxy=[parseFloat(tempNode[0]),parseFloat(tempNode[1])];
+	//plotPt(DSxy,DSid)
+	/*if (tempNode[4]==0){
 		DSxy=[parseFloat(tempNode[0]),parseFloat(tempNode[1])];
 		}
 	else{
 		tempNode=nodeArray.data[DSn-parseInt(tempNode[4])];
 		DSxy=[parseFloat(tempNode[0]),parseFloat(tempNode[1])];};
+	
+	console.log([DSid,tempNode[2]]);
 	tempNode=nodeArray.data[USn];
+	
 	if (tempNode[4]==0){
 		USxy=[parseFloat(tempNode[0]),parseFloat(tempNode[1])];
 		}
 	else{
 		tempNode=nodeArray.data[USn-parseInt(tempNode[4])];
-		USxy=[parseFloat(tempNode[0]),parseFloat(tempNode[1])];};
+		USxy=[parseFloat(tempNode[0]),parseFloat(tempNode[1])];};*/
+	//plotPt(USxy,USid)
+	console.log([USid,tempNode[2]]);
+	Dist = Math.sqrt(Math.pow((USxy[0]-DSxy[0]),2)+Math.pow((USxy[1]-DSxy[1]),2));
+	if (Dist<0.0001){
+	console.log(Dist);
+	return false
+	}
+	else{
 	Meanxy = [(USxy[0]+DSxy[0])/2,(USxy[1]+DSxy[1])/2];
+	
+	//Meanxy = {x:(USxy.x+DSxy.x)/2,y:(USxy.y+DSxy.y)/2};
 	Bearing = Math.atan2(DSxy[0]-USxy[0], DSxy[1]-USxy[1])/Math.PI*180;
-	return [Meanxy,Bearing];		
+	//Bearing = Math.atan2(DSxy.x-USxy.x, DSxy.y-USxy.y)/Math.PI*180;
+	return [Meanxy,Bearing];}		
 }
-
-function plotFlow(flowParam){
+function plotPt(coo,id){
+	//console.log(coo);
+	var arrayCoo = map.project(coo);
+	if (arrayCoo.x<1289&&arrayCoo.y<408){
+		var ptDiv = document.createElement('div');
+		ptDiv.className = 'arrowFlow';
+		ptDiv.id = id;
+		ptDiv.style.top=(parseInt(arrayCoo.y)+menuHeight-10).toString()+'px';
+		ptDiv.style.left=(parseInt(arrayCoo.x)-10).toString()+'px';
+		ptDiv.innerHTML= "<svg width=\"20\" height=\"20\" id=\"svg2\">"+
+						    "<circle cx=\"10\" cy=\"10\" r=\"5\"/>"+
+					    "</svg>";
+		document.body.appendChild(ptDiv);
+	}
+}
+function plotFlow(flowParam,DSid,USid){
 	//var t3 = performance.now();
-	var arrayCoo = map.project(flowParam[0]);
+	var arrayCoo = map.project(flowParam[0]);//
 	//var t4 = performance.now();
 	//console.log('Mapbox gl project: '+(t4-t3));
 	if (arrayCoo.x<1289&&arrayCoo.y<408){
 		var arrowDiv = document.createElement('div');
 		var deg = flowParam[1]-90;
 		arrowDiv.className = 'arrowFlow';
+		arrowDiv.id = DSid+USid;
 		arrowDiv.style.top=(parseInt(arrayCoo.y)+39-10).toString()+'px';
 		arrowDiv.style.left=(parseInt(arrayCoo.x)-10).toString()+'px';
 		arrowDiv.innerHTML= "<svg width=\"20\" height=\"20\" id=\"svg2\">"+
