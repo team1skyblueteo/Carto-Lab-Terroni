@@ -115,6 +115,7 @@ map.on("load", function(){
         Diameters=wasteDiameters;
         //});
         loadStormWater();
+        document.getElementById("node_level-1-1").click();
 	loadWasteWater();
     //get data using geojson -> you can also get it directly in data property of addSource method. Check out https://www.mapbox.com/mapbox-gl-style-spec/#sources-geojson
     //mapboxgl.util.getJSON("data/pipe.geojson", function(err, data){
@@ -154,11 +155,11 @@ function loadWasteWater(){
    			 "layout": {
 			            "line-join": "round",
 				    "line-cap": "round",
-				    'visibility': 'visible'
+				    'visibility': 'none'
 				},
    			 "paint": {
    		       		  "line-width":	0.6,//Math.pow(Math.log10(( wasteDiameters[i]+wasteDiameters[i+1]) /3),2),
-     			          "line-color": 'blue',
+     			          "line-color": 'red',
       		         	  "line-opacity": 0.6,
    				 }
 			  },"housenum-label");
@@ -179,7 +180,7 @@ function loadWasteWater(){
    			 "layout": {
 			            "line-join": "round",
 				    "line-cap": "round",
-				    'visibility': 'visible'
+				    'visibility': 'none'
 				},
    			 "paint": {
    		       		  "line-width":	Math.pow(Math.log10(( wasteDiameters[i]+wasteDiameters[i+1]) /3),2),
@@ -215,11 +216,11 @@ function loadStormWater(){
    			 "layout": {
 			            "line-join": "round",
 				    "line-cap": "round",
-				    'visibility': 'none'
+				    'visibility': 'visible'
 				},
    			 "paint": {
    		       		  "line-width":	0.6,//Math.pow(Math.log10(( wasteDiameters[i]+wasteDiameters[i+1]) /3),2),
-     			          "line-color": 'red',
+     			          "line-color": 'blue',
       		         	  "line-opacity": 0.6,
    				 }
 			  },"housenum-label");
@@ -238,7 +239,7 @@ function loadStormWater(){
    			 "layout": {
 			            "line-join": "round",
 				    "line-cap": "round",
-				    'visibility': 'none'
+				    'visibility': 'visible'
 				},
    			 "paint": {
    		       		  "line-width":	Math.pow(Math.log10(( stormDiameters[i]+stormDiameters[i+1]) /3),2),
