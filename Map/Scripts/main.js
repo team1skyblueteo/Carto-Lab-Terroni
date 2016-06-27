@@ -85,8 +85,11 @@ jQuery(function () {
             console.log(event);
         },
         onClick: function (event) {
-            if (event.target=='level-2-1'||event.target=='level-1-1'){
-            	togglePipe()
+            if (event.target=='level-1-1'){
+            	togglePipe('waste')
+            }
+            if (event.target=='level-2-1'){
+            	togglePipe('storm')
             }
         },
         nodes: [

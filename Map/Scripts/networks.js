@@ -279,12 +279,16 @@ function toggleStorm(){
 			}
 		}
 }
-function togglePipe(){
-	if (vlayer=='waste'){Diameters=stormDiameters;
-	vlayer='storm';}
+function togglePipe(layer){
+	if (layer==vlayer){}
 	else{
-	Diameters=wasteDiameters;
-	vlayer='waste';}
+	if (vlayer=='waste'){
+		removeElementsByClass('arrowFlow');
+		Diameters=stormDiameters;
+		vlayer='storm';}
+	else{
+		Diameters=wasteDiameters;
+		vlayer='waste';}
 	updateLegend();
 	for (var k=0; k < years.length-1; k++) {
 			toggleLayerVisbility("wastePipe-ow"+years[k].toString());
@@ -299,6 +303,7 @@ function togglePipe(){
 			toggleLayerVisbility("wastePipe-"+wasteDiameters[i].toString()+materialGroups[j]);
 			}
 			
+		}
 		}
 }
 /***

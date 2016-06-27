@@ -51,6 +51,7 @@ body {
 	text-align: left;
 	vertical-align: left;
 	display:none;
+	z-index:15;
 }
 .w2ui-sidebar .w2ui-sidebar-div {
 	width: 100%;
