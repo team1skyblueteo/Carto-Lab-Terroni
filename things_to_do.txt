@@ -25,7 +25,7 @@ TECHINCAL DOCUMENT
 QUERY FOR HEIGHT
 common gateway interface-DONE
 BASEMAP 
-fix countour and his labels 
+fix countour and his labels DONE
 LOADING
 implemant loading
 

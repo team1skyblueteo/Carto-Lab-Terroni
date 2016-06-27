@@ -111,8 +111,8 @@ map.on("load", function(){
             "type": "geojson",
             "data": "./Data/Stormwater2.geojson",//data
         });
-        vlayer='waste';
-        Diameters=wasteDiameters;
+        vlayer='storm';
+        Diameters=stormDiameters;
         //});
         loadStormWater();
         document.getElementById("node_level-1-1").click();
@@ -751,7 +751,12 @@ function updateLegend(){
 				    "</svg><div class=\"legend-label\">   "+(Diameters[i]+1).toString()+" - "+Diameters[i+1].toString()+"</div>";
   		newNode.className="legend-item-diam";
   		newNode.className+=" legend-item";
-  		newNode.addEventListener('click',function(){toggleDiamVisbility(Diameters[i].toString());});
+  		newNode.addEventListener('click',function(e){
+  			console.log(e);
+  			if (e.target.type=='checkbox'){
+  				e.target.checked = !e.target.checked;	
+  				}
+  			toggleDiamVisbility(Diameters[i].toString());});
 		divDiam.appendChild( newNode );})(i)
 	}
 	
