@@ -89,16 +89,6 @@ jQuery(function () {
             	togglePipe()
             }
         },
-        /*onFocus: function (event) {
-            console.log('focus: ', this.name, event);
-            // event.preventDefault();
-        },
-        onBlur: function (event) {
-            console.log('blur: ', this.name, event);
-            // event.preventDefault();
-        },
-        // onKeydown: function (event) { console.log('keyboard', event); event.preventDefault(); 
-        // },*/
         nodes: [
             { id: 'level-1', text: 'Waste Water Network', expanded: true, group: true, 
                 nodes: [
@@ -106,21 +96,6 @@ jQuery(function () {
                         route: '/project/Icons'
                     }
                  ],
-                // onClick: function (event) {
-                //     console.log('click', event.target, event);
-                //         // It is possible to hide the sidebar after that the selection is done!!
-                //         // sidebar.style.display = "none";
-
-                //         // Change opacity of Icon and use it as checkbox. If opacity is 1 than the layer is visible.
-                //         if (document.getElementById("").opacity == 0.6) {
-                //             document.getElementById("").opacity = 1;
-                //         }
-                //         else {
-                //             document.getElementById("").opacity = 0.6;
-
-                //         }
-
-                // }
             },
             { id: 'level-2', text: 'Storm Water Network', img: 'icon-folder', expanded: true, group: true,
               nodes: [
@@ -365,6 +340,7 @@ Legendbtn.addEventListener("click", function(){
 	    }
     }
 }, false);
+
 /////////////////////////////// DISPLAY ELEVATION //////////////////////////////////
 /***
 	on click listener e poup
@@ -382,18 +358,21 @@ map.on('click', function (e) {
 		.addTo(map);
     }
 });
+
 ////////////////////////// ZOOM event for LEGEND and time slider //////////////////////////
+
 map.on('zoom', function (e) {
     if (map.getZoom()>=14){
     	timeSlider.style.visibility = "hidden";
-	document.getElementById("sliderbtn").innerHTML="Show Time Slider";
+        Sliderbtn.style.color = "silver";
     }
-    if (map.getZoom()<14){
+    else if (map.getZoom()<14){
     	Legend.style.visibility = "hidden";
-    	document.getElementById("legend").innerHTML="Show Legend";
     	resfreshtimeline(years.slice(1), startyr);
+        Legendbtn.style.color = "#666";
     }
 });
+
  /////////////////////////////////////////GENERAL FUNCTIONS ///////////////////////////////////
 
 

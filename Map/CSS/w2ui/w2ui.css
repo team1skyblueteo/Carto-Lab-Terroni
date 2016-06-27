@@ -674,6 +674,7 @@ button.w2ui-btn:hover {
 button.w2ui-btn:active,
 button.w2ui-btn.clicked {
   border: 1px solid #999;
+  color:#555;
   background-image: -webkit-linear-gradient(#cccccc 0%, #cccccc 100%);
   background-image: -moz-linear-gradient(#cccccc 0%, #cccccc 100%);
   background-image: -ms-linear-gradient(#cccccc 0%, #cccccc 100%);
