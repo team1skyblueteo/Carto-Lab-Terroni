@@ -7,57 +7,32 @@
 	Versions:
 	2016-04-21
 */
-
-
 ////////////////////////////////////////// Map //////////////////////////////////////////
-
-
 // Set variables for maxBounds and for map
 /***
-	MAP BOX JS VERSION
+	MAP BOX JS BOUND FOR GEOCODER
 				***/
 var southWest = L.latLng(-41.3500, 174.6000),
     northEast = L.latLng(-41.2100, 174.9000),
     jswellingtonBounds = L.latLngBounds(southWest, northEast);
 
-/*
 
-    map = L.map('map', {zoomControl: false,
-    // Set that bounding box as maxBounds to restrict moving the map
-    maxBounds:  wellingtonBounds,
-    maxZoom: 17,
-    minZoom: 12,
-    scrollWheelZoom: true, // We can also zoom with mousewheel
-    keyboard: true, // We can also navigate with keyboard
-    keyboardZoomOffset: 1, // Number of zoom levels to change when pressing + or - key.
-    }).setView([-41.2833, 174.7666], 13);
-
-
-
-// Change zoom position
-new L.Control.Zoom({ position: 'topright' }).addTo(map);
-
-//  Load OpenStreeMap data from Mapbox.
-
-
-L.mapbox.styleLayer('mapbox://styles/giuliot/cina7yy7000mad5m3dmzkaf1f').addTo(map);
-*/
 L.mapbox.accessToken = 'pk.eyJ1IjoiZ2l1bGlvdCIsImEiOiJjaWg5ZGs1d2MwMDR0dnNtMzlydHhxaGs3In0.TfMvSNQas5gBS882h-Oh4g';
 /**	
 	MAPBOX GL VERSION
 	**/
-	
-var southWest = new mapboxgl.LngLat(174.6000,-41.3500),
-    northEast = new mapboxgl.LngLat(174.9000,-41.2100),
+
+var southWest = new mapboxgl.LngLat(174.6000, -41.3500),
+    northEast = new mapboxgl.LngLat(174.9000, -41.2100),
     wellingtonBounds = new mapboxgl.LngLatBounds(southWest, northEast);
 mapboxgl.accessToken = 'pk.eyJ1IjoiZ2l1bGlvdCIsImEiOiJjaWg5ZGs1d2MwMDR0dnNtMzlydHhxaGs3In0.TfMvSNQas5gBS882h-Oh4g';
 var map = new mapboxgl.Map({
     container: 'map',
     //style: 'mapbox://styles/mapbox/streets-v8',
-    style:'mapbox://styles/giuliot/cipjidy9h005ccnng1p9qidf1',
-    
-    center: [174.7666,-41.2833],
-    maxBounds:  wellingtonBounds,
+    style: 'mapbox://styles/giuliot/cipjidy9h005ccnng1p9qidf1',
+
+    center: [174.7666, -41.2833],
+    maxBounds: wellingtonBounds,
     maxZoom: 18,
     minZoom: 12,
     zoom: 13,
@@ -73,54 +48,62 @@ var mainmin = 80;
 
 ////////////////////////////////////////// Sidebar //////////////////////////////////////////
 
-jQuery(function () {
+jQuery(function() {
     jQuery('#sidebar').w2sidebar({
-        name        : 'sidebar',
-        img         : null,
-        resizable   : false,
-        height      : 'auto', 
+        name: 'sidebar',
+        img: null,
+        resizable: false,
+        height: 'auto',
         // topHTML     : '<div id="Searchlayer" style="padding: 10px 5px;">Search layer: <input/> </div>',
-        routeData   : { id: 59, vid: '23.323.4' },
-        onMenuClick: function (event) {
-            console.log(event);
+        routeData: {
+            id: 59,
+            vid: '23.323.4'
         },
-        onClick: function (event) {
-            if (event.target=='level-1-1'){
-            	togglePipe('waste')
+        onMenuClick: function(event) {
+            //console.log(event);
+        },
+        onClick: function(event) {
+            if (event.target == 'level-1-1') {
+                togglePipe('waste')
             }
-            if (event.target=='level-2-1'){
-            	togglePipe('storm')
+            if (event.target == 'level-2-1') {
+                togglePipe('storm')
             }
         },
-        nodes: [
-            { id: 'level-1', text: 'Waste Water Network', expanded: true, group: true, 
-                nodes: [
-                    { id: 'level-1-1', text: 'Waste Water Network', img: 'icon-drainage',
-                        route: '/project/Icons'
-                    }
-                 ],
-            },
-            { id: 'level-2', text: 'Storm Water Network', img: 'icon-folder', expanded: true, group: true,
-              nodes: [
-                    { id: 'level-2-1', text: 'Storm Water Network', img: 'icon-rain',
-                        route: '/project'
-                    }
-                ],
-            },
-        ],
+        nodes: [{
+            id: 'level-1',
+            text: 'Waste Water Network',
+            expanded: true,
+            group: true,
+            nodes: [{
+                id: 'level-1-1',
+                text: 'Waste Water Network',
+                img: 'icon-drainage',
+                route: '/project/Icons'
+            }],
+        }, {
+            id: 'level-2',
+            text: 'Storm Water Network',
+            img: 'icon-folder',
+            expanded: true,
+            group: true,
+            nodes: [{
+                id: 'level-2-1',
+                text: 'Storm Water Network',
+                img: 'icon-rain',
+                route: '/project'
+            }],
+        }, ],
     });
-    // add evenlistener to the two layer
-    //document.getElementById("node_level-1_sub").onClick=function(){togglePipe()};
-    //document.getElementById("node_level-2_sub").onClick=function(){togglePipe()};
 });
 
 // OnClick event to show or hide the sidebar
 
-var Menu  = document.getElementById("Menu");
+var Menu = document.getElementById("Menu");
 var sidebar = document.getElementById("sidebar");
 
-Menu.addEventListener("click", function(){
-  sidebar.style.display = (sidebar.dataset.toggled ^= 1) ? "block" : "none";
+Menu.addEventListener("click", function() {
+    sidebar.style.display = (sidebar.dataset.toggled ^= 1) ? "block" : "none";
 }, false);
 
 
@@ -129,34 +112,32 @@ Menu.addEventListener("click", function(){
 
 //Time slider global variable
 var timeSlider = document.getElementById('time-slider');
-/*timeRange0 = {
-    "min": 1990,
-    "10.77%": 2003,
-    "80%": 2006,
-    "max": 2010
-}*/
-    var startyr=[1840,2015];
+var startyr = [1840, 2015];
 jQuery(function() {
-	    resfreshtimeline(years.slice(1), startyr);
-	    timeSlider.noUiSlider.on('update', function( values, handle ) {
-		if ( handle ) {//max
-			changeYear(parseInt(values[handle]),'max')
-		} else {//min
-			changeYear(parseInt(values[handle]),'min')
-		}
-	});
+    resfreshtimeline(years.slice(1), startyr);
+    timeSlider.noUiSlider.on('update', function(values, handle) {
+        if (handle) { //max
+            //console.log(parseInt(values[handle]),'max');
+            changeYear(parseInt(values[handle]), 'max');
+
+        } else { //min
+            //console.log(parseInt(values[handle]),'max');
+            changeYear(parseInt(values[handle]), 'min');
+
+        }
+    });
 });
 /*
 years: array of year
 start: first year to load
 */
-function resfreshtimeline(years, startyr) {	
+function resfreshtimeline(years, startyr) {
     //years = years.sort();
     var range = years[years.length - 1] - years[0];
-	jQuery(".slider-container").css("width",(range*30).toString()+'px');
-	var mapwidth = parseFloat(jQuery(".mappanel").css("width"));
-	//mapwidth = mapwidth.substring(0, mapwidth.length - 2).toNum;
-	jQuery(".slider-container").css("left",((mapwidth-range*30)/2).toString()+'px');
+    jQuery(".slider-container").css("width", (range * 30).toString() + 'px');
+    var mapwidth = parseFloat(jQuery(".mappanel").css("width"));
+    //mapwidth = mapwidth.substring(0, mapwidth.length - 2).toNum;
+    jQuery(".slider-container").css("left", ((mapwidth - range * 30) / 2).toString() + 'px');
     var timeRangetxt = '';
     density1yr = 5 / range * 100;
     for (i = 0; i < years.length; i++) {
@@ -172,7 +153,9 @@ function resfreshtimeline(years, startyr) {
         }
     }
     var timeRange = JSON.parse(timeRangetxt);
-	if (timeSlider.hasOwnProperty('noUiSlider')) {timeSlider.noUiSlider.destroy();}
+    if (timeSlider.hasOwnProperty('noUiSlider')) {
+        timeSlider.noUiSlider.destroy();
+    }
     noUiSlider.create(timeSlider, {
         range: timeRange,
         connect: true,
@@ -197,7 +180,7 @@ var geocoderControl = L.mapbox.geocoderControl('mapbox.places');
 
 function geocodeThis() {
     var text = document.getElementById('search').value;
-    console.log(text);
+    //console.log(text);
     if (text.length >= 1) {
         geocoderControl.geocoder.query({
             query: text,
@@ -207,7 +190,7 @@ function geocodeThis() {
         }, function(err, res) {
             jQuery("#search-results").empty();
             //console.log(err);
-            console.log(res.results.features);
+            //console.log(res.results.features);
             results = res.results.features;
             if (results.length > 0) {
                 var maxitems = 4;
@@ -217,27 +200,27 @@ function geocodeThis() {
                         break
                     }
                     if (results[i].hasOwnProperty('bbox')) {
-                       var southWest = L.latLng(results[i].bbox[1], results[i].bbox[0]),
+                        var southWest = L.latLng(results[i].bbox[1], results[i].bbox[0]),
                             northEast = L.latLng(results[i].bbox[3], results[i].bbox[2]),
                             jsresBounds = L.latLngBounds(southWest, northEast);
-                            var southWest = new mapboxgl.LngLat(results[i].bbox[0],results[i].bbox[1]),
-			    northEast = new mapboxgl.LngLat(results[i].bbox[2],results[i].bbox[3]),
-			    resBounds  = new mapboxgl.LngLatBounds(southWest, northEast);
+                        var southWest = new mapboxgl.LngLat(results[i].bbox[0], results[i].bbox[1]),
+                            northEast = new mapboxgl.LngLat(results[i].bbox[2], results[i].bbox[3]),
+                            resBounds = new mapboxgl.LngLatBounds(southWest, northEast);
                     } else {
                         resBounds = false
                     }
-                    var resCenter =new mapboxgl.LngLat(results[i].center[0],results[i].center[1]);
+                    var resCenter = new mapboxgl.LngLat(results[i].center[0], results[i].center[1]);
                     var jsresCenter = L.latLng(results[i].center[1], results[i].center[0]);
-                    if ((jswellingtonBounds.contains(jsresCenter)) || (jsresBounds && jswellingtonBounds.intersects(jsresBounds)) ) {
+                    if ((jswellingtonBounds.contains(jsresCenter)) || (jsresBounds && jswellingtonBounds.intersects(jsresBounds))) {
                         var labels = results[i].place_name.split(',');
-                        if (labels.length>2)
-                            {labels.splice(-2,2);}
-                        else if (labels.length>1)
-                            {labels.splice(-1,1);}
-                        else {}
-                        var label=labels.join(',');
+                        if (labels.length > 2) {
+                            labels.splice(-2, 2);
+                        } else if (labels.length > 1) {
+                            labels.splice(-1, 1);
+                        } else {}
+                        var label = labels.join(',');
 
-                        var newinstance = "<div class=\"address-result\" id=\"add-res" + i + "\">" + label+ "</div>";
+                        var newinstance = "<div class=\"address-result\" id=\"add-res" + i + "\">" + label + "</div>";
                         //console.log(newinstance);
                         jQuery("#search-results").append(newinstance);
                         showCount++;
@@ -267,14 +250,14 @@ function geocodeThis() {
                     var newinstance = "<div class=\"address-result\" id=\"add-res-etc\">...</div>";
                     jQuery("#search-results").append(newinstance);
                 }
-                var searchOffSet =jQuery("#search").offset();
-                var searchHeight =jQuery("#search").height();
-                var searchResWidth =parseInt(jQuery("#search-results").css("max-width"))-jQuery("#search").width();
+                var searchOffSet = jQuery("#search").offset();
+                var searchHeight = jQuery("#search").height();
+                var searchResWidth = parseInt(jQuery("#search-results").css("max-width")) - jQuery("#search").width();
                 //var searchResWidth =jQuery("#search").width();
-                console.log
-                console.log(searchResWidth);
-                jQuery("#search-results").css("top", searchOffSet.top+searchHeight+11);
-                jQuery("#search-results").css("left", searchOffSet.left-searchResWidth/2);
+                //console.log
+                //console.log(searchResWidth);
+                jQuery("#search-results").css("top", searchOffSet.top + searchHeight + 11);
+                jQuery("#search-results").css("left", searchOffSet.left - searchResWidth / 2);
                 jQuery("#search-results").css("visibility", "visible");
             } else {
                 jQuery("#search-results").css("visibility", "hidden");
@@ -298,49 +281,47 @@ jQuery('#search').keydown(function(e) {
 })
 
 geocoderControl.on('found', function(res) {
-    console.log(res);
+    //console.log(res);
     //output.innerHTML = JSON.stringify(res.results.features[0]);
 });
 
 // Webpage Logo Reload
-var Reload  = document.getElementById("Logo");
+var Reload = document.getElementById("Logo");
 // jQuery('#Reload').click(function() {
 //     location.reload(true);
 // });
-Reload.addEventListener("click", function(){
+Reload.addEventListener("click", function() {
     location.reload(true);
 }, false);
 
 // Slider button
-var Sliderbtn  = document.getElementById("sliderbtn");
+var Sliderbtn = document.getElementById("sliderbtn");
 
-Sliderbtn.addEventListener("click", function(){
-	if (map.getZoom()<14){
-	    if (timeSlider.style.visibility == "visible") {
-		timeSlider.style.visibility = "hidden";
-		document.getElementById("sliderbtn").innerHTML="Show Time Slider";
-	    }
-	    else {
-		timeSlider.style.visibility = "visible";
-		document.getElementById("sliderbtn").innerHTML="Hide Time Slider";
-	    }
+Sliderbtn.addEventListener("click", function() {
+    if (map.getZoom() < 14) {
+        if (timeSlider.style.visibility == "visible") {
+            timeSlider.style.visibility = "hidden";
+            document.getElementById("sliderbtn").innerHTML = "Show Time Slider";
+        } else {
+            timeSlider.style.visibility = "visible";
+            document.getElementById("sliderbtn").innerHTML = "Hide Time Slider";
+        }
     }
 }, false);
 
 // Legend button
-var Legendbtn  = document.getElementById("legend");
-var Legend  = document.getElementById("legend-c");
+var Legendbtn = document.getElementById("legend");
+var Legend = document.getElementById("legend-c");
 
-Legendbtn.addEventListener("click", function(){
-    if (map.getZoom()>=14){
-	    if (Legend.style.visibility == "visible") {
-		Legend.style.visibility = "hidden";
-		document.getElementById("legend").innerHTML="Show Legend";
-	    }
-	    else {
-		Legend.style.visibility = "visible";
-		document.getElementById("legend").innerHTML="Hide Legend";
-	    }
+Legendbtn.addEventListener("click", function() {
+    if (map.getZoom() >= 14) {
+        if (Legend.style.visibility == "visible") {
+            Legend.style.visibility = "hidden";
+            document.getElementById("legend").innerHTML = "Show Legend";
+        } else {
+            Legend.style.visibility = "visible";
+            document.getElementById("legend").innerHTML = "Hide Legend";
+        }
     }
 }, false);
 
@@ -348,34 +329,31 @@ Legendbtn.addEventListener("click", function(){
 /***
 	on click listener e poup
 				***/
-map.on('click', function (e) {
-    console.log(e);
+map.on('click', function(e) {
+    //console.log(e);
     // Populate the popup and set its coordinates
     // based on the feature found.
-    var height=queryElevation(e.lngLat);
-    height = Math.round(height*10)/10;
-    if (height!=-9999){
-	    var popup = new mapboxgl.Popup()
-		.setLngLat(e.lngLat)
-		.setHTML("Height: "+height.toString()+" m ")
-		.addTo(map);
+    var height = queryElevation(e.lngLat);
+    height = Math.round(height * 10) / 10;
+    if (height != -9999) {
+        var popup = new mapboxgl.Popup()
+            .setLngLat(e.lngLat)
+            .setHTML("Height: " + height.toString() + " m ")
+            .addTo(map);
     }
 });
 
 ////////////////////////// ZOOM event for LEGEND and time slider //////////////////////////
 
-map.on('zoom', function (e) {
-    if (map.getZoom()>=14){
-    	timeSlider.style.visibility = "hidden";
+map.on('zoom', function(e) {
+    if (map.getZoom() >= 14) {
+        timeSlider.style.visibility = "hidden";
         Sliderbtn.style.color = "silver";
-    }
-    else if (map.getZoom()<14){
-    	Legend.style.visibility = "hidden";
-    	resfreshtimeline(years.slice(1), startyr);
+    } else if (map.getZoom() < 14) {
+        Legend.style.visibility = "hidden";
+        resfreshtimeline(years.slice(1), startyr);
         Legendbtn.style.color = "#666";
     }
 });
 
- /////////////////////////////////////////GENERAL FUNCTIONS ///////////////////////////////////
-
-
+/////////////////////////////////////////GENERAL FUNCTIONS ///////////////////////////////////

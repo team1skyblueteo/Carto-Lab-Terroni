@@ -203,7 +203,7 @@ var nodeArray;
 xmlhttp.onreadystatechange = function() {
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
         nodeArray = Papa.parse(xmlhttp.responseText,{delimiter: ","});
-        console.log(nodeArray);
+        //console.log(nodeArray);
     }
 };
 xmlhttp.open("GET", nodeurl, true);

@@ -60,10 +60,10 @@ body {
 
 /*CSS code for the time slider*/
 #time-slider {
-    width: 600px;
+    width: 650px;
     position: absolute;
     bottom: 8%;
-    left: 30%;
+    left: 25%;
     background-color: #efefef;
     border: 1px solid silver;
     visibility: hidden;
@@ -200,7 +200,7 @@ body {
 	border: 1px solid silver;
 	position: absolute;
 	padding: 10px 10px 10px 10px;
-	width: 260px;
+	width: 270px;
 	height: 200px;
 	top:25%;
 	right:10px;
