@@ -368,11 +368,13 @@ map.on('zoom', function (e) {
     if (map.getZoom()>=14){
     	timeSlider.style.visibility = "hidden";
         Sliderbtn.style.color = "silver";
+        Legendbtn.style.color = "#666";
     }
     else if (map.getZoom()<14){
     	Legend.style.visibility = "hidden";
     	resfreshtimeline(years.slice(1), startyr);
-        Legendbtn.style.color = "#666";
+        Legendbtn.style.color = "silver";
+        Sliderbtn.style.color = "#666";
     }
 });
 

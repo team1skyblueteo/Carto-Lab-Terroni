@@ -240,11 +240,11 @@ body {
 #Logo {
   position:absolute;
   top:50%;
-  margin-top: -20px;
+  margin-top: -15px;
   cursor: pointer;
   left:1%;
-  width:177px;
-  height:39px;
+  width:135px;
+  height:30px;
   z-index: 15;
 }
 
