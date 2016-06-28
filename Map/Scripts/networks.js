@@ -492,7 +492,7 @@ function plotFlow(flowParam, DSid, USid) {
     }
 }
 ///////////////////////////////////////// FILL LEGEND //////////////////////////////////////////////////
-updateLegend();
+//updateLegend();
 
 function updateLegend() {
     var divMat = document.getElementById('mat-legend');
