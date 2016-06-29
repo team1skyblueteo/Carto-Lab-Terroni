@@ -561,6 +561,7 @@ function toggleDiamVisbility(Diam) {
 	TOGGLE VISIBILTY OF A LAYER
 							***/
 function toggleLayerVisbility(id) {
+    	console.log("tog");
     var visibility = map.getLayoutProperty(id, 'visibility');
     if (visibility === 'visible') {
         map.setLayoutProperty(id, 'visibility', 'none');

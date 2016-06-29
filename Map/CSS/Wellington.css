@@ -107,7 +107,7 @@ body {
 	position:absolute; 
 	top:0; 
 	bottom:0;
-	left:300px;
+	left:250px;
 	margin:auto;
 	font-size: 12px;
 	height:20px;
@@ -201,7 +201,7 @@ body {
 	position: absolute;
 	padding: 10px 10px 10px 10px;
 	width: 270px;
-	height: 200px;
+	height: 180px;
 	top:25%;
 	right:10px;
 	z-index: 11;

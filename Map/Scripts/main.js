@@ -114,24 +114,16 @@ Menu.addEventListener("click", function() {
 var timeSlider = document.getElementById('time-slider');
 var startyr = [1840, 2015];
 jQuery(function() {
-    resfreshtimeline(years.slice(1), startyr);
-    timeSlider.noUiSlider.on('update', function(values, handle) {
-        if (handle) { //max
-            //console.log(parseInt(values[handle]),'max');
-            changeYear(parseInt(values[handle]), 'max');
+    refreshtimeline(years.slice(1), startyr);
+    document.getElementById("sliderbtn").click();
 
-        } else { //min
-            //console.log(parseInt(values[handle]),'max');
-            changeYear(parseInt(values[handle]), 'min');
-
-        }
-    });
+    
 });
 /*
 years: array of year
 start: first year to load
 */
-function resfreshtimeline(years, startyr) {
+function refreshtimeline(years, startyr) {
     //years = years.sort();
     var range = years[years.length - 1] - years[0];
     jQuery(".slider-container").css("width", (range * 30).toString() + 'px');
@@ -164,6 +156,17 @@ function resfreshtimeline(years, startyr) {
         pips: { // Show a scale with the slider
             mode: 'steps',
             density: density1yr
+        }
+    });
+    timeSlider.noUiSlider.on('update', function(values, handle) {
+        if (handle) { //max
+            //console.log(parseInt(values[handle]),'max');
+            changeYear(parseInt(values[handle]), 'max');
+
+        } else { //min
+            //console.log(parseInt(values[handle]),'max');
+            changeYear(parseInt(values[handle]), 'min');
+
         }
     });
 }
@@ -344,16 +347,25 @@ map.on('click', function(e) {
 });
 
 ////////////////////////// ZOOM event for LEGEND and time slider //////////////////////////
-
+var firstZoom = true;
 map.on('zoom', function(e) {
     if (map.getZoom() >= 14) {
         timeSlider.style.visibility = "hidden";
         Sliderbtn.style.color = "silver";
         Legendbtn.style.color = "#666";
+        if (firstZoom){
+        	    document.getElementById("legend").click();
+        	    firstZoom = false;
+        }
+        if (document.getElementById('legend').innerHTML=="Hide Legend"){
+    		Legend.style.visibility = "visible";
+    	}
     }
     else if (map.getZoom()<14){
     	Legend.style.visibility = "hidden";
-    	resfreshtimeline(years.slice(1), startyr);
+    	if (document.getElementById('sliderbtn').innerHTML=="Hide Time Slider"){
+    		timeSlider.style.visibility = "visible";
+    	}
         Legendbtn.style.color = "silver";
         Sliderbtn.style.color = "#666";
     }
