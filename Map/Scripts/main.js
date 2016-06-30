@@ -370,5 +370,3 @@ map.on('zoom', function(e) {
         Sliderbtn.style.color = "#666";
     }
 });
-
-/////////////////////////////////////////GENERAL FUNCTIONS ///////////////////////////////////
